@@ -1,0 +1,70 @@
+import Image from 'next/image';
+import { PageHeader } from '@/components/shared/PageHeader';
+import { galleryImages, rooms } from '@/app/lib/data';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
+const categories = ['Nature', 'Rooms', 'Activities', 'Pool & Cinema', 'Events & Night Views'];
+
+export default function GalleryPage() {
+    const headerImage = PlaceHolderImages.find((img) => img.id === 'gallery-nature-1');
+
+    return (
+        <div>
+             {headerImage && (
+                <PageHeader
+                title="Gallery"
+                subtitle="A glimpse into the beauty and serenity of Himachal Haven."
+                imageUrl={headerImage.imageUrl}
+                imageHint={headerImage.imageHint}
+                />
+            )}
+
+            <section>
+                <div className="container mx-auto px-4">
+                <Tabs defaultValue="all" className="w-full">
+                    <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 mx-auto max-w-5xl h-auto">
+                        <TabsTrigger value="all">All</TabsTrigger>
+                        {categories.map(category => (
+                             <TabsTrigger key={category} value={category}>{category}</TabsTrigger>
+                        ))}
+                    </TabsList>
+                    
+                    <TabsContent value="all" className="mt-8">
+                        <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+                            {galleryImages.map(image => {
+                                const imageData = PlaceHolderImages.find(p => p.id === image.id);
+                                if (!imageData) return null;
+                                return (
+                                    <div key={image.id} className="break-inside-avoid">
+                                        <Image src={imageData.imageUrl} alt={imageData.description} width={500} height={500} className="w-full h-auto rounded-lg shadow-md" data-ai-hint={imageData.imageHint} placeholder="blur" blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/+F9PQAI8wNPvd7POQAAAABJRU5ErkJggg==" />
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </TabsContent>
+
+                    {categories.map(category => {
+                        const filteredImages = galleryImages.filter(img => img.category === category);
+                        return (
+                        <TabsContent key={category} value={category} className="mt-8">
+                             <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+                                {filteredImages.map(image => {
+                                    const imageData = PlaceHolderImages.find(p => p.id === image.id);
+                                    if (!imageData) return null;
+                                    return (
+                                        <div key={image.id} className="break-inside-avoid">
+                                            <Image src={imageData.imageUrl} alt={imageData.description} width={500} height={500} className="w-full h-auto rounded-lg shadow-md" data-ai-hint={imageData.imageHint} placeholder="blur" blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/+F9PQAI8wNPvd7POQAAAABJRU5ErkJggg=="/>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        </TabsContent>
+                        )
+                    })}
+                </Tabs>
+                </div>
+            </section>
+        </div>
+    );
+}

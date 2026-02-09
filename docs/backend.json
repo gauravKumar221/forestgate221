@@ -1,0 +1,90 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Represents a user's profile in the system.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The user's full name."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "The user's email address."
+        },
+        "mobile": {
+            "type": "string",
+            "description": "The user's mobile number."
+        },
+        "address": {
+            "type": "string",
+            "description": "The user's address."
+        }
+      },
+      "required": ["name", "email"]
+    },
+    "Booking": {
+      "title": "Booking",
+      "description": "Represents a booking made by a user.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The ID of the user who made the booking."
+        },
+        "bookingType": {
+          "type": "string",
+          "description": "The type of booking (e.g., Entire Resort, Deluxe Room)."
+        },
+        "checkIn": {
+          "type": "string",
+          "format": "date",
+          "description": "The check-in date."
+        },
+        "checkOut": {
+          "type": "string",
+          "format": "date",
+          "description": "The check-out date."
+        },
+        "guests": {
+          "type": "number",
+          "description": "The number of guests."
+        },
+        "totalPrice": {
+          "type": "number",
+          "description": "The total price of the booking."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["Upcoming", "Completed", "Cancelled"],
+          "description": "The status of the booking."
+        },
+        "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The timestamp when the booking was created."
+        }
+      },
+      "required": ["userId", "bookingType", "checkIn", "checkOut", "guests", "totalPrice", "status", "createdAt"]
+    }
+  },
+  "auth": {
+    "providers": ["email"]
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": {
+        "$ref": "#/entities/UserProfile"
+      },
+      "description": "Stores user profile information."
+    },
+    "/users/{userId}/bookings/{bookingId}": {
+      "schema": {
+        "$ref": "#/entities/Booking"
+      },
+      "description": "Stores bookings for a specific user."
+    }
+  }
+}
