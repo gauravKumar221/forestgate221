@@ -55,13 +55,21 @@ const OTPSchema = z.object({
   }),
 });
 
+const NewPasswordSchema = z.object({
+    password: z.string().min(6, { message: "Password must be at least 6 characters." }),
+    confirmPassword: z.string().min(6, { message: "Password must be at least 6 characters." })
+}).refine(data => data.password === data.confirmPassword, {
+    message: "Passwords do not match.",
+    path: ["confirmPassword"],
+});
+
 
 export default function LoginPage() {
     const { toast } = useToast();
     const router = useRouter();
     const headerImage = PlaceHolderImages.find((img) => img.id === 'about-resort');
 
-    const [resetStep, setResetStep] = useState('email'); // 'email' or 'otp'
+    const [resetStep, setResetStep] = useState('email'); // 'email', 'otp', or 'newPassword'
     const [isDialogOpen, setIsDialogOpen] = useState(false);
 
     const form = useForm({
@@ -79,6 +87,11 @@ export default function LoginPage() {
         defaultValues: { pin: "" },
     });
 
+    const newPasswordForm = useForm({
+        resolver: zodResolver(NewPasswordSchema),
+        defaultValues: { password: "", confirmPassword: "" },
+    });
+
     // Reset flow when dialog closes
     useEffect(() => {
         if (!isDialogOpen) {
@@ -87,9 +100,10 @@ export default function LoginPage() {
                 setResetStep('email');
                 forgotPasswordForm.reset();
                 otpForm.reset();
+                newPasswordForm.reset();
             }, 200);
         }
-    }, [isDialogOpen, forgotPasswordForm, otpForm]);
+    }, [isDialogOpen, forgotPasswordForm, otpForm, newPasswordForm]);
 
     async function onLoginSubmit(data) {
         console.log(data);
@@ -110,10 +124,19 @@ export default function LoginPage() {
         console.log("OTP submitted:", data.pin);
         // Dummy validation for demo purposes - always succeeds
         toast({
-            title: "Success!",
-            description: "Password has been reset successfully. (This is a demo)",
+            title: "OTP Verified!",
+            description: "Please enter your new password.",
         });
-        setIsDialogOpen(false);
+        setResetStep('newPassword');
+    }
+    
+    function onNewPasswordSubmit(data) {
+        console.log("New password set:", data.password);
+        toast({
+            title: "Password Reset Successful!",
+            description: "You can now log in with your new password.",
+        });
+        setIsDialogOpen(false); // Close the dialog on final success
     }
 
 
@@ -243,6 +266,52 @@ export default function LoginPage() {
                                                 <Button type="button" variant="secondary" onClick={() => setResetStep('email')}>Back</Button>
                                                 <Button type="submit" disabled={otpForm.formState.isSubmitting}>
                                                     {otpForm.formState.isSubmitting ? "Verifying..." : "Verify OTP"}
+                                                </Button>
+                                            </DialogFooter>
+                                        </form>
+                                    </Form>
+                                </>
+                            )}
+                            {resetStep === 'newPassword' && (
+                                <>
+                                    <DialogHeader>
+                                        <DialogTitle>Set New Password</DialogTitle>
+                                        <DialogDescription>
+                                            Enter and confirm your new password.
+                                        </DialogDescription>
+                                    </DialogHeader>
+                                    <Form {...newPasswordForm}>
+                                        <form onSubmit={newPasswordForm.handleSubmit(onNewPasswordSubmit)} className="space-y-4 pt-4">
+                                            <FormField
+                                                control={newPasswordForm.control}
+                                                name="password"
+                                                render={({ field }) => (
+                                                    <FormItem>
+                                                        <FormLabel>New Password</FormLabel>
+                                                        <FormControl>
+                                                            <Input type="password" placeholder="••••••••" {...field} />
+                                                        </FormControl>
+                                                        <FormMessage />
+                                                    </FormItem>
+                                                )}
+                                            />
+                                            <FormField
+                                                control={newPasswordForm.control}
+                                                name="confirmPassword"
+                                                render={({ field }) => (
+                                                    <FormItem>
+                                                        <FormLabel>Confirm New Password</FormLabel>
+                                                        <FormControl>
+                                                            <Input type="password" placeholder="••••••••" {...field} />
+                                                        </FormControl>
+                                                        <FormMessage />
+                                                    </FormItem>
+                                                )}
+                                            />
+                                            <DialogFooter>
+                                                <Button type="button" variant="secondary" onClick={() => setResetStep('otp')}>Back</Button>
+                                                <Button type="submit" disabled={newPasswordForm.formState.isSubmitting}>
+                                                    {newPasswordForm.formState.isSubmitting ? "Saving..." : "Reset Password"}
                                                 </Button>
                                             </DialogFooter>
                                         </form>
