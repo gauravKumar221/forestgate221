@@ -68,7 +68,20 @@ export default function LoginPage() {
                             <Form {...form}>
                                 <form onSubmit={form.handleSubmit(onLoginSubmit)} className="space-y-6">
                                     <FormField control={form.control} name="email" render={({ field }) => ( <FormItem> <FormLabel>Email</FormLabel> <FormControl><Input type="email" placeholder="you@example.com" {...field} /></FormControl> <FormMessage /> </FormItem> )} />
-                                    <FormField control={form.control} name="password" render={({ field }) => ( <FormItem> <FormLabel>Password</FormLabel> <FormControl><Input type="password" {...field} /></FormControl> <FormMessage /> </FormItem> )} />
+                                    <FormField control={form.control} name="password" render={({ field }) => ( 
+                                        <FormItem> 
+                                            <div className="flex items-center justify-between">
+                                                <FormLabel>Password</FormLabel> 
+                                                <Link href="/forgot-password"
+                                                    className="text-sm font-medium text-primary hover:underline"
+                                                >
+                                                    Forgot Password?
+                                                </Link>
+                                            </div>
+                                            <FormControl><Input type="password" placeholder="••••••••" {...field} /></FormControl> 
+                                            <FormMessage /> 
+                                        </FormItem> 
+                                    )} />
                                     <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
                                         {form.formState.isSubmitting ? 'Logging in...' : 'Login'}
                                     </Button>
