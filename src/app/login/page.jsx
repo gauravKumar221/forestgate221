@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import Link from 'next/link';
 import { useRouter } from "next/navigation";
+import { useState, useEffect } from 'react';
 
 import { Button } from "@/components/ui/button"
 import {
@@ -30,6 +31,8 @@ import {
     DialogFooter,
     DialogClose,
   } from "@/components/ui/dialog";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
+
 
 const LoginFormSchema = z.object({
     email: z.string().email({
@@ -46,10 +49,20 @@ const ForgotPasswordSchema = z.object({
     }),
 });
 
+const OTPSchema = z.object({
+  pin: z.string().min(6, {
+    message: "Your one-time password must be 6 characters.",
+  }),
+});
+
+
 export default function LoginPage() {
     const { toast } = useToast();
     const router = useRouter();
     const headerImage = PlaceHolderImages.find((img) => img.id === 'about-resort');
+
+    const [resetStep, setResetStep] = useState('email'); // 'email' or 'otp'
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
 
     const form = useForm({
         resolver: zodResolver(LoginFormSchema),
@@ -61,6 +74,23 @@ export default function LoginPage() {
         defaultValues: { email: "" },
     });
 
+    const otpForm = useForm({
+        resolver: zodResolver(OTPSchema),
+        defaultValues: { pin: "" },
+    });
+
+    // Reset flow when dialog closes
+    useEffect(() => {
+        if (!isDialogOpen) {
+            // Delay to allow animation
+            setTimeout(() => {
+                setResetStep('email');
+                forgotPasswordForm.reset();
+                otpForm.reset();
+            }, 200);
+        }
+    }, [isDialogOpen, forgotPasswordForm, otpForm]);
+
     async function onLoginSubmit(data) {
         console.log(data);
         toast({ title: "Login Successful!", description: "Welcome back." });
@@ -70,11 +100,26 @@ export default function LoginPage() {
     function onForgotPasswordSubmit(data) {
         console.log("Forgot password for:", data.email);
         toast({
-            title: "Password Reset Email Sent",
-            description: "If an account exists for this email, you will receive a link to reset your password.",
+            title: "OTP Sent",
+            description: `An OTP has been sent to ${data.email}.`,
         });
-        forgotPasswordForm.reset();
+        setResetStep('otp');
     }
+
+    function onOtpSubmit(data) {
+        console.log("OTP submitted:", data.pin);
+        // Dummy validation
+        if (data.pin === '123456') {
+             toast({
+                title: "Success!",
+                description: "Password has been reset successfully. (This is a demo)",
+            });
+            setIsDialogOpen(false);
+        } else {
+            otpForm.setError("pin", { type: "manual", message: "Invalid OTP. Please try again." });
+        }
+    }
+
 
     return (
         <div>
@@ -89,7 +134,7 @@ export default function LoginPage() {
 
             <section>
                 <div className="container mx-auto px-4 max-w-lg">
-                    <Dialog>
+                    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                         <Card>
                             <CardHeader>
                                 <CardTitle>Welcome Back</CardTitle>
@@ -129,37 +174,85 @@ export default function LoginPage() {
                             </CardFooter>
                         </Card>
                         <DialogContent>
-                            <DialogHeader>
-                                <DialogTitle>Reset Your Password</DialogTitle>
-                                <DialogDescription>
-                                    Enter your email address and we'll send you a link to reset your password.
-                                </DialogDescription>
-                            </DialogHeader>
-                            <Form {...forgotPasswordForm}>
-                                <form onSubmit={forgotPasswordForm.handleSubmit(onForgotPasswordSubmit)} className="space-y-4 pt-4">
-                                    <FormField
-                                        control={forgotPasswordForm.control}
-                                        name="email"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel>Email</FormLabel>
-                                                <FormControl>
-                                                    <Input type="email" placeholder="you@example.com" {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                    <DialogFooter>
-                                        <DialogClose asChild>
-                                            <Button type="button" variant="secondary">Cancel</Button>
-                                        </DialogClose>
-                                        <Button type="submit" disabled={forgotPasswordForm.formState.isSubmitting}>
-                                            {forgotPasswordForm.formState.isSubmitting ? "Sending..." : "Send Reset Link"}
-                                        </Button>
-                                    </DialogFooter>
-                                </form>
-                            </Form>
+                             {resetStep === 'email' && (
+                                <>
+                                    <DialogHeader>
+                                        <DialogTitle>Reset Your Password</DialogTitle>
+                                        <DialogDescription>
+                                            Enter your email address and we'll send you an OTP to reset your password.
+                                        </DialogDescription>
+                                    </DialogHeader>
+                                    <Form {...forgotPasswordForm}>
+                                        <form onSubmit={forgotPasswordForm.handleSubmit(onForgotPasswordSubmit)} className="space-y-4 pt-4">
+                                            <FormField
+                                                control={forgotPasswordForm.control}
+                                                name="email"
+                                                render={({ field }) => (
+                                                    <FormItem>
+                                                        <FormLabel>Email</FormLabel>
+                                                        <FormControl>
+                                                            <Input type="email" placeholder="you@example.com" {...field} />
+                                                        </FormControl>
+                                                        <FormMessage />
+                                                    </FormItem>
+                                                )}
+                                            />
+                                            <DialogFooter>
+                                                <DialogClose asChild>
+                                                    <Button type="button" variant="secondary">Cancel</Button>
+                                                </DialogClose>
+                                                <Button type="submit" disabled={forgotPasswordForm.formState.isSubmitting}>
+                                                    {forgotPasswordForm.formState.isSubmitting ? "Sending..." : "Send OTP"}
+                                                </Button>
+                                            </DialogFooter>
+                                        </form>
+                                    </Form>
+                                </>
+                            )}
+                            {resetStep === 'otp' && (
+                                <>
+                                    <DialogHeader>
+                                        <DialogTitle>Enter OTP</DialogTitle>
+                                        <DialogDescription>
+                                            Please enter the 6-digit OTP sent to your email.
+                                        </DialogDescription>
+                                    </DialogHeader>
+                                    <Form {...otpForm}>
+                                        <form onSubmit={otpForm.handleSubmit(onOtpSubmit)} className="space-y-6">
+                                            <div className="flex justify-center">
+                                                <FormField
+                                                    control={otpForm.control}
+                                                    name="pin"
+                                                    render={({ field }) => (
+                                                        <FormItem>
+                                                            <FormLabel className="sr-only">One-Time Password</FormLabel>
+                                                            <FormControl>
+                                                                <InputOTP maxLength={6} {...field}>
+                                                                    <InputOTPGroup>
+                                                                        <InputOTPSlot index={0} />
+                                                                        <InputOTPSlot index={1} />
+                                                                        <InputOTPSlot index={2} />
+                                                                        <InputOTPSlot index={3} />
+                                                                        <InputOTPSlot index={4} />
+                                                                        <InputOTPSlot index={5} />
+                                                                    </InputOTPGroup>
+                                                                </InputOTP>
+                                                            </FormControl>
+                                                            <FormMessage />
+                                                        </FormItem>
+                                                    )}
+                                                />
+                                            </div>
+                                            <DialogFooter>
+                                                <Button type="button" variant="secondary" onClick={() => setResetStep('email')}>Back</Button>
+                                                <Button type="submit" disabled={otpForm.formState.isSubmitting}>
+                                                    {otpForm.formState.isSubmitting ? "Verifying..." : "Verify OTP"}
+                                                </Button>
+                                            </DialogFooter>
+                                        </form>
+                                    </Form>
+                                </>
+                            )}
                         </DialogContent>
                     </Dialog>
                 </div>
