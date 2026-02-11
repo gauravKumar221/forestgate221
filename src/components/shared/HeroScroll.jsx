@@ -13,11 +13,13 @@ export function HeroScroll() {
     offset: ["start start", "end end"],
   });
 
-  const imageScale = useTransform(scrollYProgress, [0, 0.5], [0.6, 1]);
-  const imageOpacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
+  const imageScale = useTransform(scrollYProgress, [0, 0.8], [0.6, 1]);
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
+  // Animate from a 16px blur to no blur over the first 40% of the scroll
+  const imageFilter = useTransform(scrollYProgress, [0, 0.4], ['blur(16px)', 'blur(0px)']);
 
-  const leftTextX = useTransform(scrollYProgress, [0.1, 0.7], ["0%", "-100%"]);
-  const rightTextX = useTransform(scrollYProgress, [0.1, 0.7], ["0%", "100%"]);
+  const leftTextX = useTransform(scrollYProgress, [0.1, 0.9], ["0%", "-100%"]);
+  const rightTextX = useTransform(scrollYProgress, [0.1, 0.9], ["0%", "100%"]);
 
   const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-1');
 
@@ -34,6 +36,7 @@ export function HeroScroll() {
                 style={{
                     scale: imageScale,
                     opacity: imageOpacity,
+                    filter: imageFilter
                 }}
                 className="absolute w-[300px] h-[400px] md:w-[400px] md:h-[550px]"
                 >
