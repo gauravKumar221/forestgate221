@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useState, useEffect } from 'react';
+import { Suspense, useState, useEffect, useRef } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -75,6 +75,7 @@ function BookingPageContent() {
     
     const [isCheckInOpen, setCheckInOpen] = useState(false);
     const [isCheckOutOpen, setCheckOutOpen] = useState(false);
+    const formRef = useRef(null);
 
     const roomId = searchParams.get('roomId');
     const roomToBook = rooms.find(r => r.id === roomId);
@@ -100,6 +101,13 @@ function BookingPageContent() {
             children: '0',
         },
     });
+
+    useEffect(() => {
+        // Scroll the form into view when the component mounts
+        setTimeout(() => {
+            formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+    }, []);
 
     const { checkIn, checkOut, adults, children } = form.watch();
 
@@ -193,7 +201,7 @@ function BookingPageContent() {
 
                              <Form {...form}>
                                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-12">
-                                    <Card>
+                                    <Card ref={formRef}>
                                         <CardHeader>
                                             <CardTitle className="font-headline text-2xl">Your Information</CardTitle>
                                             <CardDescription>Confirm your dates and enter your information to complete the booking.</CardDescription>
