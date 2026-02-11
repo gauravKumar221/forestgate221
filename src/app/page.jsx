@@ -5,7 +5,7 @@ import {
   rooms,
   amenities,
 } from '@/app/lib/data';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { PlaceHolderImages } from '@/app/lib/placeholder-images';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -27,6 +27,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
+import { HeroScroll } from '@/components/shared/HeroScroll';
 
 export default function Home() {
   const deluxeRoom = rooms.find((r) => r.id === 'deluxe-room');
@@ -66,30 +67,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-dvh">
       <main className="flex-1">
-        <section className="relative h-[80vh] flex items-center justify-center text-white m-10 rounded-3xl overflow-hidden">
-          {heroImage && (
-            <Image
-              src={heroImage.imageUrl}
-              alt={heroImage.description}
-              fill
-              className="object-cover"
-              data-ai-hint={heroImage.imageHint}
-              placeholder="blur"
-              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/+F9PQAI8wNPvd7POQAAAABJRU5ErkJggg=="
-              priority
-            />
-          )}
-          <div className="absolute inset-0 bg-black/50 z-10" />
-          <div className="relative z-20 container mx-auto p-[60px] h-full flex flex-col justify-center text-center">
-            <h1 className="font-headline text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl">
-              Vacation Feels Like Home
-            </h1>
-            <p className="mt-4 max-w-lg mx-auto text-lg md:text-xl">
-              Experience the finest accommodation. We provide a complete
-              experience to make your vacation a memorable one.
-            </p>
-          </div>
-        </section>
+        <HeroScroll />
 
         <section id="highlights" className="bg-card">
           <div className="container mx-auto px-4">
