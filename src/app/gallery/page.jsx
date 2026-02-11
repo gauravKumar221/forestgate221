@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { PageHeader } from '@/components/shared/PageHeader';
-import { galleryImages, rooms } from '@/lib/data';
+import { galleryImages, rooms } from '@/app/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 

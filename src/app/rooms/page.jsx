@@ -5,7 +5,7 @@ import { Check } from 'lucide-react';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { rooms, galleryImages } from '@/lib/data';
+import { rooms, galleryImages } from '@/app/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import {
   Carousel,

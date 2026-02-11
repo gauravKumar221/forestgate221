@@ -23,7 +23,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import { rooms } from '@/lib/data';
+import { rooms } from '@/app/lib/data';
 import { useToast } from '@/hooks/use-toast';
 import { PlusCircle, Edit, Trash2, Plus, Video, Image as ImageIcon, X } from 'lucide-react';
 import Image from 'next/image';

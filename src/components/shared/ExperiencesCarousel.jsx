@@ -1,3 +1,4 @@
+
 'use client';
 
 import * as React from 'react';
@@ -11,7 +12,7 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { experiences } from '@/app/lib/data';
-import { PlaceHolderImages } from '@/app/lib/placeholder-images';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export function ExperiencesCarousel() {
   const [api, setApi] = React.useState();

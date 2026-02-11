@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
-import { PlaceHolderImages } from '@/app/lib/placeholder-images';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export function HeroScroll() {
   const ref = useRef(null);
