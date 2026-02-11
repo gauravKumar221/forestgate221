@@ -119,11 +119,37 @@ function BookingPageContent() {
 
 
     async function onSubmit(data) {
+        const bookingData = {
+          bookingType: itemToBook.name,
+          ...data,
+          totalPrice,
+          guests: numAdults + numChildren,
+          checkIn: format(data.checkIn, 'yyyy-MM-dd'),
+          checkOut: format(data.checkOut, 'yyyy-MM-dd'),
+        };
+
+        const params = new URLSearchParams();
+        params.append('bookingType', bookingData.bookingType);
+        params.append('fullName', bookingData.fullName);
+        params.append('email', bookingData.email);
+        params.append('checkIn', bookingData.checkIn);
+        params.append('checkOut', bookingData.checkOut);
+        params.append('guests', bookingData.guests.toString());
+        params.append('totalPrice', bookingData.totalPrice.toString());
+
         toast({
-            title: "Booking Successful!",
-            description: "Your booking has been confirmed.",
+            title: "Processing Payment...",
+            description: "Please wait while we confirm your booking.",
         });
-        router.push('/my-bookings');
+
+        // Simulate payment processing
+        setTimeout(() => {
+            toast({
+                title: "Booking Confirmed!",
+                description: `We've sent a confirmation to ${bookingData.email}.`,
+            });
+            router.push(`/booking/confirmation?${params.toString()}`);
+        }, 2000);
     }
 
     const headerImage = PlaceHolderImages.find((img) => img.id === 'room-balcony-1');
