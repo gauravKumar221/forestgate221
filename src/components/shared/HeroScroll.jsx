@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
-import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 export function HeroScroll() {
   const ref = useRef(null);
@@ -24,7 +24,7 @@ export function HeroScroll() {
   return (
     <section
       ref={ref}
-      className="h-[200vh] bg-white"
+      className="h-[200vh] bg-white overflow-hidden"
     >
         <div className="sticky top-0 h-screen flex items-center justify-center">
             <div className="relative w-[80vw] max-w-5xl flex items-center justify-center">
