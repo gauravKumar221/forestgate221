@@ -22,9 +22,10 @@ function ConfirmationPageContent() {
     const checkOut = searchParams.get('checkOut');
     const guests = searchParams.get('guests');
     const totalPrice = searchParams.get('totalPrice');
+    const paramBookingId = searchParams.get('bookingId');
 
     // Use a stable booking ID for display
-    const bookingId = useRef(`HH-${Math.random().toString(36).substr(2, 9).toUpperCase()}`);
+    const bookingId = useRef(paramBookingId || `HH-${Math.random().toString(36).substr(2, 9).toUpperCase()}`);
 
     const checkInDate = checkIn ? parseISO(checkIn) : new Date();
     const checkOutDate = checkOut ? parseISO(checkOut) : new Date();

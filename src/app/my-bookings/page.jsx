@@ -34,6 +34,8 @@ const initialBookings = [
         guests: 2,
         totalPrice: 75000,
         status: 'Upcoming',
+        fullName: 'Rohan Mehta',
+        email: 'rohan.mehta@example.com',
     },
     {
         id: 'HH-NON-CANCELLABLE',
@@ -43,6 +45,8 @@ const initialBookings = [
         guests: 15,
         totalPrice: 228000,
         status: 'Upcoming',
+        fullName: 'Priya Desai',
+        email: 'priya.desai@example.com',
     },
     {
         id: 'HH-3G8H9I',
@@ -52,6 +56,8 @@ const initialBookings = [
         guests: 4,
         totalPrice: 100000,
         status: 'Completed',
+        fullName: 'The Sharma Family',
+        email: 'sharma.family@example.com',
     },
     {
         id: 'HH-K2L3M4',
@@ -61,6 +67,8 @@ const initialBookings = [
         guests: 1,
         totalPrice: 30000,
         status: 'Cancelled',
+        fullName: 'Anjali Verma',
+        email: 'anjali.verma@example.com',
     },
 ];
 
@@ -98,6 +106,19 @@ export default function BookingHistoryPage() {
             default:
                 return 'outline';
         }
+    }
+
+    const createInvoiceUrl = (booking) => {
+        const params = new URLSearchParams();
+        params.append('bookingId', booking.id);
+        params.append('bookingType', booking.bookingType);
+        params.append('fullName', booking.fullName);
+        params.append('email', booking.email);
+        params.append('checkIn', booking.checkIn);
+        params.append('checkOut', booking.checkOut);
+        params.append('guests', booking.guests);
+        params.append('totalPrice', booking.totalPrice);
+        return `/booking/confirmation?${params.toString()}`;
     }
 
     return (
@@ -162,7 +183,9 @@ export default function BookingHistoryPage() {
                                         </div>
                                     </CardContent>
                                     <CardFooter className="flex-wrap items-center gap-2">
-                                        <Button variant="outline" size="sm">View Invoice</Button>
+                                        <Button asChild variant="outline" size="sm">
+                                            <Link href={createInvoiceUrl(booking)}>View Invoice</Link>
+                                        </Button>
                                         {booking.status === 'Upcoming' && (
                                             <AlertDialog>
                                                 <AlertDialogTrigger asChild>
