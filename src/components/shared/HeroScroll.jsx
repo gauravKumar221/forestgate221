@@ -44,6 +44,8 @@ export function HeroScroll() {
                         fill
                         className="object-cover rounded-lg"
                         data-ai-hint={heroImage.imageHint}
+                        placeholder="blur"
+                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/+F9PQAI8wNPvd7POQAAAABJRU5ErkJggg=="
                     />
                 )}
                 </motion.div>
