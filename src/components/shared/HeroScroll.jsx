@@ -28,7 +28,7 @@ export function HeroScroll() {
       ref={ref}
       className="h-[120vh] bg-white overflow-hidden"
     >
-        <div className="sticky top-0 h-screen flex items-center justify-center">
+        <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
             <div className="relative w-[80vw] max-w-5xl flex items-center justify-center">
                 
                 {/* Image is now first in the DOM, so it's in the background */}
@@ -59,7 +59,7 @@ export function HeroScroll() {
                 className="w-1/2 flex justify-end pr-4 md:pr-8"
                 >
                 <h1 className="text-5xl md:text-7xl font-light text-black">
-                    the forest
+                    The Forest
                 </h1>
                 </motion.div>
 
@@ -69,7 +69,7 @@ export function HeroScroll() {
                 className="w-1/2 flex justify-start pl-4 md:pl-8"
                 >
                 <h1 className="text-5xl md:text-7xl font-light text-black">
-                    gate
+                    Gate
                 </h1>
                 </motion.div>
 
