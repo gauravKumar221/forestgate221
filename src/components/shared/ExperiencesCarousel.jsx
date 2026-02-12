@@ -11,7 +11,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import { experiences } from '@/app/lib/data';
+import { experiences } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export function ExperiencesCarousel() {

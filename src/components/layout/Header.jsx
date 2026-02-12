@@ -6,7 +6,7 @@ import { Menu, MountainSnow, CircleUser, Shield } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
 import { cn } from '@/lib/utils';
-import { navLinks } from '@/app/lib/data';
+import { navLinks } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import {
   Sheet,

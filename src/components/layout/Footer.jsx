@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { MountainSnow, Facebook, Instagram, Twitter } from 'lucide-react';
-import { navLinks } from '@/app/lib/data';
+import { navLinks } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
