@@ -23,10 +23,14 @@ import {
     DropdownMenuSeparator
 } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { useAuthContext } from '@/context/AuthContext';
+import { useRouter } from 'next/navigation';
+
 
 export function Header() {
+ const { user ,logout ,loading } = useAuthContext(); // no crash
   const pathname = usePathname();
-
+const router = useRouter();
   if (pathname.startsWith('/admin-dashboard')) {
     return null;
   }
@@ -43,6 +47,13 @@ export function Header() {
       ? 'text-primary'
       : 'text-foreground hover:text-primary'
   );
+
+const handleLogout = async () => {
+  await logout();
+  if(!loading){
+    router.push("/login");
+  }
+};
 
   return (
     <header className={headerClasses}>
@@ -74,18 +85,30 @@ export function Header() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
+              {user && (
+                <>
                 <DropdownMenuItem asChild><Link href="/profile">Profile</Link></DropdownMenuItem>
                 <DropdownMenuItem asChild><Link href="/my-bookings">My Bookings</Link></DropdownMenuItem>
+
+              <DropdownMenuItem onClick={handleLogout} className="text-red-600">
+  Logout
+</DropdownMenuItem>
                 <DropdownMenuSeparator />
+                </>
+              )}
                 <DropdownMenuItem asChild>
                   <Link href="/admin-dashboard" className="flex items-center">
                     <Shield className="mr-2 h-4 w-4" />
                     Admin Panel
                   </Link>
                 </DropdownMenuItem>
+               { !user && (
+                <>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild><Link href="/login">Login</Link></DropdownMenuItem>
                 <DropdownMenuItem asChild><Link href="/register">Register</Link></DropdownMenuItem>
+                </>
+               )}
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

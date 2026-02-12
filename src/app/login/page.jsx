@@ -34,6 +34,9 @@ import {
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 
 
+import { useAuthContext } from "@/context/AuthContext";
+
+
 const LoginFormSchema = z.object({
     email: z.string().email({
       message: "Please enter a valid email address.",
@@ -65,6 +68,7 @@ const NewPasswordSchema = z.object({
 
 
 export default function LoginPage() {
+    const { login ,loading ,user ,setUser } = useAuthContext();
     const { toast } = useToast();
     const router = useRouter();
     const headerImage = PlaceHolderImages.find((img) => img.id === 'about-resort');
@@ -92,10 +96,10 @@ export default function LoginPage() {
         defaultValues: { password: "", confirmPassword: "" },
     });
 
-    // Reset flow when dialog closes
+
     useEffect(() => {
         if (!isDialogOpen) {
-            // Delay to allow animation
+          
             setTimeout(() => {
                 setResetStep('email');
                 forgotPasswordForm.reset();
@@ -105,11 +109,27 @@ export default function LoginPage() {
         }
     }, [isDialogOpen, forgotPasswordForm, otpForm, newPasswordForm]);
 
-    async function onLoginSubmit(data) {
-        console.log(data);
-        toast({ title: "Login Successful!", description: "Welcome back." });
-        router.push('/my-bookings');
-    }
+   const onLoginSubmit = async (values) => {
+  try {
+    await login(values); 
+
+
+    toast({
+      title: "Login Successful",
+      description: "Welcome back",
+    });
+
+    router.push("/my-bookings");
+
+  } catch (err) {
+    toast({
+      variant: "destructive",
+      title: "Login failed",
+      description: err.message,
+    });
+  }
+};
+
 
     function onForgotPasswordSubmit(data) {
         console.log("Forgot password for:", data.email);
