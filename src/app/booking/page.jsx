@@ -403,7 +403,7 @@ function BookingPageContent() {
                                         </CardContent>
                                     </Card>
 
-                                     <Button type="submit" size="lg" className="w-full h-20 rounded-[2rem] text-xl font-black uppercase tracking-widest shadow-2xl group transition-all" disabled={form.formState.isSubmitting}>
+                                     <Button type="submit" size="lg" className="w-full h-16 rounded-full text-lg font-black uppercase tracking-widest shadow-2xl group transition-all" disabled={form.formState.isSubmitting}>
                                         {form.formState.isSubmitting ? 'Finalizing...' : 'Confirm My Reservation'}
                                         <ArrowRight className="ml-2 w-6 h-6 transition-transform group-hover:translate-x-2" />
                                     </Button>
