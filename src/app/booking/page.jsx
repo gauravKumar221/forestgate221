@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Suspense, useState, useEffect, useRef } from 'react';
@@ -166,7 +167,7 @@ function BookingPageContent() {
                                         return (
                                             <CarouselItem key={imgId} className="h-full pl-0">
                                                 {img && (
-                                                    <div className="relative w-full h-full overflow-hidden rounded-[3rem]">
+                                                    <div className="relative w-full h-full overflow-hidden rounded-[2rem] lg:rounded-[3rem]">
                                                         <Image
                                                             src={img.imageUrl}
                                                             alt={`${itemToBook.name} view ${idx + 1}`}
@@ -191,11 +192,11 @@ function BookingPageContent() {
                         </div>
 
                         {/* Side Images Stack (Right - 4 columns) */}
-                        <div className="lg:col-span-4 hidden lg:flex flex-col gap-4 h-full">
+                        <div className="lg:col-span-4 grid grid-cols-3 lg:flex lg:flex-col gap-3 md:gap-4 h-auto lg:h-full">
                             {itemToBook.images.slice(1, 3).map((imgId, index) => {
                                 const img = PlaceHolderImages.find((p) => p.id === imgId);
                                 return (
-                                    <div key={imgId} className="relative flex-1 rounded-[2.5rem] overflow-hidden group">
+                                    <div key={imgId} className="relative aspect-square lg:aspect-auto lg:flex-1 rounded-2xl lg:rounded-[2.5rem] overflow-hidden group">
                                         {img && (
                                             <Image
                                                 src={img.imageUrl}
@@ -210,7 +211,7 @@ function BookingPageContent() {
                                 );
                             })}
                             {/* The last one with "See All" trigger */}
-                            <div className="relative flex-1 rounded-[2.5rem] overflow-hidden group cursor-pointer">
+                            <div className="relative aspect-square lg:aspect-auto lg:flex-1 rounded-2xl lg:rounded-[2.5rem] overflow-hidden group cursor-pointer">
                                 {(() => {
                                     const imgId = itemToBook.images[3] || itemToBook.images[0];
                                     const img = PlaceHolderImages.find(p => p.id === imgId);
@@ -225,8 +226,8 @@ function BookingPageContent() {
                                     )
                                 })()}
                                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-500 flex flex-col items-center justify-center text-white">
-                                    <ImageIcon className="w-8 h-8 mb-2 transform group-hover:scale-110 transition-transform" />
-                                    <span className="font-bold text-sm uppercase tracking-widest">See All Photos</span>
+                                    <ImageIcon className="w-6 h-6 lg:w-8 lg:h-8 mb-1 lg:mb-2 transform group-hover:scale-110 transition-transform" />
+                                    <span className="font-bold text-[10px] lg:text-sm uppercase tracking-widest text-center">See All Photos</span>
                                 </div>
                             </div>
                         </div>
