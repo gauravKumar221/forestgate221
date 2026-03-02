@@ -153,7 +153,7 @@ function BookingPageContent() {
     }
 
     return (
-        <div className="pt-24 pb-16">
+        <div className="pt-24 pb-16 bg-background">
             <section className="pt-8">
                 <div className="container mx-auto px-4">
                     {/* Premium Creative Gallery Grid */}
