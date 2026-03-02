@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { amenities } from '@/app/lib/data';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { amenities } from '../../lib/data';
+import { PlaceHolderImages } from '../../../lib/placeholder-images';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';

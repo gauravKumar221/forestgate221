@@ -1,6 +1,6 @@
 import { PageHeader } from "@/components/shared/PageHeader";
-import { amenities } from "@/app/lib/data";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { amenities } from "../lib/data";
+import { PlaceHolderImages } from "../../lib/placeholder-images";
 import { CheckCircle } from "lucide-react";
 import { AmenityCard } from "@/components/shared/AmenityCard";
 
@@ -66,5 +66,3 @@ export default function AmenitiesPage() {
     </div>
   );
 }
-
-    

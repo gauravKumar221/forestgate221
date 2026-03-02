@@ -1,4 +1,3 @@
-
 import {
   faqs,
   galleryImages,
@@ -6,7 +5,7 @@ import {
   rooms,
   amenities,
 } from './lib/data';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { PlaceHolderImages } from '../lib/placeholder-images';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';

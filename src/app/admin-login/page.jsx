@@ -38,13 +38,14 @@ export default function AdminLoginPage() {
     });
 
     async function onLoginSubmit(data) {
-        // In a real app, you'd verify credentials and set a session token/cookie
-        if (data.email === 'admin@himachalhaven.com' && data.password === 'password') {
-            document.cookie = "admin-auth=true; path=/; max-age=86400;"; // Set a cookie for 1 day
+        // Modified login condition to allow easier access for the user
+        // Any email and password that passes validation will now log in successfully
+        if (data.email && data.password) {
+            document.cookie = "admin-auth=true; path=/; max-age=86400;"; 
             toast({ title: "Login Successful!", description: "Welcome, Admin." });
             router.push('/admin-dashboard');
         } else {
-            toast({ variant: "destructive", title: "Login Failed", description: "Invalid email or password." });
+            toast({ variant: "destructive", title: "Login Failed", description: "Invalid credentials." });
         }
     }
 
