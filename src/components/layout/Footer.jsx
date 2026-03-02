@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from 'next/link';
@@ -10,7 +9,9 @@ import { Input } from '@/components/ui/input';
 
 export function Footer() {
   const pathname = usePathname();
-  if (pathname.startsWith('/admin-dashboard')) {
+  
+  // Hide footer on admin pages
+  if (pathname.startsWith('/admin-dashboard') || pathname === '/admin-login') {
     return null;
   }
 

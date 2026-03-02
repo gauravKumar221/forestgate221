@@ -28,7 +28,8 @@ export function Header() {
   const pathname = usePathname();
   const [isAuthOpen, setIsAuthOpen] = React.useState(false);
 
-  if (pathname.startsWith('/admin-dashboard')) {
+  // Hide header on admin pages
+  if (pathname.startsWith('/admin-dashboard') || pathname === '/admin-login') {
     return null;
   }
 
