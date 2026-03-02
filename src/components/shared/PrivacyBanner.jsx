@@ -2,16 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 export function PrivacyBanner() {
-  const bgImage = PlaceHolderImages.find(img => img.id === 'banner-privacy')?.imageUrl || "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1920";
-
   return (
     <section
       className="relative h-[75vh] flex items-center justify-center text-center text-white bg-fixed bg-center bg-cover"
       style={{
-        backgroundImage: `url('${bgImage}')`,
+        backgroundImage: "url('/assets/images/privicy.png')",
       }}
     >
       {/* Dark Gradient Overlay */}
