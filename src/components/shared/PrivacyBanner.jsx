@@ -1,22 +1,17 @@
-
 'use client';
 
 import Image from "next/image";
 import Link from "next/link";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 export function PrivacyBanner() {
-  const bgImage = PlaceHolderImages.find(img => img.id === 'banner-privacy')?.imageUrl || "/assets/images/banner-bg.jpg";
-  const shapeImage = PlaceHolderImages.find(img => img.id === 'shape-torn')?.imageUrl || "/assets/images/shape8.png";
-
   return (
     <section
       className="relative h-[75vh] flex items-center justify-center text-center text-white bg-fixed bg-center bg-cover"
       style={{
-        backgroundImage: `url('${bgImage}')`,
+        backgroundImage: "url('/assets/images/banner-bg.jpg')",
       }}
     >
-      {/* Dark Gradient Overlay using the brand-inspired dark color */}
+      {/* Dark Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0b2c3d]/90 via-[#0b2c3d]/80 to-[#0b2c3d]/70 z-10"></div>
 
       {/* Content */}
@@ -36,12 +31,11 @@ export function PrivacyBanner() {
       <div className="absolute bottom-0 left-0 w-full z-20 h-32 pointer-events-none">
         <div className="relative w-full h-full">
             <Image
-            src={shapeImage}
-            alt="shape layer"
-            fill
-            className="object-cover object-top"
-            priority
-            data-ai-hint="paper texture"
+                src="/assets/images/shape8.png"
+                alt="shape layer"
+                fill
+                className="object-cover object-top"
+                priority
             />
         </div>
       </div>
