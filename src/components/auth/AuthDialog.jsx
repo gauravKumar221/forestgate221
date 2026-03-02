@@ -41,7 +41,7 @@ const RegisterFormSchema = z.object({
 export function AuthDialog({ open, onOpenChange }) {
     const { toast } = useToast();
     const router = useRouter();
-    const [mode, setMode] = useState('login'); // 'login' or 'signup'
+    const [mode, setMode] = useState('signup'); // 'login' or 'signup'
 
     const loginForm = useForm({
         resolver: zodResolver(LoginFormSchema),
@@ -68,24 +68,25 @@ export function AuthDialog({ open, onOpenChange }) {
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="sm:max-w-[450px] p-0 overflow-hidden rounded-[2rem] border-none shadow-2xl">
-                {/* Header Area */}
-                <div className="px-8 pt-8 pb-4 flex justify-between items-center bg-background">
+            <DialogContent className="sm:max-w-[450px] p-0 overflow-hidden rounded-[2rem] border-none shadow-2xl bg-background">
+                {/* Fixed Header Area */}
+                <div className="px-8 pt-8 pb-4 flex justify-between items-center bg-background shrink-0">
                     <span className="text-lg font-medium text-foreground/80">The Forest Gate portal</span>
                 </div>
 
-                <div className="px-8 pb-10 space-y-8">
+                {/* Scrollable Area with Fixed Height */}
+                <div className="h-[600px] overflow-y-auto px-8 pb-10 space-y-8 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                     {/* Logo & Welcome Badge */}
                     <div className="flex flex-col items-center gap-6 relative">
-                        <div className="flex items-center gap-2 font-bold text-3xl font-headline text-primary">
-                            <MountainSnow className="h-10 w-10" />
-                            <span>THE FOREST GATE</span>
+                        <div className="flex items-center gap-2 font-bold text-2xl font-headline text-primary">
+                            <MountainSnow className="h-10 w-10 text-[#085d6b]" />
+                            <span className="text-[#085d6b]">THE FOREST GATE</span>
                         </div>
                         
-                        <div className="absolute top-0 right-0 bg-primary/5 border border-primary/10 rounded-xl p-3 flex flex-col gap-1 items-start hidden sm:flex">
+                        <div className="absolute -top-2 -right-4 bg-[#085d6b]/5 border border-[#085d6b]/10 rounded-xl p-3 flex flex-col gap-1 items-start hidden sm:flex">
                             <span className="text-[10px] text-muted-foreground leading-none">Welcome back</span>
-                            <div className="flex items-center gap-1 text-primary text-xs font-bold">
-                                <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                            <div className="flex items-center gap-1 text-[#085d6b] text-xs font-bold">
+                                <div className="w-1.5 h-1.5 rounded-full bg-[#085d6b] animate-pulse" />
                                 Secure
                             </div>
                         </div>
@@ -116,11 +117,11 @@ export function AuthDialog({ open, onOpenChange }) {
                                     name="email"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Email Address</FormLabel>
+                                            <FormLabel className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Email</FormLabel>
                                             <FormControl>
                                                 <div className="relative">
-                                                    <Input placeholder="you@example.com" {...field} className="h-12 rounded-xl border-muted bg-background pl-4 pr-10 focus-visible:ring-primary" />
-                                                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground">
+                                                    <Input placeholder="you@example.com" {...field} className="h-12 rounded-xl border-muted bg-muted/20 pl-4 pr-10 focus-visible:ring-[#085d6b]" />
+                                                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[#085d6b]/60">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                                                     </div>
                                                 </div>
@@ -136,7 +137,7 @@ export function AuthDialog({ open, onOpenChange }) {
                                         <FormItem>
                                             <FormLabel className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Password</FormLabel>
                                             <FormControl>
-                                                <Input type="password" placeholder="••••••••" {...field} className="h-12 rounded-xl border-muted bg-background px-4 focus-visible:ring-primary" />
+                                                <Input type="password" placeholder="••••••••" {...field} className="h-12 rounded-xl border-muted bg-muted/20 px-4 focus-visible:ring-[#085d6b]" />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -149,7 +150,7 @@ export function AuthDialog({ open, onOpenChange }) {
                         </Form>
                     ) : (
                         <Form {...registerForm}>
-                            <form onSubmit={registerForm.handleSubmit(onRegisterSubmit)} className="space-y-4">
+                            <form onSubmit={registerForm.handleSubmit(onRegisterSubmit)} className="space-y-5">
                                 <FormField
                                     control={registerForm.control}
                                     name="name"
@@ -157,7 +158,7 @@ export function AuthDialog({ open, onOpenChange }) {
                                         <FormItem>
                                             <FormLabel className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Full Name</FormLabel>
                                             <FormControl>
-                                                <Input placeholder="John Doe" {...field} className="h-11 rounded-xl border-muted bg-background px-4 focus-visible:ring-primary" />
+                                                <Input placeholder="John Doe" {...field} className="h-12 rounded-xl border-muted bg-muted/20 px-4 focus-visible:ring-[#085d6b]" />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -170,7 +171,12 @@ export function AuthDialog({ open, onOpenChange }) {
                                         <FormItem>
                                             <FormLabel className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Email</FormLabel>
                                             <FormControl>
-                                                <Input placeholder="you@example.com" {...field} className="h-11 rounded-xl border-muted bg-background px-4 focus-visible:ring-primary" />
+                                                <div className="relative">
+                                                    <Input placeholder="you@example.com" {...field} className="h-12 rounded-xl border-muted bg-muted/20 pl-4 pr-10 focus-visible:ring-[#085d6b]" />
+                                                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[#085d6b]/60">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                                                    </div>
+                                                </div>
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -183,7 +189,7 @@ export function AuthDialog({ open, onOpenChange }) {
                                         <FormItem>
                                             <FormLabel className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Phone Number</FormLabel>
                                             <FormControl>
-                                                <Input placeholder="+91 987 654 3210" {...field} className="h-11 rounded-xl border-muted bg-background px-4 focus-visible:ring-primary" />
+                                                <Input placeholder="+91 987 654 3210" {...field} className="h-12 rounded-xl border-muted bg-muted/20 px-4 focus-visible:ring-[#085d6b]" />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -196,13 +202,13 @@ export function AuthDialog({ open, onOpenChange }) {
                                         <FormItem>
                                             <FormLabel className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Password</FormLabel>
                                             <FormControl>
-                                                <Input type="password" placeholder="••••••••" {...field} className="h-11 rounded-xl border-muted bg-background px-4 focus-visible:ring-primary" />
+                                                <Input type="password" placeholder="••••••••" {...field} className="h-12 rounded-xl border-muted bg-muted/20 px-4 focus-visible:ring-[#085d6b]" />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
                                     )}
                                 />
-                                <Button type="submit" className="w-full h-14 rounded-xl bg-[#085d6b] hover:bg-[#064a55] text-white text-base font-bold shadow-lg mt-4 transition-transform active:scale-[0.98]">
+                                <Button type="submit" className="w-full h-14 rounded-xl bg-[#085d6b] hover:bg-[#064a55] text-white text-base font-bold shadow-lg transition-transform active:scale-[0.98]">
                                     Sign Up
                                 </Button>
                             </form>
@@ -220,7 +226,7 @@ export function AuthDialog({ open, onOpenChange }) {
                             </div>
                         </div>
 
-                        <Button variant="outline" className="w-full h-14 rounded-xl border-muted-foreground/20 text-foreground font-medium transition-all hover:bg-muted/30">
+                        <Button variant="outline" className="w-full h-14 rounded-xl border-muted text-foreground font-medium transition-all hover:bg-muted/30">
                             <svg className="mr-2 h-5 w-5" viewBox="0 0 24 24">
                                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
                                 <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
