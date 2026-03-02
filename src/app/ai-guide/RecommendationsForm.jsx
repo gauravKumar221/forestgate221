@@ -32,7 +32,7 @@ export function RecommendationsForm() {
         <CardHeader>
           <CardTitle className="font-headline text-2xl">Discover Local Gems</CardTitle>
           <CardDescription>
-            Looking for a place to eat, shop, or explore? Ask our AI for recommendations near Himachal Haven.
+            Looking for a place to eat, shop, or explore? Ask our AI for recommendations near The Forest Gate.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">

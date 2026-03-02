@@ -3,7 +3,7 @@
 /**
  * @fileOverview This file defines a Genkit flow for providing local recommendations.
  *
- * The flow takes a user query as input and returns a list of recommendations for local restaurants, shops, or attractions near Himachal Haven.
+ * The flow takes a user query as input and returns a list of recommendations for local restaurants, shops, or attractions near The Forest Gate.
  *
  * @fileOverview
  * - `getLocalRecommendations` - A function that takes a user query and returns local recommendations.
@@ -32,11 +32,11 @@ const prompt = ai.definePrompt({
   name: 'localRecommendationsPrompt',
   input: {schema: LocalRecommendationsInputSchema},
   output: {schema: LocalRecommendationsOutputSchema},
-  prompt: `You are a helpful AI assistant for Himachal Haven, a luxury resort in Naggar, Manali, Himachal Pradesh. You provide recommendations for local restaurants, shops, or attractions near the resort.
+  prompt: `You are a helpful AI assistant for The Forest Gate, a luxury resort in Naggar, Manali, Himachal Pradesh. You provide recommendations for local restaurants, shops, or attractions near the resort.
 
   The user will provide a query, and you should respond with a list of recommendations based on the query.
 
-  For example, if the user asks "What are some good restaurants nearby?", you should respond with a list of restaurants near Himachal Haven.
+  For example, if the user asks "What are some good restaurants nearby?", you should respond with a list of restaurants near The Forest Gate.
 
   User Query: {{{query}}}
   `,

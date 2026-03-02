@@ -6,9 +6,9 @@ import './globals.css';
 import './react-calendar.css';
 
 export const metadata = {
-  title: 'Himachal Haven - Luxury Meets Nature in the Heart of Himachal',
+  title: 'The Forest Gate - Luxury Meets Nature in the Heart of Himachal',
   description:
-    'Discover Himachal Haven, a luxury resort offering a unique blend of nature, adventure, and tranquility. Perfect for families, couples, and corporate retreats.',
+    'Discover The Forest Gate, a luxury resort offering a unique blend of nature, adventure, and tranquility. Perfect for families, couples, and corporate retreats.',
 };
 
 export default function RootLayout({

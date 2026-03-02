@@ -145,7 +145,7 @@ export default function LoginPage() {
             {headerImage && (
                 <PageHeader
                 title="Login"
-                subtitle="Access your Himachal Haven account."
+                subtitle="Access your The Forest Gate account."
                 imageUrl={headerImage.imageUrl}
                 imageHint={headerImage.imageHint}
                 />

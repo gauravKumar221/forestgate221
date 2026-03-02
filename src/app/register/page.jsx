@@ -48,7 +48,7 @@ export default function RegisterPage() {
 
     async function onRegisterSubmit(data) {
         console.log(data);
-        toast({ title: "Registration Successful!", description: "Welcome to Himachal Haven. Please log in." });
+        toast({ title: "Registration Successful!", description: "Welcome to The Forest Gate. Please log in." });
         router.push('/login');
     }
 

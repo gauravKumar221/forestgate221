@@ -1,4 +1,3 @@
-
 'use client';
 
 import * as React from 'react';
@@ -49,7 +48,7 @@ export function Header() {
         <div className="flex-1 flex justify-start">
             <Link href="/" className="flex items-center gap-2 font-bold text-xl font-headline text-primary">
               <MountainSnow className="h-6 w-6" />
-              <span>Himachal Haven</span>
+              <span>The Forest Gate</span>
             </Link>
         </div>
 
@@ -102,7 +101,7 @@ export function Header() {
                    <SheetClose asChild>
                     <Link href="/" className="flex items-center gap-2 font-bold text-xl font-headline text-primary">
                         <MountainSnow className="h-6 w-6" />
-                        <span>Himachal Haven</span>
+                        <span>The Forest Gate</span>
                         </Link>
                     </SheetClose>
                 </div>

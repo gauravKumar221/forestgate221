@@ -1,7 +1,7 @@
 'use server';
 
 /**
- * @fileOverview This file defines a Genkit flow for generating personalized travel itineraries for guests of Himachal Haven based on user interests and duration of stay.
+ * @fileOverview This file defines a Genkit flow for generating personalized travel itineraries for guests of The Forest Gate based on user interests and duration of stay.
  *
  * - `generatePersonalizedItinerary` -  A function that takes user interests and stay duration as input and returns a personalized itinerary.
  * - `PersonalizedItineraryInputSchema` - The input schema for the `generatePersonalizedItinerary` function.
@@ -40,7 +40,7 @@ const prompt = ai.definePrompt({
   name: 'personalizedItineraryPrompt',
   input: {schema: PersonalizedItineraryInputSchema},
   output: {schema: PersonalizedItineraryOutputSchema},
-  prompt: `You are an expert travel guide for Himachal Haven, a luxury resort in Naggar, Manali. A user is staying at the resort and wants a personalized itinerary.
+  prompt: `You are an expert travel guide for The Forest Gate, a luxury resort in Naggar, Manali. A user is staying at the resort and wants a personalized itinerary.
 
   The user is interested in the following activities and sights:
   {{interests}}

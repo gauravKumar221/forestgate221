@@ -55,7 +55,7 @@ const RESORT_PRICE_PER_NIGHT = 57000;
 const RESORT_DETAILS = {
     id: 'resort',
     name: 'Entire Resort',
-    longDescription: 'For ultimate privacy and a truly bespoke experience, book the entire Himachal Haven. You\'ll get exclusive access to all our accommodations and world-class amenities. Perfect for large families, special events, or corporate retreats.',
+    longDescription: 'For ultimate privacy and a truly bespoke experience, book the entire The Forest Gate. You\'ll get exclusive access to all our accommodations and world-class amenities. Perfect for large families, special events, or corporate retreats.',
     price: RESORT_PRICE_PER_NIGHT,
     images: ['room-suite-1', 'amenity-pool', 'amenity-dining'],
     amenities: [
@@ -159,7 +159,7 @@ function BookingPageContent() {
             {headerImage && (
                 <PageHeader
                 title="Complete Your Booking"
-                subtitle="Just a few more details to secure your stay at Himachal Haven."
+                subtitle="Just a few more details to secure your stay at The Forest Gate."
                 imageUrl={headerImage.imageUrl}
                 imageHint={headerImage.imageHint}
                 />

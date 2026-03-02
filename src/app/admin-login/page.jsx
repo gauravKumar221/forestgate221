@@ -50,7 +50,7 @@ export default function AdminLoginPage() {
                 <div className="flex justify-center mb-6">
                     <div className="flex items-center gap-2 font-bold text-2xl font-headline text-primary">
                         <MountainSnow className="h-8 w-8" />
-                        <span>Himachal Haven</span>
+                        <span>The Forest Gate</span>
                     </div>
                 </div>
                 <Card>

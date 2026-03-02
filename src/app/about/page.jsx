@@ -31,7 +31,7 @@ export default function AboutPage() {
 
   return (
     <div>
-        {headerImage && <PageHeader title="About Himachal Haven" subtitle="A Story of Passion and Nature" imageUrl={headerImage.imageUrl} imageHint={headerImage.imageHint} />}
+        {headerImage && <PageHeader title="About The Forest Gate" subtitle="A Story of Passion and Nature" imageUrl={headerImage.imageUrl} imageHint={headerImage.imageHint} />}
 
         <section>
             <div className="container mx-auto px-4">
@@ -39,7 +39,7 @@ export default function AboutPage() {
                     <div className="order-2 md:order-1">
                         <h2 className="font-headline text-3xl md:text-4xl font-bold mb-4">Our Story</h2>
                         <p className="text-lg text-foreground/80 mb-4">
-                        Himachal Haven was born from a dream to create a luxurious sanctuary that lives in harmony with nature. Our founders, with a deep love for the Himalayas, envisioned a place where guests could escape the chaos of city life and reconnect with themselves and the environment.
+                        The Forest Gate was born from a dream to create a luxurious sanctuary that lives in harmony with nature. Our founders, with a deep love for the Himalayas, envisioned a place where guests could escape the chaos of city life and reconnect with themselves and the environment.
                         </p>
                         <p className="text-lg text-foreground/80">
                         Built on the principles of eco-consciousness and responsible tourism, every corner of our resort is designed to offer comfort while minimizing our ecological footprint. We invite you to be a part of our story and experience the unique blend of Himachali hospitality and sustainable luxury.

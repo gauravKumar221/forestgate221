@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -38,7 +37,7 @@ export function WhatsAppButton() {
     <div className={`transition-opacity duration-500 ease-in-out ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
       <FloatingWhatsApp
         phoneNumber="+919876543210"
-        accountName="Himachal Haven"
+        accountName="The Forest Gate"
         statusMessage="Online"
         chatMessage="Hello! 👋 How can we help you plan your Himalayan getaway today?"
         placeholder="Type a message..."

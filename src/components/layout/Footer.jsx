@@ -29,7 +29,7 @@ export function Footer() {
           <div className="flex flex-col gap-4">
              <Link href="/" className="flex items-center gap-2 font-bold text-xl font-headline text-primary">
               <MountainSnow className="h-6 w-6" />
-              <span>Himachal Haven</span>
+              <span>The Forest Gate</span>
             </Link>
             <p className="text-foreground/80">
               Luxury Meets Nature in the Heart of Himachal.
@@ -55,8 +55,8 @@ export function Footer() {
           <div>
             <h3 className="font-headline font-bold text-lg mb-4">Contact Us</h3>
             <div className="flex flex-col gap-2 text-foreground/80">
-              <p>Near Manali, Himachal Pradesh, India</p>
-              <p>Email: contact@himachalhaven.com</p>
+              <p>Village Naggar, Near Manali, Himachal Pradesh, India</p>
+              <p>Email: contact@theforestgate.com</p>
               <p>Phone: +91 987 654 3210</p>
             </div>
           </div>
@@ -72,7 +72,7 @@ export function Footer() {
           </div>
         </div>
         <div className="border-t mt-8 pt-8 text-center text-foreground/60">
-          <p>&copy; {new Date().getFullYear()} Himachal Haven. All Rights Reserved.</p>
+          <p>&copy; {new Date().getFullYear()} The Forest Gate. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

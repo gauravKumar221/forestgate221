@@ -65,7 +65,7 @@ function ConfirmationPageContent() {
                                 <div className="flex items-center gap-3">
                                     <MountainSnow className="h-10 w-10 text-primary" />
                                     <div>
-                                        <CardTitle className="font-headline text-2xl">Himachal Haven</CardTitle>
+                                        <CardTitle className="font-headline text-2xl">The Forest Gate</CardTitle>
                                         <CardDescription>Invoice / Booking Confirmation</CardDescription>
                                     </div>
                                 </div>
@@ -116,7 +116,7 @@ function ConfirmationPageContent() {
                             </div>
 
                             <div className="pt-6 text-center text-sm text-muted-foreground">
-                                <p>We look forward to welcoming you to Himachal Haven.</p>
+                                <p>We look forward to welcoming you to The Forest Gate.</p>
                             </div>
                         </CardContent>
                     </Card>

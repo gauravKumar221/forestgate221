@@ -117,7 +117,7 @@ export default function Home() {
                   Your Sanctuary in the Mountains
                 </h2>
                 <p className="mb-4 text-lg text-foreground/80">
-                  Nestled away from the bustle, Himachal Haven is a testament to
+                  Nestled away from the bustle, The Forest Gate is a testament to
                   sustainable luxury. Our eco-friendly resort offers a serene,
                   pollution-free environment, making it an ideal escape for
                   couples, families, and corporate gatherings seeking peace and
@@ -416,14 +416,14 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 gap-8 mb-16">
                 <div>
-                    <p className="text-primary font-bold mb-2 tracking-widest uppercase">Experiences</p>
+                    <p className="text-primary font-bold mb-2 tracking-widest uppercase text-sm">Experiences</p>
                     <h2 className="font-headline text-3xl md:text-4xl font-bold">
                         Immerse Yourself in the Magic of Himachal
                     </h2>
                 </div>
                 <div className="flex items-center">
                     <p className="text-foreground/80">
-                        At Himachal Haven, we offer a curated collection of experiences designed to immerse you in the natural beauty, rich culture, and serene tranquility of the Himalayas. Each experience is crafted to provide you with unforgettable memories.
+                        At The Forest Gate, we offer a curated collection of experiences designed to immerse you in the natural beauty, rich culture, and serene tranquility of the Himalayas. Each experience is crafted to provide you with unforgettable memories.
                     </p>
                 </div>
             </div>

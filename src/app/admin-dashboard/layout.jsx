@@ -83,7 +83,7 @@ export default function AdminDashboardLayout({
                 <MountainSnow className="h-6 w-6 text-primary" />
               </div>
               <h2 className="text-lg font-bold font-headline truncate group-data-[state=collapsed]:hidden">
-                Himachal Haven
+                The Forest Gate
               </h2>
             </div>
           </SidebarHeader>
@@ -202,7 +202,7 @@ export default function AdminDashboardLayout({
                             <div className="flex flex-col space-y-1">
                                 <p className="text-sm font-medium leading-none">Admin User</p>
                                 <p className="text-xs leading-none text-muted-foreground">
-                                    admin@himachalhaven.com
+                                    admin@theforestgate.com
                                 </p>
                             </div>
                         </DropdownMenuLabel>
@@ -230,7 +230,7 @@ export default function AdminDashboardLayout({
           <AlertDialogHeader>
             <AlertDialogTitle>Confirm Logout</AlertDialogTitle>
             <AlertDialogDescription>
-              Are you sure you want to log out of the Himachal Haven admin panel?
+              Are you sure you want to log out of the The Forest Gate admin panel?
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
