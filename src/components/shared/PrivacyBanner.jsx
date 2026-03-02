@@ -1,10 +1,13 @@
+
+'use client';
+
 import Image from "next/image";
 import Link from "next/link";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 export function PrivacyBanner() {
-  const bgImage = PlaceHolderImages.find(img => img.id === 'banner-privacy')?.imageUrl || "https://picsum.photos/seed/privacy/1920/1080";
-  const shapeImage = PlaceHolderImages.find(img => img.id === 'shape-torn')?.imageUrl || "https://picsum.photos/seed/torn/1920/200";
+  const bgImage = PlaceHolderImages.find(img => img.id === 'banner-privacy')?.imageUrl || "/assets/images/banner-bg.jpg";
+  const shapeImage = PlaceHolderImages.find(img => img.id === 'shape-torn')?.imageUrl || "/assets/images/shape8.png";
 
   return (
     <section
@@ -23,23 +26,24 @@ export function PrivacyBanner() {
         </h1>
 
         <div className="mt-4 text-sm md:text-base font-medium">
-          <Link href="/" className="text-secondary hover:underline">Home</Link>
+          <Link href="/" className="text-[#fcb101] hover:underline">Home</Link>
           <span className="mx-2 text-white/70">|</span>
           <span className="text-white">Privacy Policy</span>
         </div>
       </div>
 
       {/* Torn Shape Layer */}
-      <div className="absolute bottom-0 left-0 w-full z-20 h-24 overflow-hidden">
-        <Image
-          src={shapeImage}
-          alt="shape layer"
-          width={1920}
-          height={200}
-          className="w-full h-full object-cover opacity-90"
-          priority
-          data-ai-hint="paper texture"
-        />
+      <div className="absolute bottom-0 left-0 w-full z-20 h-32 pointer-events-none">
+        <div className="relative w-full h-full">
+            <Image
+            src={shapeImage}
+            alt="shape layer"
+            fill
+            className="object-cover object-top"
+            priority
+            data-ai-hint="paper texture"
+            />
+        </div>
       </div>
     </section>
   );
