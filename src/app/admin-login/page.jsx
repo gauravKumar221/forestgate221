@@ -1,3 +1,4 @@
+
 'use client';
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -48,9 +49,19 @@ export default function AdminLoginPage() {
     }
 
     return (
-        <div className="min-h-screen bg-white flex flex-col lg:flex-row overflow-hidden">
+        <div className="min-h-screen bg-white flex flex-col lg:flex-row overflow-hidden relative">
+            {/* Subtle Textured Background for form side */}
+            <div className="absolute inset-0 z-0 opacity-5 pointer-events-none">
+                <Image 
+                    src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&q=80&w=1200"
+                    alt="texture"
+                    fill
+                    className="object-cover"
+                />
+            </div>
+
             {/* Left Side: Login Form (50%) */}
-            <div className="w-full lg:w-1/2 p-8 sm:p-16 flex flex-col justify-center min-h-screen">
+            <div className="w-full lg:w-1/2 p-8 sm:p-16 flex flex-col justify-center min-h-screen relative z-10">
                 <div className="max-w-md w-full mx-auto flex flex-col h-full py-12">
                     <div className="mb-12">
                         <div className="inline-flex items-center gap-2 px-4 py-2 border rounded-full text-sm font-bold text-muted-foreground bg-muted/30">

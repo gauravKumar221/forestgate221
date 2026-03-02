@@ -1,3 +1,4 @@
+
 'use client';
 
 import Image from "next/image";
@@ -13,11 +14,14 @@ import Link from "next/link";
  * @param {string} breadcrumbLabel - Optional label for the breadcrumb (defaults to title).
  */
 export function PageHeader({ title, subtitle, imageUrl, breadcrumbLabel }) {
+  // Use a high-impact default background if none is provided
+  const background = imageUrl || "https://images.unsplash.com/photo-1506744038136-46273834b3fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200";
+
   return (
     <section
       className="relative h-[70vh] min-h-[450px] flex items-center justify-center text-center text-white bg-fixed bg-center bg-cover pt-16 overflow-hidden"
       style={{
-        backgroundImage: imageUrl ? `url('${imageUrl}')` : "url('https://images.unsplash.com/photo-1540346941493-3f8d5d87e169?auto=format&fit=crop&q=80&w=1200')",
+        backgroundImage: `url('${background}')`,
       }}
     >
       {/* Dark Signature Gradient Overlay */}
@@ -56,6 +60,10 @@ export function PageHeader({ title, subtitle, imageUrl, breadcrumbLabel }) {
                 fill
                 className="object-cover object-top"
                 priority
+                onError={(e) => {
+                    // Fallback to a high-res placeholder pattern if the asset is missing
+                    e.currentTarget.src = "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&q=80&w=1200";
+                }}
             />
         </div>
       </div>
