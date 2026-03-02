@@ -1,5 +1,4 @@
-
-import { PrivacyBanner } from "@/components/shared/PrivacyBanner";
+import { PageHeader } from "@/components/shared/PageHeader";
 
 export const metadata = {
   title: 'Privacy Policy - The Forest Gate',
@@ -9,7 +8,11 @@ export const metadata = {
 export default function PrivacyPolicyPage() {
   return (
     <div className="bg-[#fdfdfd]">
-      <PrivacyBanner />
+      <PageHeader 
+        title="Privacy Policy" 
+        imageUrl="/assets/images/privicy.png"
+        breadcrumbLabel="Privacy Policy"
+      />
       
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 max-w-4xl">
