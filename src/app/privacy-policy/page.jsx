@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="bg-background">
+    <div className="bg-[#fdfdfd]">
       <PrivacyBanner />
       
       <section className="py-16 md:py-24">
