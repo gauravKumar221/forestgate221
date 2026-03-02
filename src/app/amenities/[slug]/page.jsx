@@ -76,7 +76,7 @@ export default function AmenityDetailPage({ params }) {
                             {amenity.longDescription}
                         </p>
                         <p className="text-foreground/80">
-                            Immerse yourself in luxury and comfort with our top-of-the-line amenities. We have carefully curated each facility to ensure your stay at Himachal Haven is nothing short of exceptional.
+                            Immerse yourself in luxury and comfort with our top-of-the-line amenities. We have carefully curated each facility to ensure your stay at The Forest Gate is nothing short of exceptional.
                         </p>
                         <Button asChild size="lg" className="w-full">
                             <Link href="/booking">Book Your Stay</Link>

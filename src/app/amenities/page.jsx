@@ -33,7 +33,7 @@ export default function AmenitiesPage() {
               Facilities & Services
             </h2>
             <p className="text-lg text-foreground/80">
-              At Himachal Haven, we've curated a collection of amenities to
+              At The Forest Gate, we've curated a collection of amenities to
               ensure your stay is as comfortable and memorable as possible. From
               relaxation to recreation, we've got you covered.
             </p>

@@ -131,7 +131,7 @@ export default function ContactPage() {
                                 </div>
                                  <div>
                                     <h3 className="font-bold flex items-center gap-2 mb-2"><Mail className="w-5 h-5 text-primary"/> Email</h3>
-                                    <Link href="mailto:contact@himachalhaven.com" className="text-foreground/80 hover:text-primary ml-7">contact@himachalhaven.com</Link>
+                                    <Link href="mailto:contact@theforestgate.com" className="text-foreground/80 hover:text-primary ml-7">contact@theforestgate.com</Link>
                                 </div>
                                  <div>
                                     <h3 className="font-bold flex items-center gap-2 mb-2"><Phone className="w-5 h-5 text-primary"/> Phone</h3>

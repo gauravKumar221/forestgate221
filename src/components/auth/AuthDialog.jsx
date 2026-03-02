@@ -76,19 +76,27 @@ export function AuthDialog({ open, onOpenChange }) {
 
                 {/* Scrollable Area with Fixed Height */}
                 <div className="h-[600px] overflow-y-auto px-8 pb-10 space-y-8 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                    {/* Logo & Welcome Badge */}
-                    <div className="flex flex-col items-center gap-6 relative">
+                    {/* Logo & Welcome Badge Container */}
+                    <div className="flex flex-col items-center gap-6 w-full">
+                        {/* Integrated Status Badge - Fixed overlap issue */}
+                        <div className="w-full bg-[#085d6b]/5 border border-[#085d6b]/10 rounded-2xl p-3 flex justify-between items-center hidden sm:flex">
+                            <div className="flex flex-col gap-0.5">
+                                <span className="text-[9px] text-muted-foreground uppercase font-black tracking-widest leading-none">System Status</span>
+                                <div className="flex items-center gap-1.5 text-[#085d6b] text-xs font-bold">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-[#085d6b] animate-pulse" />
+                                    Secure Connection
+                                </div>
+                            </div>
+                            <div className="h-8 w-px bg-[#085d6b]/10 mx-2" />
+                            <div className="text-right">
+                                <span className="text-[9px] text-muted-foreground uppercase font-black tracking-widest leading-none block mb-0.5">Gateway</span>
+                                <p className="text-xs font-bold text-[#085d6b]">Verified</p>
+                            </div>
+                        </div>
+
                         <div className="flex items-center gap-2 font-bold text-2xl font-headline text-primary">
                             <MountainSnow className="h-10 w-10 text-[#085d6b]" />
                             <span className="text-[#085d6b]">THE FOREST GATE</span>
-                        </div>
-                        
-                        <div className="absolute -top-2 -right-4 bg-[#085d6b]/5 border border-[#085d6b]/10 rounded-xl p-3 flex flex-col gap-1 items-start hidden sm:flex">
-                            <span className="text-[10px] text-muted-foreground leading-none">Welcome back</span>
-                            <div className="flex items-center gap-1 text-[#085d6b] text-xs font-bold">
-                                <div className="w-1.5 h-1.5 rounded-full bg-[#085d6b] animate-pulse" />
-                                Secure
-                            </div>
                         </div>
                     </div>
 

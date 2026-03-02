@@ -45,7 +45,7 @@ export default function RoomsPage() {
                   </h2>
                   <p className="max-w-3xl mx-auto text-lg text-foreground/80 mb-6">
                     For ultimate privacy and a truly bespoke experience, book
-                    the entire Himachal Haven. You'll get exclusive access to
+                    the entire The Forest Gate. You'll get exclusive access to
                     all our accommodations and world-class amenities. Perfect
                     for large families, special events, or corporate retreats.
                   </p>
