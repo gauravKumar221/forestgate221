@@ -69,16 +69,11 @@ export function AuthDialog({ open, onOpenChange }) {
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent className="sm:max-w-[450px] p-0 overflow-hidden rounded-[2rem] border-none shadow-2xl bg-background">
-                {/* Fixed Header Area */}
-                <div className="px-8 pt-8 pb-4 flex justify-between items-center bg-background shrink-0">
-                    <span className="text-lg font-medium text-foreground/80">The Forest Gate portal</span>
-                </div>
-
                 {/* Scrollable Area with Fixed Height */}
-                <div className="h-[600px] overflow-y-auto px-8 pb-10 space-y-8 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                <div className="h-[600px] overflow-y-auto px-8 pt-10 pb-10 space-y-8 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                     {/* Logo & Welcome Badge Container */}
                     <div className="flex flex-col items-center gap-6 w-full">
-                        {/* Integrated Status Badge - Fixed overlap issue */}
+                        {/* Integrated Status Badge */}
                         <div className="w-full bg-[#085d6b]/5 border border-[#085d6b]/10 rounded-2xl p-3 flex justify-between items-center hidden sm:flex">
                             <div className="flex flex-col gap-0.5">
                                 <span className="text-[9px] text-muted-foreground uppercase font-black tracking-widest leading-none">System Status</span>
