@@ -49,7 +49,7 @@ export default function AdminLoginPage() {
 
     return (
         <div className="min-h-screen bg-[#f5f5f5] flex items-center justify-center p-4 sm:p-8">
-            <div className="w-full max-w-6xl bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col lg:flex-row h-full lg:min-h-[700px]">
+            <div className="w-full max-w-6xl bg-white rounded-[2.5rem] overflow-hidden flex flex-col lg:flex-row h-full lg:min-h-[700px]">
                 {/* Left Side: Login Form */}
                 <div className="w-full lg:w-1/2 p-8 sm:p-16 flex flex-col">
                     <div className="mb-12">
@@ -104,7 +104,7 @@ export default function AdminLoginPage() {
                                 
                                 <Button 
                                     type="submit" 
-                                    className="w-full h-12 rounded-full bg-[#fcb101] hover:bg-[#e0a000] text-black font-bold text-base shadow-lg transition-all active:scale-[0.98]"
+                                    className="w-full h-12 rounded-full bg-[#fcb101] hover:bg-[#e0a000] text-black font-bold text-base transition-all active:scale-[0.98]"
                                     disabled={form.formState.isSubmitting}
                                 >
                                     {form.formState.isSubmitting ? 'Verifying...' : 'Sign In'}
