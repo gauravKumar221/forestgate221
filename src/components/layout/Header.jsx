@@ -26,41 +26,28 @@ import {
 
 export function Header() {
   const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = React.useState(false);
-
-  React.useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   if (pathname.startsWith('/admin-dashboard')) {
     return null;
   }
 
-  const isHome = pathname === '/';
-  const headerNavLinks = navLinks.filter((link) => link.href !== '/events');
+  const headerNavLinks = navLinks.filter((link) => link.label !== 'Events');
 
+  // Solid header configuration as requested
   const headerClasses = cn(
-    'fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out',
-    isScrolled || !isHome 
-      ? 'h-16 bg-card shadow-sm text-foreground' 
-      : 'h-20 bg-transparent text-white'
+    'fixed top-0 left-0 right-0 z-50 h-16 bg-card border-b shadow-sm text-foreground'
   );
   
   const linkClasses = (href) => cn(
     'transition-colors font-medium hover:text-primary',
-    (isScrolled || !isHome) ? (pathname === href ? 'text-primary' : 'text-foreground') : 'text-white'
+    pathname === href ? 'text-primary' : 'text-foreground'
   );
 
   return (
     <header className={headerClasses}>
       <div className="container mx-auto flex h-full items-center px-4">
         <div className="flex-1 flex justify-start">
-            <Link href="/" className={cn("flex items-center gap-2 font-bold text-xl font-headline transition-colors", (isScrolled || !isHome) ? "text-primary" : "text-white")}>
+            <Link href="/" className="flex items-center gap-2 font-bold text-xl font-headline text-primary">
               <MountainSnow className="h-6 w-6" />
               <span>Himachal Haven</span>
             </Link>
@@ -75,12 +62,12 @@ export function Header() {
         </nav>
 
         <div className="flex-1 hidden md:flex items-center justify-end gap-4">
-          <Button asChild className={cn(!isScrolled && isHome && "bg-white text-black hover:bg-white/90")}>
+          <Button asChild>
             <Link href="/booking">Book Now</Link>
           </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="rounded-full hover:bg-accent">
+              <Button variant="ghost" size="icon" className="rounded-full">
                 <CircleUser className="h-5 w-5" />
                 <span className="sr-only">Toggle user menu</span>
               </Button>
