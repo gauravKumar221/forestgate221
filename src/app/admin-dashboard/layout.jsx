@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import {
@@ -36,6 +37,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 
 export default function AdminDashboardLayout({
   children,
@@ -43,8 +54,12 @@ export default function AdminDashboardLayout({
   const pathname = usePathname();
   const router = useRouter();
   const { toast } = useToast();
+  const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
 
   const handleLogout = () => {
+    // Clear admin auth cookie
+    document.cookie = "admin-auth=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+    
     toast({
       title: 'Logged Out',
       description: 'You have been successfully logged out.',
@@ -59,27 +74,31 @@ export default function AdminDashboardLayout({
 
   return (
     <SidebarProvider>
-      <div className="flex h-screen overflow-hidden bg-muted/30">
-        <Sidebar variant="default" className="shrink-0">
-          <SidebarHeader>
-            <div className="flex items-center gap-2">
-              <MountainSnow className="h-6 w-6 text-primary" />
+      <div className="flex h-screen overflow-hidden bg-muted/30 w-full">
+        {/* Fixed Sidebar */}
+        <Sidebar variant="default" className="shrink-0 border-r bg-card h-full">
+          <SidebarHeader className="border-b px-6 py-4">
+            <div className="flex items-center gap-3">
+              <div className="bg-primary/10 p-1.5 rounded-lg">
+                <MountainSnow className="h-6 w-6 text-primary" />
+              </div>
               <h2 className="text-lg font-bold font-headline truncate group-data-[state=collapsed]:hidden">
                 Himachal Haven
               </h2>
             </div>
           </SidebarHeader>
-          <SidebarContent>
+          <SidebarContent className="px-3 py-4">
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton
                   asChild
                   isActive={isLinkActive('/admin-dashboard')}
                   tooltip="Dashboard"
+                  className={isLinkActive('/admin-dashboard') ? 'bg-primary/10 text-primary hover:bg-primary/15' : ''}
                 >
                   <Link href="/admin-dashboard">
                     <LayoutDashboard className="h-5 w-5" />
-                    <span className='group-data-[state=collapsed]:hidden'>Dashboard</span>
+                    <span className='group-data-[state=collapsed]:hidden font-medium'>Dashboard</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -88,10 +107,11 @@ export default function AdminDashboardLayout({
                   asChild
                   isActive={isLinkActive('/admin-dashboard/rooms')}
                   tooltip="Rooms"
+                  className={isLinkActive('/admin-dashboard/rooms') ? 'bg-primary/10 text-primary hover:bg-primary/15' : ''}
                 >
                   <Link href="/admin-dashboard/rooms">
                     <BedDouble className="h-5 w-5" />
-                     <span className='group-data-[state=collapsed]:hidden'>Rooms</span>
+                     <span className='group-data-[state=collapsed]:hidden font-medium'>Rooms</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -100,10 +120,11 @@ export default function AdminDashboardLayout({
                   asChild
                   isActive={isLinkActive('/admin-dashboard/orders')}
                   tooltip="Orders"
+                  className={isLinkActive('/admin-dashboard/orders') ? 'bg-primary/10 text-primary hover:bg-primary/15' : ''}
                 >
                   <Link href="/admin-dashboard/orders">
                     <ClipboardList className="h-5 w-5" />
-                    <span className='group-data-[state=collapsed]:hidden'>Orders</span>
+                    <span className='group-data-[state=collapsed]:hidden font-medium'>Orders</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -112,10 +133,11 @@ export default function AdminDashboardLayout({
                   asChild
                   isActive={isLinkActive('/admin-dashboard/subscribers')}
                   tooltip="Subscribers"
+                  className={isLinkActive('/admin-dashboard/subscribers') ? 'bg-primary/10 text-primary hover:bg-primary/15' : ''}
                 >
                   <Link href="/admin-dashboard/subscribers">
                     <Mail className="h-5 w-5" />
-                    <span className='group-data-[state=collapsed]:hidden'>Subscribers</span>
+                    <span className='group-data-[state=collapsed]:hidden font-medium'>Subscribers</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -124,39 +146,46 @@ export default function AdminDashboardLayout({
                   asChild
                   isActive={isLinkActive('/admin-dashboard/contacts')}
                   tooltip="Contacts"
+                  className={isLinkActive('/admin-dashboard/contacts') ? 'bg-primary/10 text-primary hover:bg-primary/15' : ''}
                 >
                   <Link href="/admin-dashboard/contacts">
                     <Contact className="h-5 w-5" />
-                    <span className='group-data-[state=collapsed]:hidden'>Contacts</span>
+                    <span className='group-data-[state=collapsed]:hidden font-medium'>Contacts</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarContent>
-          <SidebarFooter>
+          <SidebarFooter className="border-t p-3">
              <SidebarMenu>
                 <SidebarMenuItem>
-                    <SidebarMenuButton onClick={handleLogout} tooltip="Logout">
+                    <SidebarMenuButton 
+                      onClick={() => setIsLogoutDialogOpen(true)} 
+                      tooltip="Logout"
+                      className="text-muted-foreground hover:text-destructive hover:bg-destructive/10"
+                    >
                         <LogOut className="h-5 w-5" />
-                        <span className='group-data-[state=collapsed]:hidden'>Logout</span>
+                        <span className='group-data-[state=collapsed]:hidden font-medium'>Logout</span>
                     </SidebarMenuButton>
                 </SidebarMenuItem>
              </SidebarMenu>
           </SidebarFooter>
         </Sidebar>
         
-        <div className='flex flex-col flex-1 min-w-0'>
-          <header className="flex h-16 shrink-0 items-center justify-between border-b bg-background px-6">
+        {/* Main Content Area */}
+        <div className='flex flex-col flex-1 min-w-0 h-full overflow-hidden'>
+          <header className="flex h-16 shrink-0 items-center justify-between border-b bg-background px-6 z-10">
             <div className="flex items-center gap-4">
               <SidebarTrigger />
                <div className="relative flex-1 max-w-md hidden sm:block">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input placeholder="Search..." className="pl-9 h-9" />
+                  <Input placeholder="Search records..." className="pl-9 h-9 w-64 bg-muted/50" />
               </div>
             </div>
             <div className="flex items-center gap-4">
-                <Button variant="ghost" size="icon" className="h-9 w-9">
+                <Button variant="ghost" size="icon" className="h-9 w-9 relative">
                     <Bell className="h-5 w-5" />
+                    <span className="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
                     <span className="sr-only">Notifications</span>
                 </Button>
                 <DropdownMenu>
@@ -178,19 +207,43 @@ export default function AdminDashboardLayout({
                             </div>
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                         <DropdownMenuItem>Profile</DropdownMenuItem>
+                         <DropdownMenuItem asChild><Link href="/profile">Profile</Link></DropdownMenuItem>
                          <DropdownMenuItem>Settings</DropdownMenuItem>
                          <DropdownMenuSeparator />
-                         <DropdownMenuItem onClick={handleLogout} className="text-destructive">Logout</DropdownMenuItem>
+                         <DropdownMenuItem onClick={() => setIsLogoutDialogOpen(true)} className="text-destructive">
+                           <LogOut className="mr-2 h-4 w-4" />
+                           Logout
+                         </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             </div>
           </header>
-          <main className="flex-1 overflow-y-auto p-6 scroll-smooth">
+          <main className="flex-1 overflow-y-auto p-6 md:p-8 scroll-smooth bg-muted/10">
             {children}
           </main>
         </div>
       </div>
+
+      {/* Logout Confirmation Dialog */}
+      <AlertDialog open={isLogoutDialogOpen} onOpenChange={setIsLogoutDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Confirm Logout</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to log out of the Himachal Haven admin panel?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction 
+              onClick={handleLogout}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            >
+              Logout
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </SidebarProvider>
   );
 }
