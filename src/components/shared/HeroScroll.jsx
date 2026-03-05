@@ -48,7 +48,7 @@ export function HeroScroll() {
         {/* Centered Content */}
         <motion.div 
           style={{ opacity, y }}
-          className="relative z-20 flex h-full w-full flex-col items-center justify-center px-4 text-center text-white"
+          className="relative z-20 flex h-full w-full flex-col items-center justify-center px-4 text-center text-white bg-primary/20"
         >
           <h1 className="font-headline text-5xl md:text-8xl font-bold uppercase tracking-[0.2em] mb-6">
             THE FOREST GATE
