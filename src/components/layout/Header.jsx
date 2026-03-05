@@ -38,8 +38,13 @@ export function Header() {
   const pathname = usePathname();
   const [isLoggedIn, setIsLoggedIn] = React.useState(true); // Dummy state for demonstration
 
-  // Hide header on admin pages or login/register pages
-  if (pathname.startsWith('/admin-dashboard') || pathname === '/admin-login') {
+  // Hide header on admin pages, login, or register pages
+  if (
+    pathname.startsWith('/admin-dashboard') || 
+    pathname === '/admin-login' || 
+    pathname === '/login' || 
+    pathname === '/register'
+  ) {
     return null;
   }
 

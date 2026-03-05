@@ -10,8 +10,13 @@ import { Input } from '@/components/ui/input';
 export function Footer() {
   const pathname = usePathname();
   
-  // Hide footer on admin pages
-  if (pathname.startsWith('/admin-dashboard') || pathname === '/admin-login') {
+  // Hide footer on admin pages, login, or register pages
+  if (
+    pathname.startsWith('/admin-dashboard') || 
+    pathname === '/admin-login' || 
+    pathname === '/login' || 
+    pathname === '/register'
+  ) {
     return null;
   }
 
