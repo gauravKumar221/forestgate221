@@ -21,16 +21,16 @@ export function Testimonials() {
         fontSize: '32px',
         fontStyle: 'normal',
         fontWeight: '400',
-        textAlign: 'center',
+        textAlign: 'left',
         lineHeight: 'normal',
     };
 
     return (
         <section id="testimonials" className="bg-muted/30">
             <div className="container mx-auto px-4">
-                <div className="text-center max-w-3xl mx-auto mb-16">
+                <div className="max-w-3xl mb-16">
                     <p className="mb-2" style={sectionLabelStyle}>Guest Reviews</p>
-                    <h2 className="font-headline text-3xl md:text-5xl font-bold mb-4">
+                    <h2 className="text-3xl md:text-5xl mb-4" style={{ fontFamily: "'Agbalumo', system-ui" }}>
                         What Our Guests Say
                     </h2>
                 </div>

@@ -71,7 +71,7 @@ export default function Home() {
     fontSize: '32px',
     fontStyle: 'normal',
     fontWeight: '400',
-    textAlign: 'center',
+    textAlign: 'left',
     lineHeight: 'normal',
   };
 
