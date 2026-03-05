@@ -25,6 +25,7 @@ import {
   Mail,
   Contact,
   ClipboardList,
+  Newspaper,
 } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useToast } from '@/hooks/use-toast';
@@ -94,7 +95,6 @@ export default function AdminDashboardLayout({
                   asChild
                   isActive={isLinkActive('/admin-dashboard')}
                   tooltip="Dashboard"
-                  className={isLinkActive('/admin-dashboard') ? 'bg-primary/10 text-primary hover:bg-primary/15' : ''}
                 >
                   <Link href="/admin-dashboard">
                     <LayoutDashboard className="h-5 w-5" />
@@ -107,7 +107,6 @@ export default function AdminDashboardLayout({
                   asChild
                   isActive={isLinkActive('/admin-dashboard/rooms')}
                   tooltip="Rooms"
-                  className={isLinkActive('/admin-dashboard/rooms') ? 'bg-primary/10 text-primary hover:bg-primary/15' : ''}
                 >
                   <Link href="/admin-dashboard/rooms">
                     <BedDouble className="h-5 w-5" />
@@ -118,9 +117,20 @@ export default function AdminDashboardLayout({
               <SidebarMenuItem>
                 <SidebarMenuButton
                   asChild
+                  isActive={isLinkActive('/admin-dashboard/blog')}
+                  tooltip="Blog Posts"
+                >
+                  <Link href="/admin-dashboard/blog">
+                    <Newspaper className="h-5 w-5" />
+                     <span className='group-data-[state=collapsed]:hidden font-medium'>Blog</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  asChild
                   isActive={isLinkActive('/admin-dashboard/orders')}
                   tooltip="Orders"
-                  className={isLinkActive('/admin-dashboard/orders') ? 'bg-primary/10 text-primary hover:bg-primary/15' : ''}
                 >
                   <Link href="/admin-dashboard/orders">
                     <ClipboardList className="h-5 w-5" />
@@ -133,7 +143,6 @@ export default function AdminDashboardLayout({
                   asChild
                   isActive={isLinkActive('/admin-dashboard/subscribers')}
                   tooltip="Subscribers"
-                  className={isLinkActive('/admin-dashboard/subscribers') ? 'bg-primary/10 text-primary hover:bg-primary/15' : ''}
                 >
                   <Link href="/admin-dashboard/subscribers">
                     <Mail className="h-5 w-5" />
@@ -146,7 +155,6 @@ export default function AdminDashboardLayout({
                   asChild
                   isActive={isLinkActive('/admin-dashboard/contacts')}
                   tooltip="Contacts"
-                  className={isLinkActive('/admin-dashboard/contacts') ? 'bg-primary/10 text-primary hover:bg-primary/15' : ''}
                 >
                   <Link href="/admin-dashboard/contacts">
                     <Contact className="h-5 w-5" />

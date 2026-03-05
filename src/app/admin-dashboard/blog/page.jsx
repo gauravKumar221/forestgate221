@@ -1,0 +1,328 @@
+'use client';
+
+import { useState, useRef, useEffect } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  CardFooter
+} from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
+import { blogPosts } from '@/app/lib/data';
+import { useToast } from '@/hooks/use-toast';
+import { PlusCircle, Edit, Trash2, Plus, Image as ImageIcon, X } from 'lucide-react';
+import Image from 'next/image';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { format } from 'date-fns';
+
+const BlogFormSchema = z.object({
+  title: z.string().min(5, 'Title is required.'),
+  excerpt: z.string().min(10, 'Excerpt is required.'),
+  content: z.string().min(20, 'Content is required.'),
+  author: z.string().min(2, 'Author name is required.'),
+  category: z.string().min(2, 'Category is required.'),
+  imageUrl: z.string().url('Please enter a valid image URL.').or(z.string().startsWith('data:image')),
+});
+
+const defaultFormValues = {
+    title: '',
+    excerpt: '',
+    content: '',
+    author: 'Admin',
+    category: 'Local Guide',
+    imageUrl: '',
+};
+
+export default function AdminBlogPage() {
+  const { toast } = useToast();
+  const [posts, setPosts] = useState(blogPosts);
+  const [editingPost, setEditingRoom] = useState(null);
+  const fileInputRef = useRef(null);
+  const formRef = useRef(null);
+
+  const form = useForm({
+    resolver: zodResolver(BlogFormSchema),
+    defaultValues: defaultFormValues,
+  });
+
+  useEffect(() => {
+    if (editingPost) {
+      const getImageUrl = (imageIdentifier) => {
+        if (!imageIdentifier) return '';
+        if (imageIdentifier.startsWith('http') || imageIdentifier.startsWith('data:image')) {
+            return imageIdentifier;
+        }
+        const placeholder = PlaceHolderImages.find(img => img.id === imageIdentifier);
+        return placeholder ? placeholder.imageUrl : '';
+      }
+
+      form.reset({
+        title: editingPost.title,
+        excerpt: editingPost.excerpt,
+        content: editingPost.content,
+        author: editingPost.author,
+        category: editingPost.category,
+        imageUrl: getImageUrl(editingPost.image),
+      });
+      formRef.current?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      form.reset(defaultFormValues);
+    }
+  }, [editingPost, form]);
+
+  function onSubmit(data) {
+    if (editingPost) {
+      const updatedPost = {
+          ...editingPost,
+          title: data.title,
+          excerpt: data.excerpt,
+          content: data.content,
+          author: data.author,
+          category: data.category,
+          image: data.imageUrl,
+      };
+      setPosts(prev => prev.map(p => p.id === editingPost.id ? updatedPost : p));
+      toast({
+        title: 'Post Updated',
+        description: `"${data.title}" has been successfully updated.`,
+      });
+      setEditingRoom(null);
+    } else {
+      const newPost = {
+          id: 'blog-' + Math.random().toString(36).substring(2, 7),
+          slug: data.title.toLowerCase().replace(/\s+/g, '-'),
+          title: data.title,
+          excerpt: data.excerpt,
+          content: data.content,
+          author: data.author,
+          category: data.category,
+          date: format(new Date(), 'MMMM dd, yyyy'),
+          image: data.imageUrl,
+      };
+      setPosts(prev => [newPost, ...prev]);
+      toast({
+        title: 'Post Created',
+        description: `"${data.title}" has been successfully published.`,
+      });
+    }
+    form.reset(defaultFormValues);
+  }
+
+  const handleDelete = (postId) => {
+    setPosts(prev => prev.filter(p => p.id !== postId));
+    toast({
+      title: 'Post Deleted',
+      description: `The blog post has been removed.`,
+    });
+  };
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        if (typeof reader.result === 'string') {
+          form.setValue('imageUrl', reader.result);
+        }
+      };
+      reader.readAsDataURL(file);
+      event.target.value = '';
+    }
+  };
+
+  return (
+    <div className="space-y-8">
+      <h1 className="text-3xl font-bold font-headline">Manage Blog</h1>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+        <div className="lg:col-span-1 space-y-8" ref={formRef}>
+            <Card>
+                <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                    {editingPost ? <Edit /> : <PlusCircle />}
+                    {editingPost ? 'Edit Post' : 'New Post'}
+                </CardTitle>
+                </CardHeader>
+                <CardContent>
+                <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                    <FormField
+                        control={form.control}
+                        name="title"
+                        render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Title</FormLabel>
+                            <FormControl>
+                            <Input placeholder="Post Title" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                        )}
+                    />
+                    <div className="grid grid-cols-2 gap-4">
+                        <FormField
+                            control={form.control}
+                            name="author"
+                            render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Author</FormLabel>
+                                <FormControl>
+                                <Input {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="category"
+                            render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Category</FormLabel>
+                                <FormControl>
+                                <Input {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                            )}
+                        />
+                    </div>
+                    <FormField
+                        control={form.control}
+                        name="excerpt"
+                        render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Short Excerpt</FormLabel>
+                            <FormControl>
+                            <Textarea placeholder="Brief summary..." {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="content"
+                        render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Full Content</FormLabel>
+                            <FormControl>
+                            <Textarea placeholder="Write your story..." {...field} rows={8} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                        )}
+                    />
+                    
+                    <FormField
+                        control={form.control}
+                        name="imageUrl"
+                        render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Featured Image</FormLabel>
+                            <div className="space-y-4">
+                                {field.value ? (
+                                    <div className="relative aspect-video rounded-lg overflow-hidden border">
+                                        <Image src={field.value} alt="Preview" fill className="object-cover" />
+                                        <Button 
+                                            type="button" 
+                                            variant="destructive" 
+                                            size="icon" 
+                                            className="absolute top-2 right-2"
+                                            onClick={() => field.onChange('')}
+                                        >
+                                            <X className="h-4 w-4" />
+                                        </Button>
+                                    </div>
+                                ) : (
+                                    <button
+                                        type="button"
+                                        onClick={() => fileInputRef.current?.click()}
+                                        className="w-full aspect-video rounded-lg border-2 border-dashed flex flex-col items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors"
+                                    >
+                                        <Plus className="h-8 w-8 mb-2" />
+                                        <span>Upload Image</span>
+                                    </button>
+                                )}
+                                <input type="file" ref={fileInputRef} onChange={handleImageUpload} className="hidden" accept="image/*" />
+                            </div>
+                            <FormMessage />
+                        </FormItem>
+                        )}
+                    />
+
+                    <div className="flex items-center gap-2 pt-4">
+                         <Button type="submit" className="flex-1">
+                            {editingPost ? 'Save Changes' : 'Publish Post'}
+                        </Button>
+                        {editingPost && (
+                            <Button type="button" variant="outline" onClick={() => setEditingRoom(null)}>
+                                Cancel
+                            </Button>
+                        )}
+                    </div>
+                    </form>
+                </Form>
+                </CardContent>
+            </Card>
+        </div>
+        <div className="lg:col-span-2 space-y-6">
+            <h2 className="text-2xl font-bold font-headline">Published Posts</h2>
+             {posts.map((post) => {
+                const postImg = (() => {
+                    if (!post.image) return null;
+                    if (post.image.startsWith('http') || post.image.startsWith('data:image')) return post.image;
+                    const placeholder = PlaceHolderImages.find(img => img.id === post.image);
+                    return placeholder ? placeholder.imageUrl : null;
+                })();
+
+                return (
+                    <Card key={post.id} className="flex flex-col md:flex-row overflow-hidden">
+                        <div className="relative md:w-1/3 aspect-video md:aspect-auto">
+                            {postImg ? (
+                                <Image src={postImg} alt={post.title} fill className="object-cover" />
+                            ) : (
+                                <div className="w-full h-full flex items-center justify-center bg-muted">
+                                    <ImageIcon className="w-12 h-12 text-muted-foreground" />
+                                </div>
+                            )}
+                        </div>
+                        <div className="flex-1 p-6">
+                             <div className="flex justify-between items-start mb-2">
+                                <div>
+                                    <p className="text-[10px] font-black uppercase tracking-widest text-primary mb-1">{post.category}</p>
+                                    <h3 className="font-bold text-xl leading-tight">{post.title}</h3>
+                                </div>
+                                <div className="text-right text-xs text-muted-foreground">
+                                    <p>{post.date}</p>
+                                    <p>By {post.author}</p>
+                                </div>
+                             </div>
+                            <p className="text-sm text-muted-foreground line-clamp-2 mb-6">{post.excerpt}</p>
+                            <div className="flex gap-2">
+                                <Button variant="outline" size="sm" onClick={() => setEditingRoom(post)}><Edit className="mr-2 h-4 w-4" /> Edit</Button>
+                                <Button variant="destructive" size="sm" onClick={() => handleDelete(post.id)}><Trash2 className="mr-2 h-4 w-4" /> Delete</Button>
+                            </div>
+                        </div>
+                    </Card>
+                 )
+             })}
+        </div>
+      </div>
+    </div>
+  );
+}

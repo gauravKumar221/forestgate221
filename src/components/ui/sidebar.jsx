@@ -49,7 +49,7 @@ export function SidebarProvider({
   };
 
   return (
-    <SidebarContext.Provider value={value}>{children}</SidebarContext.Provider>
+    <SidebarContext.Provider value={contextValue}>{children}</SidebarContext.Provider>
   );
 }
 
@@ -177,7 +177,7 @@ const SidebarMenuButton = React.forwardRef(
         ref={ref}
         variant="ghost"
         className={cn(
-          'w-full gap-3 justify-start px-3 py-2 h-10 transition-all font-medium',
+          'w-full gap-3 justify-start px-3 py-2 h-10 transition-all font-medium rounded-lg',
           isActive ? 'bg-primary/10 text-primary hover:bg-primary/15' : 'text-muted-foreground hover:text-foreground',
           isCollapsed && 'justify-center px-0',
           className
