@@ -1,3 +1,4 @@
+
 'use client';
 
 import * as React from 'react';
@@ -33,6 +34,7 @@ const Carousel = React.forwardRef(
     ref
   ) => {
     // Filter out any undefined plugins to prevent Embla from crashing
+    // Wrap in useMemo to ensure stable plugins array during hydration
     const stablePlugins = React.useMemo(() => 
       Array.isArray(plugins) ? plugins.filter(Boolean) : []
     , [plugins]);

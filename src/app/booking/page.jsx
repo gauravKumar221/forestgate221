@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Suspense, useState, useEffect, useRef, useMemo } from 'react';
@@ -190,9 +191,9 @@ function BookingPageContent() {
                                                             data-ai-hint={img.imageHint}
                                                         />
                                                         {/* Glassmorphism navigation overlay */}
-                                                        <div className="absolute bottom-10 left-10 z-20 flex items-center gap-4 bg-black/20 backdrop-blur-xl border border-white/10 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                                                            <CarouselPrevious className="static translate-y-0 h-12 w-12 rounded-full bg-white/10 hover:bg-secondary text-white hover:text-black border-none transition-all shadow-none" />
-                                                            <CarouselNext className="static translate-y-0 h-12 w-12 rounded-full bg-white/10 hover:bg-secondary text-white hover:text-black border-none transition-all shadow-none" />
+                                                        <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 z-20 flex items-center gap-4 bg-black/20 backdrop-blur-xl border border-white/10 p-2 rounded-full opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 transform translate-y-0 md:translate-y-4 md:group-hover:translate-y-0">
+                                                            <CarouselPrevious className="static translate-y-0 h-10 w-10 md:h-12 md:w-12 rounded-full bg-white/10 hover:bg-secondary text-white hover:text-black border-none transition-all shadow-none left-auto right-auto" />
+                                                            <CarouselNext className="static translate-y-0 h-10 w-10 md:h-12 md:w-12 rounded-full bg-white/10 hover:bg-secondary text-white hover:text-black border-none transition-all shadow-none left-auto right-auto" />
                                                         </div>
                                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
                                                     </div>

@@ -1,3 +1,4 @@
+
 'use client';
 
 import * as React from 'react';
@@ -26,9 +27,12 @@ export function Testimonials() {
         lineHeight: 'normal',
     };
 
-    const autoplay = React.useRef(
-        Autoplay({ delay: 3000, stopOnInteraction: false })
+    const autoplay = React.useMemo(
+        () => (typeof Autoplay === 'function' ? Autoplay({ delay: 3000, stopOnInteraction: false }) : null),
+        []
     );
+
+    const plugins = React.useMemo(() => (autoplay ? [autoplay] : []), [autoplay]);
 
     return (
         <section id="testimonials" className="bg-secondary/5">
@@ -46,9 +50,9 @@ export function Testimonials() {
                             align: "start",
                             loop: true,
                         }}
-                        plugins={[autoplay.current]}
-                        onMouseEnter={autoplay.current.stop}
-                        onMouseLeave={autoplay.current.play}
+                        plugins={plugins}
+                        onMouseEnter={() => autoplay?.stop?.()}
+                        onMouseLeave={() => autoplay?.play?.()}
                         className="w-full"
                     >
                         <CarouselContent className="-ml-4">
