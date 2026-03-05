@@ -7,6 +7,7 @@ export const navLinks = [
   { href: '/amenities', label: 'Amenities' },
   { href: '/gallery', label: 'Gallery' },
   { href: '/events', label: 'Events' },
+  { href: '/blog', label: 'Blog' },
   { href: '/contact', label: 'Contact' },
 ];
 
@@ -373,5 +374,41 @@ export const wildlifeViewpoints = [
     description: "During the spring and summer months, our wildflower gardens become a playground for hundreds of species of rare and colorful butterflies.",
     image: "gallery-nature-2",
     imageHint: "butterfly flower"
+  }
+];
+
+export const blogPosts = [
+  {
+    id: 'blog-1',
+    slug: 'exploring-naggar-castle',
+    title: 'Exploring the Timeless Charm of Naggar Castle',
+    excerpt: 'Discover the rich history and stunning architecture of the medieval Naggar Castle, just a stones throw from our resort.',
+    content: 'Naggar Castle is a medieval castle, located in Kullu, Himachal Pradesh, India. Built by Raja Sidh Singh of Kullu in around 1460 A.D, it was taken over by the Himachal Pradesh Tourism Development Corporation (HPTDC), to run as a heritage hotel, in 1978.\n\nThe unique architecture of the castle is a blend of Himalayan and European styles. The castle was built using local stone and timber, and its intricate wood carvings and beautiful courtyards are a testament to the skilled craftsmanship of the era.\n\nVisitors can explore the castle\'s various rooms, which have been converted into museum galleries, showcasing local artifacts, paintings, and traditional costumes. The castle also offers stunning views of the Kullu Valley and the surrounding mountains.',
+    author: 'Editorial Team',
+    date: 'March 15, 2024',
+    category: 'Local Guide',
+    image: 'hero-1'
+  },
+  {
+    id: 'blog-2',
+    slug: 'himalayan-wellness-retreat',
+    title: '5 Reasons to Choose a Himalayan Wellness Retreat',
+    excerpt: 'Why the crisp mountain air and serene landscapes of Himachal are perfect for your next rejuvenation journey.',
+    content: 'In today\'s fast-paced world, finding time to unwind and reconnect with oneself is more important than ever. A wellness retreat in the Himalayas offers the perfect opportunity to do just that. Here are five reasons why you should choose the Himalayas for your next rejuvenation journey:\n\n1. Breath-taking Natural Beauty: The majestic mountains, lush forests, and sparkling rivers of the Himalayas provide a stunning backdrop for relaxation and reflection.\n\n2. Crisp Mountain Air: The clean, fresh air of the Himalayas is invigorating and can help to clear your mind and improve your overall well-being.\n\n3. Serene Landscapes: The peaceful and tranquil environment of the Himalayas is ideal for meditation, yoga, and other wellness practices.\n\n4. Authentic Experiences: You can immerse yourself in the local culture and traditions, and learn about ancient wellness practices that have been passed down through generations.\n\n5. Professional Guidance: Many wellness retreats in the Himalayas offer professional guidance from experienced practitioners, who can help you to achieve your wellness goals.',
+    author: 'Wellness Expert',
+    date: 'March 10, 2024',
+    category: 'Wellness',
+    image: 'amenity-pool'
+  },
+  {
+    id: 'blog-3',
+    slug: 'trekking-tips-for-beginners',
+    title: 'Trekking Tips for Beginners in Manali',
+    excerpt: 'Everything you need to know before you hit the trails, from essential gear to the best beginner-friendly routes.',
+    content: 'Trekking in Manali is a fantastic way to explore the stunning natural beauty of the region. If you\'re a beginner, here are some essential tips to help you get started:\n\n1. Choose the Right Trail: Start with a beginner-friendly trail that is well-marked and not too strenuous.\n\n2. Gear Up: Invest in a good pair of trekking boots, a comfortable backpack, and appropriate clothing for the weather conditions.\n\n3. Pack Essentials: Carry a first-aid kit, a map, a compass, a whistle, and plenty of water and snacks.\n\n4. Check the Weather: Before you head out, check the weather forecast and be prepared for changes in conditions.\n\n5. Trek with a Guide: If you\'re new to trekking, consider hiring a local guide who can help you navigate the trails and provide valuable information about the region.',
+    author: 'Adventure Guide',
+    date: 'March 05, 2024',
+    category: 'Adventure',
+    image: 'exp-trekking'
   }
 ];
