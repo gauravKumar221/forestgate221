@@ -9,12 +9,22 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 export function ManagedBySection() {
     const palmImage = PlaceHolderImages.find(img => img.id === 'palm-tree-banner');
 
+    const subTitleStyle = {
+        color: '#ffae3e',
+        fontFamily: '"Kaushan Script", cursive',
+        fontSize: '32px',
+        fontStyle: 'normal',
+        fontWeight: '400',
+        textAlign: 'left',
+        lineHeight: 'normal',
+    };
+
     return (
         <section className="relative overflow-hidden bg-[#70ac43] py-16 md:py-24">
             <div className="container mx-auto px-4 relative z-10">
                 <div className="max-w-3xl space-y-6">
                     <div className="space-y-2">
-                        <p className="text-[#1a1a1a] font-bold text-xl md:text-2xl font-body uppercase tracking-wider">
+                        <p style={subTitleStyle} className="mb-2">
                             Managed By
                         </p>
                         <h2 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight font-headline">
