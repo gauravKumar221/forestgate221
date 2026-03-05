@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { PageHeader } from '@/components/shared/PageHeader';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { detailedExperiences } from '@/app/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { MountainViewIcon } from '@/components/icons/MountainViewIcon';
@@ -27,7 +26,7 @@ export default function ExperiencesPage() {
     const headerImage = PlaceHolderImages.find((img) => img.id === 'exp-trekking');
     
     return (
-        <div>
+        <div className="bg-[#fcfcfc]">
             {headerImage && (
                 <PageHeader
                 title="Experiences & Activities"
@@ -39,33 +38,55 @@ export default function ExperiencesPage() {
 
             <section>
                 <div className="container mx-auto px-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 items-stretch">
                         {detailedExperiences.map((exp) => {
                             const expImage = PlaceHolderImages.find(img => img.id === exp.image);
                             const Icon = icons[exp.iconName] || MountainViewIcon;
+                            
                             return (
-                                <Card key={exp.title} className="flex flex-col group overflow-hidden transition-shadow hover:shadow-xl">
+                                <div 
+                                    key={exp.title} 
+                                    className="relative group overflow-hidden rounded-[2.5rem] bg-card h-[550px] shadow-lg transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-border/50"
+                                >
+                                    {/* Background Image */}
                                     {expImage && (
-                                        <div className="relative aspect-video overflow-hidden">
-                                            <Image
-                                                src={expImage.imageUrl}
-                                                alt={exp.title}
-                                                fill
-                                                className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
-                                                data-ai-hint={expImage.imageHint}
-                                                placeholder="blur"
-                                                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/+F9PQAI8wNPvd7POQAAAABJRU5ErkJggg=="
-                                            />
-                                        </div>
+                                        <Image
+                                            src={expImage.imageUrl}
+                                            alt={exp.title}
+                                            fill
+                                            className="object-cover transition-transform duration-[2000ms] group-hover:scale-110"
+                                            data-ai-hint={expImage.imageHint}
+                                            placeholder="blur"
+                                            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/+F9PQAI8wNPvd7POQAAAABJRU5ErkJggg=="
+                                        />
                                     )}
-                                    <CardHeader className="flex-row items-center gap-4">
-                                        <Icon className="w-10 h-10 text-primary shrink-0" />
-                                        <CardTitle className="font-headline text-2xl">{exp.title}</CardTitle>
-                                    </CardHeader>
-                                    <CardContent className="flex-grow">
-                                        <p className="text-foreground/80">{exp.description}</p>
-                                    </CardContent>
-                                </Card>
+
+                                    {/* Premium Gradient Overlay */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#0b2c3d] via-[#0b2c3d]/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+                                    
+                                    {/* Decorative Icon Badge */}
+                                    <div className="absolute top-8 left-8">
+                                        <div className="w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center border border-white/20 text-white group-hover:bg-[#fcb101] group-hover:border-[#fcb101] group-hover:text-black transition-all duration-500 shadow-xl">
+                                            <Icon className="w-8 h-8" />
+                                        </div>
+                                    </div>
+
+                                    {/* Content Overlay */}
+                                    <div className="absolute bottom-0 left-0 right-0 p-10 transform translate-y-10 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                                        <h3 className="font-headline text-4xl font-bold text-white mb-4 leading-tight tracking-tight drop-shadow-md">
+                                            {exp.title}
+                                        </h3>
+                                        
+                                        <div className="overflow-hidden">
+                                            <p className="text-white/80 text-base leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 line-clamp-6 font-light">
+                                                {exp.description}
+                                            </p>
+                                        </div>
+
+                                        {/* Stylized Accent Bar */}
+                                        <div className="w-16 h-1 bg-[#fcb101] mt-8 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-full" />
+                                    </div>
+                                </div>
                             )
                         })}
                     </div>
