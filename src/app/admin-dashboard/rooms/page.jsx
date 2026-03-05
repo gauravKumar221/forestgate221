@@ -194,13 +194,13 @@ export default function AdminRoomsPage() {
       <h1 className="text-3xl font-bold font-headline">Manage Rooms</h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
         <div className="lg:col-span-1 space-y-8" ref={formRef}>
-            <Card>
+            <Card className="rounded-[2rem] border-none shadow-lg bg-card">
                 <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                    {editingRoom ? <Edit /> : <PlusCircle />}
+                <CardTitle className="flex items-center gap-2 text-xl">
+                    {editingRoom ? <Edit className="w-5 h-5 text-primary" /> : <PlusCircle className="w-5 h-5 text-primary" />}
                     {editingRoom ? `Edit "${editingRoom.name}"` : 'Add New Room'}
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-xs">
                     {editingRoom ? 'Update the details for this room.' : 'Fill out the form below to add a new room.'}
                 </CardDescription>
                 </CardHeader>
@@ -212,9 +212,9 @@ export default function AdminRoomsPage() {
                         name="name"
                         render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Room Name</FormLabel>
+                            <FormLabel className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Room Name</FormLabel>
                             <FormControl>
-                            <Input placeholder="e.g., Deluxe Room" {...field} />
+                            <Input placeholder="e.g., Deluxe Room" {...field} className="rounded-xl border-slate-100 bg-slate-50/50" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -225,9 +225,9 @@ export default function AdminRoomsPage() {
                         name="price"
                         render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Price per night (₹)</FormLabel>
+                            <FormLabel className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Price per night (₹)</FormLabel>
                             <FormControl>
-                            <Input type="number" {...field} />
+                            <Input type="number" {...field} className="rounded-xl border-slate-100 bg-slate-50/50" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -238,9 +238,9 @@ export default function AdminRoomsPage() {
                         name="description"
                         render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Short Description</FormLabel>
+                            <FormLabel className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Short Description</FormLabel>
                             <FormControl>
-                            <Textarea placeholder="A brief summary of the room..." {...field} />
+                            <Textarea placeholder="A brief summary of the room..." {...field} className="rounded-xl border-slate-100 bg-slate-50/50" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -251,16 +251,16 @@ export default function AdminRoomsPage() {
                         name="longDescription"
                         render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Full Description</FormLabel>
+                            <FormLabel className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Full Description</FormLabel>
                             <FormControl>
-                            <Textarea placeholder="A detailed description of the room and its features..." {...field} rows={4} />
+                            <Textarea placeholder="A detailed description..." {...field} rows={4} className="rounded-xl border-slate-100 bg-slate-50/50" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
                         )}
                     />
                      <FormItem>
-                        <FormLabel>Amenities</FormLabel>
+                        <FormLabel className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Amenities</FormLabel>
                         <div className="flex items-center gap-2">
                             <Input
                                 value={amenityInput}
@@ -275,10 +275,12 @@ export default function AdminRoomsPage() {
                                     }
                                 }}
                                 placeholder="Add an amenity"
+                                className="rounded-xl border-slate-100 bg-slate-50/50"
                             />
                             <Button
                                 type="button"
                                 variant="outline"
+                                className="h-10 px-4 rounded-xl border-slate-200"
                                 onClick={() => {
                                     if (amenityInput.trim()) {
                                         appendAmenity(amenityInput.trim());
@@ -291,16 +293,16 @@ export default function AdminRoomsPage() {
                         </div>
                         <div className="space-y-2 pt-2">
                             {amenityFields.map((field, index) => (
-                                <div key={field.id} className="flex items-center justify-between rounded-md border bg-muted/50 p-2">
-                                    <span className="text-sm">{form.getValues(`amenities.${index}`)}</span>
+                                <div key={field.id} className="flex items-center justify-between rounded-xl border border-slate-100 bg-slate-50/50 p-2 pl-4">
+                                    <span className="text-xs font-bold text-slate-600">{form.getValues(`amenities.${index}`)}</span>
                                     <Button
                                         type="button"
                                         variant="ghost"
                                         size="icon"
-                                        className="h-6 w-6"
+                                        className="h-8 w-8 hover:bg-destructive/10 text-destructive"
                                         onClick={() => removeAmenity(index)}
                                     >
-                                        <Trash2 className="h-4 w-4 text-destructive" />
+                                        <Trash2 className="h-4 w-4" />
                                     </Button>
                                 </div>
                             ))}
@@ -308,19 +310,19 @@ export default function AdminRoomsPage() {
                         <FormMessage>{form.formState.errors.amenities?.message}</FormMessage>
                     </FormItem>
                     
-                    <FormItem>
-                        <FormLabel>Media</FormLabel>
-                        <div className="space-y-4">
-                            <Card>
-                                <CardHeader>
-                                    <CardTitle className="text-base font-medium">Images</CardTitle>
+                    <div className="space-y-4 pt-4">
+                        <FormLabel className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Media Assets</FormLabel>
+                        <div className="grid grid-cols-1 gap-4">
+                            <Card className="rounded-2xl border-slate-100 bg-slate-50/50 overflow-hidden shadow-none">
+                                <CardHeader className="p-4 bg-white/50 border-b border-slate-100">
+                                    <CardTitle className="text-xs font-black uppercase tracking-widest text-slate-400">Images</CardTitle>
                                 </CardHeader>
-                                <CardContent>
-                                    <div className="grid grid-cols-3 sm:grid-cols-4 gap-4">
+                                <CardContent className="p-4">
+                                    <div className="grid grid-cols-3 gap-3">
                                         {imageFields.map((field, index) => {
                                             const imageUrl = form.getValues(`images.${index}.url`);
                                             return (
-                                                <div key={field.id} className="relative group aspect-square rounded-md overflow-hidden bg-muted">
+                                                <div key={field.id} className="relative group aspect-square rounded-xl overflow-hidden bg-slate-200">
                                                     {imageUrl ? (
                                                         <img
                                                             src={imageUrl}
@@ -328,15 +330,15 @@ export default function AdminRoomsPage() {
                                                             className="w-full h-full object-cover"
                                                         />
                                                     ) : (
-                                                        <div className="w-full h-full bg-muted rounded-md flex items-center justify-center p-1 text-center">
-                                                            <span className="text-xs text-muted-foreground break-all">Invalid URL</span>
+                                                        <div className="w-full h-full flex items-center justify-center p-1 text-center">
+                                                            <span className="text-[8px] text-slate-400 break-all">Invalid</span>
                                                         </div>
                                                     )}
                                                     <Button
                                                         type="button"
                                                         variant="destructive"
                                                         size="icon"
-                                                        className="absolute -top-2 -right-2 h-6 w-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                                                        className="absolute top-1 right-1 h-6 w-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"
                                                         onClick={() => removeImage(index)}
                                                     >
                                                         <Trash2 className="h-3 w-3" />
@@ -355,78 +357,23 @@ export default function AdminRoomsPage() {
                                         <button
                                             type="button"
                                             onClick={() => fileInputRef.current?.click()}
-                                            className="flex flex-col items-center justify-center aspect-square rounded-md border-2 border-dashed border-muted-foreground/50 text-muted-foreground hover:border-primary hover:text-primary transition-colors"
+                                            className="flex flex-col items-center justify-center aspect-square rounded-xl border-2 border-dashed border-slate-200 text-slate-400 hover:text-primary hover:border-primary hover:bg-primary/5 transition-all"
                                         >
-                                            <Plus className="h-8 w-8" />
-                                            <span className="text-sm mt-1">Add Image</span>
+                                            <Plus className="h-6 w-6" />
+                                            <span className="text-[9px] font-black uppercase tracking-widest mt-1">Add</span>
                                         </button>
                                     </div>
-                                    <FormMessage className="pt-2">{form.formState.errors.images?.root?.message}</FormMessage>
-                                </CardContent>
-                            </Card>
-
-                            <Card>
-                                <CardHeader>
-                                    <CardTitle className="text-base font-medium">Videos</CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <div className="grid grid-cols-3 sm:grid-cols-4 gap-4">
-                                        {videoFields.map((field, index) => {
-                                            const videoUrl = form.getValues(`videos.${index}.url`);
-                                            return (
-                                                <div key={field.id} className="relative group aspect-square rounded-md overflow-hidden bg-black">
-                                                    {videoUrl ? (
-                                                        <video
-                                                            src={videoUrl}
-                                                            controls
-                                                            className="object-cover w-full h-full"
-                                                        />
-                                                    ) : (
-                                                        <div className="w-full h-full bg-muted rounded-md flex items-center justify-center p-1 text-center">
-                                                            <span className="text-xs text-muted-foreground break-all">Invalid URL</span>
-                                                        </div>
-                                                    )}
-                                                    <Button
-                                                        type="button"
-                                                        variant="destructive"
-                                                        size="icon"
-                                                        className="absolute -top-2 -right-2 h-6 w-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"
-                                                        onClick={() => removeVideo(index)}
-                                                    >
-                                                        <Trash2 className="h-3 w-3" />
-                                                    </Button>
-                                                </div>
-                                            );
-                                        })}
-
-                                        <input
-                                            type="file"
-                                            ref={videoInputRef}
-                                            onChange={handleVideoUpload}
-                                            className="hidden"
-                                            accept="video/*"
-                                        />
-                                        <button
-                                            type="button"
-                                            onClick={() => videoInputRef.current?.click()}
-                                            className="flex flex-col items-center justify-center aspect-square rounded-md border-2 border-dashed border-muted-foreground/50 text-muted-foreground hover:border-primary hover:text-primary transition-colors"
-                                        >
-                                            <Video className="h-8 w-8" />
-                                            <span className="text-sm mt-1">Add Video</span>
-                                        </button>
-                                    </div>
-                                    <FormMessage className="pt-2">{form.formState.errors.videos?.root?.message}</FormMessage>
                                 </CardContent>
                             </Card>
                         </div>
-                    </FormItem>
+                    </div>
 
-                    <div className="flex items-center gap-2">
-                         <Button type="submit" disabled={form.formState.isSubmitting}>
+                    <div className="flex items-center gap-2 pt-6">
+                         <Button type="submit" className="flex-1 h-14 rounded-2xl bg-secondary hover:bg-secondary/90 text-black text-xs font-black uppercase tracking-[0.2em] shadow-lg shadow-secondary/20 transition-all active:scale-[0.98]">
                             {editingRoom ? 'Save Changes' : 'Add Room'}
                         </Button>
                         {editingRoom && (
-                            <Button type="button" variant="outline" onClick={handleCancelEdit}>
+                            <Button type="button" variant="outline" className="h-14 rounded-2xl px-6 border-slate-200 text-slate-400 font-bold" onClick={handleCancelEdit}>
                                 <X className="mr-2 h-4 w-4" /> Cancel
                             </Button>
                         )}
@@ -449,30 +396,47 @@ export default function AdminRoomsPage() {
                 const roomVideo = room.videos?.[0];
 
                 return (
-                    <Card key={room.id} className="flex flex-col md:flex-row overflow-hidden">
-                        <div className="relative md:w-1/3 aspect-video md:aspect-auto bg-black">
+                    <Card key={room.id} className="flex flex-col md:flex-row overflow-hidden rounded-[2.5rem] border-none shadow-sm hover:shadow-xl transition-all duration-500 bg-white group">
+                        <div className="md:w-[40%] relative shrink-0 aspect-[4/3] md:aspect-auto bg-black overflow-hidden">
                             {roomVideo ? (
                                 <video src={roomVideo} controls className="object-cover w-full h-full" />
                             ) : roomImage ? (
-                                <img src={roomImage} alt={room.name} className="object-cover w-full h-full" />
+                                <img src={roomImage} alt={room.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                             ) : (
-                                <div className="w-full h-full flex items-center justify-center bg-muted">
-                                    <ImageIcon className="w-12 h-12 text-muted-foreground" />
+                                <div className="w-full h-full flex items-center justify-center bg-slate-50">
+                                    <ImageIcon className="w-12 h-12 text-slate-200" />
                                 </div>
                             )}
                         </div>
-                        <div className="flex-1">
-                             <CardHeader>
-                                <CardTitle>{room.name}</CardTitle>
-                                <CardDescription>₹{room.price.toLocaleString()} / night</CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                                <p className="text-sm text-muted-foreground line-clamp-2">{room.longDescription}</p>
-                            </CardContent>
-                            <CardFooter className="gap-2">
-                                <Button variant="outline" size="sm" onClick={() => setEditingRoom(room)}><Edit className="mr-2 h-4 w-4" /> Edit</Button>
-                                <Button variant="destructive" size="sm" onClick={() => handleDeleteRoom(room.id)}><Trash2 className="mr-2 h-4 w-4" /> Delete</Button>
-                            </CardFooter>
+                        <div className="flex-1 p-8 md:p-10 flex flex-col justify-center">
+                             <div className="mb-4">
+                                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#085d6b] mb-1">Premium Accommodation</p>
+                                <h3 className="font-bold text-2xl lg:text-3xl leading-tight text-slate-900 font-headline">{room.name}</h3>
+                                <p className="text-secondary font-black text-xl mt-2">₹{room.price.toLocaleString()} <span className="text-[10px] text-slate-400 uppercase tracking-widest">/ Night</span></p>
+                            </div>
+                            <p className="text-slate-500 text-base mb-8 font-light leading-relaxed line-clamp-3">
+                                {room.longDescription}
+                            </p>
+                            <div className="flex flex-wrap gap-3">
+                                <Button 
+                                    variant="outline" 
+                                    size="sm" 
+                                    className="rounded-full px-8 h-11 border-2 font-black uppercase tracking-widest text-[10px]" 
+                                    onClick={() => setEditingRoom(room)}
+                                >
+                                    <Edit className="mr-2 h-4 w-4" /> 
+                                    Edit
+                                </Button>
+                                <Button 
+                                    variant="destructive" 
+                                    size="sm" 
+                                    className="rounded-full px-8 h-11 font-black uppercase tracking-widest text-[10px] shadow-none" 
+                                    onClick={() => handleDeleteRoom(room.id)}
+                                >
+                                    <Trash2 className="mr-2 h-4 w-4" /> 
+                                    Delete
+                                </Button>
+                            </div>
                         </div>
                     </Card>
                  )
