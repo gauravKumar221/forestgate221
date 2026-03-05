@@ -1,11 +1,9 @@
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { Check, ChevronRight } from 'lucide-react';
 
 import { PageHeader } from '@/components/shared/PageHeader';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { rooms, galleryImages } from '../lib/data';
 import { PlaceHolderImages } from '../../lib/placeholder-images';
 import {
@@ -17,6 +15,7 @@ import {
 } from '@/components/ui/carousel';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
+import { ManagedBySection } from '@/components/shared/ManagedBySection';
 
 export default function RoomsPage() {
   const headerImage = PlaceHolderImages.find((img) => img.id === 'room-suite-1');
@@ -173,6 +172,14 @@ export default function RoomsPage() {
           </Tabs>
         </div>
       </section>
+
+      <ManagedBySection 
+        label="Himalayan Hospitality"
+        title="Managed By The Forest Authority"
+        description="Experience luxury curated by the guardians of the mountains."
+        buttonText="Explore Sanctuary"
+        buttonLink="/experiences"
+      />
     </div>
   );
 }

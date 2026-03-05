@@ -4,7 +4,22 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-export function ManagedBySection() {
+/**
+ * ManagedBySection - A reusable banner component for management attribution.
+ * 
+ * @param {string} label - The small cursive label (e.g., "Managed By").
+ * @param {string} title - The main bold heading.
+ * @param {string} description - The subtitle text.
+ * @param {string} buttonText - Text for the CTA button.
+ * @param {string} buttonLink - Destination for the CTA button.
+ */
+export function ManagedBySection({ 
+  label = "Managed By", 
+  title = "The Himalayan Forest Development Authority", 
+  description = "Authorized Eco-Tourism Partner",
+  buttonText = "Contact Us",
+  buttonLink = "/contact"
+}) {
 
   const subTitleStyle = {
     color: '#ffae3e',
@@ -20,23 +35,23 @@ export function ManagedBySection() {
         <div className="max-w-3xl space-y-6">
 
           <div className="space-y-2">
-            <p style={subTitleStyle}>Managed By</p>
+            <p style={subTitleStyle}>{label}</p>
 
-            <h2 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              The Himalayan Forest Development Authority
+            <h2 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight font-headline">
+              {title}
             </h2>
           </div>
 
           <div className="space-y-6 pt-4">
-            <p className="text-[#1a1a1a] text-base md:text-lg font-medium opacity-80">
-              Authorized Eco-Tourism Partner
+            <p className="text-[#1a1a1a] text-base md:text-lg font-medium opacity-80 font-body">
+              {description}
             </p>
 
             <Button
               asChild
               className="bg-white text-black hover:bg-white/90 rounded-2xl px-10 h-14 shadow-none font-bold text-base"
             >
-              <Link href="/contact">Contact Us</Link>
+              <Link href={buttonLink}>{buttonText}</Link>
             </Button>
           </div>
 
