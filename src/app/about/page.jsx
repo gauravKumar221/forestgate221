@@ -33,6 +33,7 @@ export default function AboutPage() {
     <div className="bg-[#fcfcfc]">
         {headerImage && <PageHeader title="About The Forest Gate" subtitle="A Story of Passion and Nature" imageUrl={headerImage.imageUrl} imageHint={headerImage.imageHint} />}
 
+        {/* Our Story Section */}
         <section className="overflow-hidden">
             <div className="container mx-auto px-4">
                 <div className="grid md:grid-cols-2 gap-16 items-center">
@@ -66,6 +67,57 @@ export default function AboutPage() {
                             />
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        {/* NEW SECTION: IT'S ALL ABOUT TRAVEL */}
+        <section className="bg-white py-24 md:py-32 overflow-hidden border-y border-slate-100">
+            <div className="container mx-auto px-4">
+                <div className="flex flex-col items-center justify-center space-y-12 md:space-y-16">
+                    
+                    {/* Line 1: IT'S ALL + Image */}
+                    <div className="flex items-center gap-4 md:gap-12 w-full justify-center lg:justify-start lg:pl-20">
+                        <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-black tracking-tighter leading-none text-slate-900 uppercase">IT'S ALL</h2>
+                        <div className="relative w-24 h-14 sm:w-40 sm:h-24 md:w-64 md:h-36 lg:w-[450px] lg:h-[220px] bg-pink-100 rounded-3xl sm:rounded-[3rem] overflow-hidden shrink-0 shadow-xl rotate-3">
+                            <Image 
+                                src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&q=80&w=800" 
+                                alt="Backpacker" 
+                                fill 
+                                className="object-cover"
+                                data-ai-hint="travel backpacker"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Line 2: Image + ABOUT */}
+                    <div className="flex items-center gap-4 md:gap-12 w-full justify-center">
+                        <div className="relative w-24 h-14 sm:w-40 sm:h-24 md:w-64 md:h-36 lg:w-[450px] lg:h-[220px] bg-blue-100 rounded-3xl sm:rounded-[3rem] overflow-hidden shrink-0 shadow-xl -rotate-2">
+                            <Image 
+                                src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&q=80&w=800" 
+                                alt="Traveler with passport" 
+                                fill 
+                                className="object-cover"
+                                data-ai-hint="traveler passport"
+                            />
+                        </div>
+                        <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-black tracking-tighter leading-none text-slate-900 uppercase">ABOUT</h2>
+                    </div>
+
+                    {/* Line 3: TRAVEL + Image */}
+                    <div className="flex items-center gap-4 md:gap-12 w-full justify-center lg:justify-end lg:pr-20">
+                        <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-black tracking-tighter leading-none text-slate-900 uppercase">TRAVEL</h2>
+                        <div className="relative w-24 h-14 sm:w-40 sm:h-24 md:w-64 md:h-36 lg:w-[450px] lg:h-[220px] bg-orange-100 rounded-3xl sm:rounded-[3rem] overflow-hidden shrink-0 shadow-xl rotate-2">
+                            <Image 
+                                src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800" 
+                                alt="Traveling couple" 
+                                fill 
+                                className="object-cover"
+                                data-ai-hint="travel couple"
+                            />
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
