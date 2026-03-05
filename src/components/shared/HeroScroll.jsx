@@ -40,12 +40,13 @@ export function HeroScroll() {
               poster={heroImage?.imageUrl}
               className="absolute inset-0 w-full h-full object-cover"
             >
-              <source src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27dc3699069539d2da08529710c381650614543&profile_id=164&oauth2_token_id=57447761" type="video/mp4" />
+              {/* Forest Drone View Video Source */}
+              <source src="https://assets.mixkit.co/videos/preview/mixkit-drone-view-of-a-dense-forest-in-the-mountains-34531-large.mp4" type="video/mp4" />
               {/* Fallback to Image if video fails */}
               {heroImage && (
                 <Image
                   src={heroImage.imageUrl}
-                  alt="Himachal Haven Hero"
+                  alt="The Forest Gate Sanctuary"
                   fill
                   priority
                   className="object-cover"
@@ -55,7 +56,7 @@ export function HeroScroll() {
             </video>
           </div>
           {/* Sophisticated Dark Overlay for high-end text contrast */}
-          <div className="absolute inset-0 bg-black/40 z-10" />
+          <div className="absolute inset-0 bg-black/30 z-10" />
         </motion.div>
 
         {/* Centered Content */}
