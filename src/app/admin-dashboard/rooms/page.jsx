@@ -320,13 +320,12 @@ export default function AdminRoomsPage() {
                                         {imageFields.map((field, index) => {
                                             const imageUrl = form.getValues(`images.${index}.url`);
                                             return (
-                                                <div key={field.id} className="relative group aspect-square">
+                                                <div key={field.id} className="relative group aspect-square rounded-md overflow-hidden bg-muted">
                                                     {imageUrl ? (
-                                                        <Image
+                                                        <img
                                                             src={imageUrl}
-                                                            alt={'Room image'}
-                                                            fill
-                                                            className="rounded-md object-cover"
+                                                            alt={'Room preview'}
+                                                            className="w-full h-full object-cover"
                                                         />
                                                     ) : (
                                                         <div className="w-full h-full bg-muted rounded-md flex items-center justify-center p-1 text-center">
@@ -375,12 +374,12 @@ export default function AdminRoomsPage() {
                                         {videoFields.map((field, index) => {
                                             const videoUrl = form.getValues(`videos.${index}.url`);
                                             return (
-                                                <div key={field.id} className="relative group aspect-square">
+                                                <div key={field.id} className="relative group aspect-square rounded-md overflow-hidden bg-black">
                                                     {videoUrl ? (
                                                         <video
                                                             src={videoUrl}
                                                             controls
-                                                            className="rounded-md object-cover w-full h-full bg-black"
+                                                            className="object-cover w-full h-full"
                                                         />
                                                     ) : (
                                                         <div className="w-full h-full bg-muted rounded-md flex items-center justify-center p-1 text-center">
@@ -450,14 +449,14 @@ export default function AdminRoomsPage() {
                 const roomVideo = room.videos?.[0];
 
                 return (
-                    <Card key={room.id} className="flex flex-col md:flex-row">
+                    <Card key={room.id} className="flex flex-col md:flex-row overflow-hidden">
                         <div className="relative md:w-1/3 aspect-video md:aspect-auto bg-black">
                             {roomVideo ? (
-                                <video src={roomVideo} controls className="object-cover w-full h-full rounded-t-lg md:rounded-l-lg md:rounded-tr-none" />
+                                <video src={roomVideo} controls className="object-cover w-full h-full" />
                             ) : roomImage ? (
-                                <Image src={roomImage} alt={room.name} fill className="object-cover rounded-t-lg md:rounded-l-lg md:rounded-tr-none" />
+                                <img src={roomImage} alt={room.name} className="object-cover w-full h-full" />
                             ) : (
-                                <div className="w-full h-full flex items-center justify-center bg-muted rounded-t-lg md:rounded-l-lg md:rounded-tr-none">
+                                <div className="w-full h-full flex items-center justify-center bg-muted">
                                     <ImageIcon className="w-12 h-12 text-muted-foreground" />
                                 </div>
                             )}

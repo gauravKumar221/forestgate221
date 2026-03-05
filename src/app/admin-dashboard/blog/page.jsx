@@ -30,7 +30,6 @@ import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { format } from 'date-fns';
 
-// Updated schema to allow base64 strings or URLs
 const BlogFormSchema = z.object({
   title: z.string().min(5, 'Title is required.'),
   excerpt: z.string().min(10, 'Excerpt is required.'),
@@ -244,7 +243,7 @@ export default function AdminBlogPage() {
                                     <button 
                                         type="button" 
                                         onClick={handleRemoveImage}
-                                        className="text-xs text-destructive hover:underline"
+                                        className="text-xs text-destructive font-bold hover:underline"
                                     >
                                         Remove Image
                                     </button>
@@ -252,8 +251,12 @@ export default function AdminBlogPage() {
                             </FormLabel>
                             <div className="space-y-4">
                                 {field.value ? (
-                                    <div className="relative aspect-video rounded-xl overflow-hidden border-2 border-muted group">
-                                        <Image src={field.value} alt="Preview" fill className="object-cover" />
+                                    <div className="relative w-full aspect-video rounded-xl overflow-hidden border-2 border-muted bg-muted/10 group">
+                                        <img 
+                                            src={field.value} 
+                                            alt="Preview" 
+                                            className="w-full h-full object-cover" 
+                                        />
                                         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                                             <Button 
                                                 type="button" 
@@ -328,7 +331,7 @@ export default function AdminBlogPage() {
                         <Card key={post.id} className="flex flex-col md:flex-row overflow-hidden rounded-3xl border-none shadow-md hover:shadow-xl transition-all duration-300">
                             <div className="relative md:w-1/3 aspect-video md:aspect-auto min-h-[200px]">
                                 {postImg ? (
-                                    <Image src={postImg} alt={post.title} fill className="object-cover" />
+                                    <img src={postImg} alt={post.title} className="w-full h-full object-cover" />
                                 ) : (
                                     <div className="w-full h-full flex items-center justify-center bg-muted">
                                         <ImageIcon className="w-12 h-12 text-muted-foreground" />
