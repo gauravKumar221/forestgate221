@@ -26,7 +26,7 @@ export function Testimonials() {
     };
 
     return (
-        <section id="testimonials" className="bg-muted/30">
+        <section id="testimonials" className="bg-secondary/5">
             <div className="container mx-auto px-4">
                 <div className="max-w-3xl mb-16">
                     <p className="mb-2" style={sectionLabelStyle}>Guest Reviews</p>
