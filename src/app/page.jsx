@@ -57,6 +57,9 @@ export default function Home() {
       case 'Family & Pet Friendly':
         imageId = 'exp-pet-friendly';
         break;
+      case 'Stargazing':
+        imageId = 'exp-stargazing';
+        break;
     }
     const image = PlaceHolderImages.find(img => img.id === imageId);
     return { ...highlight, image };
@@ -68,34 +71,42 @@ export default function Home() {
       <main className="flex-1">
         <HeroScroll />
 
-        <section id="highlights" className="bg-card py-20">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-wrap justify-center gap-8 md:gap-16">
-              {highlightsWithImages.map((highlight) => (
-                <div key={highlight.title} className="flex flex-col items-center gap-6 group">
-                  <div className="relative w-[200px] h-[200px] overflow-hidden rounded-full shadow-2xl border-4 border-background transition-all duration-500 group-hover:scale-105 group-hover:border-primary/20">
-                    {highlight.image && (
-                      <Image
-                        src={highlight.image.imageUrl}
-                        alt={highlight.title}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                        data-ai-hint={highlight.image.imageHint}
-                        placeholder="blur"
-                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/+F9PQAI8wNPvd7POQAAAABJRU5ErkJggg=="
-                      />
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/60 opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
-                  </div>
-                  <div className="text-center">
-                    <h3 className="font-headline text-2xl font-bold tracking-tight text-foreground/90 group-hover:text-primary transition-colors duration-300">
-                      {highlight.title}
-                    </h3>
-                    <div className="w-8 h-0.5 bg-secondary mx-auto mt-2 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
-                  </div>
-                </div>
-              ))}
-            </div>
+        <section 
+          id="highlights" 
+          className="py-[10px] px-4 md:px-[81px]" 
+          style={{ background: 'linear-gradient(to bottom, #70ac43, #ffffff)' }}
+        >
+          <div className="container mx-auto px-0">
+            <Carousel opts={{ align: "start", loop: true }} className="w-full">
+              <CarouselContent className="-ml-4">
+                {highlightsWithImages.map((highlight) => (
+                  <CarouselItem key={highlight.title} className="pl-4 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5">
+                    <div className="flex flex-col items-center gap-4 group py-12">
+                      <div className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-[200px] md:h-[200px] overflow-hidden rounded-full shadow-2xl transition-all duration-500 group-hover:scale-105 border-4 border-white/10">
+                        {highlight.image && (
+                          <Image
+                            src={highlight.image.imageUrl}
+                            alt={highlight.title}
+                            fill
+                            className="object-cover"
+                            data-ai-hint={highlight.image.imageHint}
+                            placeholder="blur"
+                            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/+F9PQAI8wNPvd7POQAAAABJRU5ErkJggg=="
+                          />
+                        )}
+                      </div>
+                      <div className="text-center">
+                        <h3 className="text-base md:text-xl font-bold tracking-tight text-foreground transition-colors duration-300">
+                          {highlight.title}
+                        </h3>
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden md:flex -left-12 h-10 w-10 border-none bg-white/30 text-white hover:bg-white/50" />
+              <CarouselNext className="hidden md:flex -right-12 h-10 w-10 border-none bg-white/30 text-white hover:bg-white/50" />
+            </Carousel>
           </div>
         </section>
 

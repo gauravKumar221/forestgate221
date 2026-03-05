@@ -14,6 +14,7 @@ export const highlights = [
   { iconName: 'river-view', title: 'River View' },
   { iconName: 'adventure', title: 'Adventure Activities' },
   { iconName: 'family', title: 'Family & Pet Friendly' },
+  { iconName: 'stargazing', title: 'Stargazing' },
 ];
 
 export const rooms = [
