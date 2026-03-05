@@ -38,7 +38,7 @@ export default function BlogDetailPage({ params }) {
 
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-12 gap-12 max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-12 gap-12 max-w-7xl mx-auto items-start">
             {/* Main Content */}
             <div className="lg:col-span-8">
               <div className="bg-card rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-xl border border-border/50">
@@ -89,7 +89,7 @@ export default function BlogDetailPage({ params }) {
             </div>
 
             {/* Sidebar */}
-            <aside className="lg:col-span-4 space-y-12">
+            <aside className="lg:col-span-4 sticky top-32 space-y-12 self-start">
               <div className="bg-card rounded-[2rem] p-8 shadow-lg border border-border/50">
                 <h3 className="font-headline text-2xl font-bold mb-8">Recent Stories</h3>
                 <div className="space-y-8">
