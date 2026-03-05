@@ -22,13 +22,11 @@ import {
     DropdownMenuTrigger,
     DropdownMenuSeparator
 } from '@/components/ui/dropdown-menu';
-import { AuthDialog } from '@/components/auth/AuthDialog';
 
 export function Header() {
   const pathname = usePathname();
-  const [isAuthOpen, setIsAuthOpen] = React.useState(false);
 
-  // Hide header on admin pages
+  // Hide header on admin pages or login/register pages if needed (keeping it visible for user pages for now as per standard patterns)
   if (pathname.startsWith('/admin-dashboard') || pathname === '/admin-login') {
     return null;
   }
@@ -86,7 +84,7 @@ export function Header() {
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={() => setIsAuthOpen(true)}>Login / Sign Up</DropdownMenuItem>
+                  <DropdownMenuItem asChild><Link href="/login">Login / Sign Up</Link></DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
@@ -126,8 +124,8 @@ export function Header() {
                   </nav>
                   <div className="p-6 mt-auto border-t">
                       <SheetClose asChild>
-                          <Button onClick={() => setIsAuthOpen(true)} variant="outline" className="w-full">
-                              Login / Sign Up
+                          <Button asChild variant="outline" className="w-full">
+                              <Link href="/login">Login / Sign Up</Link>
                           </Button>
                       </SheetClose>
                       <SheetClose asChild>
@@ -141,8 +139,6 @@ export function Header() {
           </div>
         </div>
       </header>
-
-      <AuthDialog open={isAuthOpen} onOpenChange={setIsAuthOpen} />
     </>
   );
 }
