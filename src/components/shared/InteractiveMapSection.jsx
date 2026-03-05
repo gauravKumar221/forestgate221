@@ -34,7 +34,6 @@ export function InteractiveMapSection() {
           playsInline
           className="w-full h-full object-cover opacity-40"
         />
-        <div className="absolute inset-0 bg-[#0b2c3d]/60 backdrop-blur-sm" />
       </div>
 
       <div className="container relative z-10 mx-auto max-w-7xl h-full flex flex-col items-center">
