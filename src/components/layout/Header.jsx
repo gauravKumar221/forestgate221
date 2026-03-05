@@ -1,4 +1,3 @@
-
 'use client';
 
 import * as React from 'react';
@@ -56,7 +55,8 @@ export function Header() {
               </Link>
           </div>
 
-          <nav className="hidden md:flex items-center gap-8">
+          {/* Desktop Nav: Shown only on large screens (1024px+) to avoid overcrowding on tablets */}
+          <nav className="hidden lg:flex items-center gap-8">
             {headerNavLinks.map((link) => (
               <Link key={link.href} href={link.href} className={linkClasses(link.href)}>
                 {link.label}
@@ -64,7 +64,7 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="flex-1 hidden md:flex items-center justify-end gap-4">
+          <div className="flex-1 hidden lg:flex items-center justify-end gap-4">
             <Button asChild>
               <Link href="/booking">Book Now</Link>
             </Button>
@@ -91,7 +91,8 @@ export function Header() {
             </DropdownMenu>
           </div>
 
-          <div className="md:hidden flex-1 flex justify-end">
+          {/* Tablet/Mobile Menu Trigger: Shown below lg (1024px) */}
+          <div className="lg:hidden flex-1 flex justify-end">
             <Sheet>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
