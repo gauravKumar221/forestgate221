@@ -33,23 +33,26 @@ export function AmenityCard({ amenity }) {
                         blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/+F9PQAI8wNPvd7POQAAAABJRU5ErkJggg=="
                     />
                 )}
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
+                {/* Gradient Overlay - Using the requested green-to-white theme */}
+                <div 
+                    className="absolute inset-0 opacity-70 group-hover:opacity-80 transition-opacity duration-500"
+                    style={{ background: 'linear-gradient(to top, #70ac43, #ffffff)' }}
+                ></div>
                 
                 {/* Icon Badge */}
                 <div className="absolute top-6 right-6 w-14 h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/20 transition-transform duration-500 group-hover:scale-110 group-hover:bg-primary group-hover:border-primary">
                     <Icon className="w-7 h-7" />
                 </div>
 
-                {/* Content Overlay */}
-                <div className="absolute inset-0 p-8 flex flex-col justify-end text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                {/* Content Overlay - Text now always visible */}
+                <div className="absolute inset-0 p-8 flex flex-col justify-end text-white">
                     <h3 className="font-headline text-3xl font-bold mb-3 drop-shadow-md">
                         {amenity.title}
                     </h3>
-                    <p className="text-white/80 leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 line-clamp-3">
+                    <p className="text-white/95 leading-relaxed line-clamp-3 font-medium">
                         {amenity.description}
                     </p>
-                    <div className="w-12 h-1 bg-primary mt-4 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                    <div className="w-12 h-1 bg-white mt-4 rounded-full"></div>
                 </div>
             </div>
         </Card>
