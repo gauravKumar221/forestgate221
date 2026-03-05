@@ -215,11 +215,11 @@ export default function RoomsPage() {
       <ManagedBySection 
         label="Himalayan Hospitality"
         title="Managed By The Forest Authority"
-        description="Experience luxury curated by the guardians of the mountains."
+        description="Experience luxury curated by the guardians of the mountains. Our partnerships ensure every stay contributes to the preservation of Himachal's ancient forest trails and biodiversity."
         buttonText="Explore Sanctuary"
         buttonLink="/experiences"
-        imageSrc="/assets/images/dearimage.png"
-        imageAlt="Delicate Forest"
+        imageSrc="https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?auto=format&fit=crop&q=80&w=800"
+        imageAlt="Forest Sanctuary"
       />
     </div>
   );

@@ -1,3 +1,4 @@
+
 'use client';
 
 import Image from "next/image";
@@ -21,8 +22,8 @@ export function ManagedBySection({
   description = "Authorized Eco-Tourism Partner dedicated to sustainable luxury and nature preservation in the heart of Himachal Pradesh. Our mission is to protect the pristine beauty of the Himalayas while offering world-class hospitality to every guest. Join us in our journey to create a harmonious balance between comfort and conservation.",
   buttonText = "Contact Us",
   buttonLink = "/contact",
-  imageSrc = "/assets/images/bannerpecock.png",
-  imageAlt = "Peacock"
+  imageSrc = "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=800",
+  imageAlt = "Lush Forest"
 }) {
 
   const subTitleStyle = {
@@ -68,13 +69,14 @@ export function ManagedBySection({
         pointer-events-none
         absolute
         bottom-0
-        right-[-80px]
+        right-[-40px]
         w-[220px]
         h-[320px]
         sm:w-[260px] sm:h-[360px]
         md:w-[320px] md:h-[400px]
         lg:w-[420px] lg:h-[500px]
         xl:w-[480px] xl:h-[500px]
+        opacity-40
       ">
 
         <Image
@@ -82,7 +84,7 @@ export function ManagedBySection({
           alt={imageAlt}
           fill
           priority
-          className="object-contain object-bottom-right"
+          className="object-cover rounded-l-[4rem]"
         />
 
       </div>

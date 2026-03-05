@@ -123,12 +123,12 @@ export default function Home() {
               </div>
               <div className="relative overflow-hidden rounded-2xl group">
                 <Image
-                  src="https://picsum.photos/seed/resort-about/600/400"
-                  alt="Peaceful view of the resort"
+                  src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&q=80&w=1200"
+                  alt="Deep forest sanctuary path"
                   width={600}
                   height={400}
-                  className="rounded-lg shadow-lg transition-transform duration-700 group-hover:scale-105"
-                  data-ai-hint="resort exterior"
+                  className="rounded-lg shadow-lg transition-transform duration-700 group-hover:scale-105 object-cover aspect-video"
+                  data-ai-hint="deep forest"
                   placeholder="blur"
                   blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/+F9PQAI8wNPvd7POQAAAABJRU5ErkJggg=="
                 />
