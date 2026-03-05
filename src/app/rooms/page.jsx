@@ -1,8 +1,10 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { ChevronRight, ArrowUpRight } from 'lucide-react';
 
 import { PageHeader } from '@/components/shared/PageHeader';
@@ -25,6 +27,13 @@ export default function RoomsPage() {
     }, 1500);
     return () => clearTimeout(timer);
   }, []);
+
+  const fadeInUp = {
+    initial: { opacity: 0, y: 40 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-100px" },
+    transition: { duration: 0.8, ease: "easeOut" }
+  };
 
   const RoomSkeleton = () => (
     <div className="bg-card border border-border/50 rounded-[2.5rem] p-4 md:p-6 flex flex-col md:flex-row items-center gap-8 animate-pulse">
@@ -93,7 +102,7 @@ export default function RoomsPage() {
             </TabsList>
             
             <TabsContent value="accommodations" className="mt-0">
-              <div className="text-center mb-16 max-w-3xl mx-auto flex flex-col items-center">
+              <motion.div {...fadeInUp} className="text-center mb-16 max-w-3xl mx-auto flex flex-col items-center">
                 <h2 className="font-headline text-3xl md:text-5xl font-bold mb-6">
                   Experience Private Luxury
                 </h2>
@@ -107,7 +116,7 @@ export default function RoomsPage() {
                     Book Entire Resort <ArrowUpRight className="w-5 h-5" />
                   </Link>
                 </Button>
-              </div>
+              </motion.div>
 
               <div className="flex flex-col gap-8 max-w-6xl mx-auto">
                 {isLoading ? (
@@ -118,10 +127,11 @@ export default function RoomsPage() {
                     <RoomSkeleton />
                   </>
                 ) : (
-                  rooms.map((room) => (
-                    <div
+                  rooms.map((room, index) => (
+                    <motion.div
                       key={room.id}
-                      id={room.id}
+                      {...fadeInUp}
+                      transition={{ delay: index * 0.1 }}
                       className="group bg-card border border-border/50 rounded-[2.5rem] overflow-hidden p-4 md:p-6 flex flex-col md:flex-row items-center gap-8 transition-all duration-500 hover:shadow-2xl hover:border-primary/20"
                     >
                       {/* Left: Image/Carousel */}
@@ -162,13 +172,13 @@ export default function RoomsPage() {
                           <Link href={`/booking?roomId=${room.id}`}>Book Now</Link>
                         </Button>
                         <Button asChild variant="ghost" className="h-12 font-bold text-sm hover:bg-muted/50 group/btn w-full">
-                          <Link href={`/rooms#${room.id}`} className="flex items-center justify-center gap-2">
+                          <Link href={`/rooms/${room.id}`} className="flex items-center justify-center gap-2">
                             See Details
                             <ChevronRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
                           </Link>
                         </Button>
                       </div>
-                    </div>
+                    </motion.div>
                   ))
                 )}
               </div>

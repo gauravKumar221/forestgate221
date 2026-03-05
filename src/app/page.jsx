@@ -152,7 +152,7 @@ export default function Home() {
                   );
                   return (
                     <Link
-                      href={`/rooms#${deluxeRoom.id}`}
+                      href={`/rooms/${deluxeRoom.id}`}
                       className="relative group overflow-hidden rounded-2xl shadow-lg aspect-[4/5] w-full"
                     >
                       {roomImage && (
@@ -199,7 +199,7 @@ export default function Home() {
                       return (
                         <Link
                           key={room.id}
-                          href={`/rooms#${room.id}`}
+                          href={`/rooms/${room.id}`}
                           className="relative group overflow-hidden rounded-2xl shadow-lg aspect-square w-full"
                         >
                           {roomImage && (

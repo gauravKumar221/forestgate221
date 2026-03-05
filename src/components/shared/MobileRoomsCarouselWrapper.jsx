@@ -1,3 +1,4 @@
+
 'use client';
 
 import * as React from 'react';
@@ -37,7 +38,7 @@ export function MobileRoomsCarouselWrapper({ allRoomsForCarousel, seeMoreImages 
                 <CarouselItem key={room.id} className="basis-full sm:basis-1/2 pl-4">
                     <div className="p-1">
                         <Link
-                            href={`/rooms#${room.id}`}
+                            href={`/rooms/${room.id}`}
                             className="relative block group overflow-hidden rounded-2xl shadow-lg aspect-[4/5] w-full"
                         >
                             {roomImage && (
