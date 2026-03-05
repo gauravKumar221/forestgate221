@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -68,7 +69,7 @@ export function WelcomePopup() {
             </div>
 
             {/* Right Column: Details & Actions */}
-            <div className="w-full md:w-3/5 p-8 md:p-16 flex flex-col justify-center bg-white relative">
+            <div className="w-full md:w-3/5 p-8 md:p-16 flex flex-col justify-center bg-white relative text-slate-900">
               <div className="space-y-8">
                 {/* Location */}
                 <div className="flex items-start gap-4">
@@ -84,41 +85,41 @@ export function WelcomePopup() {
                 </div>
 
                 {/* Title */}
-                <h1 className="text-4xl md:text-6xl font-bold text-slate-900 tracking-tight">
+                <h1 className="text-4xl md:text-6xl font-bold text-slate-900 tracking-tight leading-none">
                   The Forest Gate <br />
                   Luxury Villa
                 </h1>
 
                 {/* Pricing */}
-                <div className="flex items-baseline gap-2">
+                <div className="flex items-baseline gap-2 pt-2">
                   <span className="text-3xl font-bold">₹57,000</span>
                   <span className="text-muted-foreground font-medium">per night</span>
                 </div>
 
                 {/* Buttons */}
-                <div className="flex flex-wrap items-center gap-4">
-                  <Button asChild className="h-12 px-0 bg-slate-900 hover:bg-slate-800 rounded-none overflow-hidden flex group">
-                    <Link href="/booking" className="flex items-center">
-                      <span className="px-6 py-2 uppercase tracking-widest font-black text-xs">Book Dates</span>
-                      <div className="h-full w-12 bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors border-l border-white/10">
-                        <ArrowUpRight className="w-4 h-4 text-white" />
+                <div className="flex flex-wrap items-center gap-4 pt-4">
+                  <Button asChild className="h-14 px-0 bg-slate-900 hover:bg-slate-800 rounded-none overflow-hidden flex group border-none shadow-none ring-offset-background transition-all">
+                    <Link href="/booking" className="flex items-center h-full">
+                      <span className="px-8 flex items-center justify-center h-full uppercase tracking-[0.2em] font-black text-[10px] text-white">Book Dates</span>
+                      <div className="h-full w-14 bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors border-l border-white/10">
+                        <ArrowUpRight className="w-5 h-5 text-white transform group-hover:scale-110 transition-transform" />
                       </div>
                     </Link>
                   </Button>
 
-                  <Button variant="outline" asChild className="h-12 rounded-none border-slate-200 hover:bg-slate-50 uppercase tracking-widest font-black text-xs px-6 flex gap-2">
-                    <Link href="/rooms">
-                      Scroll to explore
-                      <div className="flex flex-col gap-0.5">
-                        <ChevronUp className="w-3 h-3 text-slate-400" />
-                        <ChevronDown className="w-3 h-3 text-slate-400" />
+                  <Button variant="outline" asChild className="h-14 rounded-none border-slate-200 hover:bg-slate-50 hover:text-slate-900 uppercase tracking-[0.2em] font-black text-[10px] px-8 flex gap-2 border-2 shadow-none ring-offset-background transition-all">
+                    <Link href="/rooms" className="flex items-center gap-3 h-full">
+                      <span>Scroll to explore</span>
+                      <div className="flex flex-col -space-y-1">
+                        <ChevronUp className="w-3 h-3 text-slate-400 group-hover:text-slate-600 transition-colors" />
+                        <ChevronDown className="w-3 h-3 text-slate-400 group-hover:text-slate-600 transition-colors" />
                       </div>
                     </Link>
                   </Button>
                 </div>
 
                 {/* Stats */}
-                <div className="grid grid-cols-3 gap-8 pt-4">
+                <div className="grid grid-cols-3 gap-8 pt-6 border-t border-slate-100">
                   <div className="space-y-1">
                     <div className="flex items-center gap-1">
                       <span className="text-lg font-bold">4.9</span>
