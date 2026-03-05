@@ -65,6 +65,16 @@ export default function Home() {
     return { ...highlight, image };
   }).filter(h => !!h.image);
 
+  const sectionLabelStyle = {
+    color: '#ffae3e',
+    fontFamily: 'Laguna-Smile',
+    fontSize: '32px',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    textAlign: 'center',
+    lineHeight: 'normal',
+  };
+
 
   return (
     <div className="flex flex-col min-h-dvh">
@@ -419,7 +429,7 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 gap-8 mb-16">
                 <div>
-                    <p className="text-primary font-bold mb-2 tracking-widest uppercase text-sm">Experiences</p>
+                    <p className="mb-2" style={sectionLabelStyle}>Experiences</p>
                     <h2 className="font-headline text-3xl md:text-4xl font-bold">
                         Immerse Yourself in the Magic of Himachal
                     </h2>
@@ -445,7 +455,7 @@ export default function Home() {
             <div className="container mx-auto px-4">
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
                     <div className="max-w-2xl">
-                        <p className="text-primary font-bold mb-2 tracking-widest uppercase text-sm">Our Offerings</p>
+                        <p className="mb-2" style={sectionLabelStyle}>Our Offerings</p>
                         <h2 className="font-headline text-4xl md:text-5xl font-bold">
                             Signature Amenities
                         </h2>

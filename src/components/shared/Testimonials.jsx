@@ -12,13 +12,24 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import { cn } from "@/lib/utils";
 
 export function Testimonials() {
+    const sectionLabelStyle = {
+        color: '#ffae3e',
+        fontFamily: 'Laguna-Smile',
+        fontSize: '32px',
+        fontStyle: 'normal',
+        fontWeight: '400',
+        textAlign: 'center',
+        lineHeight: 'normal',
+    };
+
     return (
         <section id="testimonials" className="bg-muted/30">
             <div className="container mx-auto px-4">
                 <div className="text-center max-w-3xl mx-auto mb-16">
-                    <p className="text-primary font-bold mb-2 tracking-widest uppercase text-sm">Guest Reviews</p>
+                    <p className="mb-2" style={sectionLabelStyle}>Guest Reviews</p>
                     <h2 className="font-headline text-3xl md:text-5xl font-bold mb-4">
                         What Our Guests Say
                     </h2>
@@ -105,5 +116,3 @@ export function Testimonials() {
       </section>
     )
 }
-
-import { cn } from "@/lib/utils";
