@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -68,14 +69,15 @@
 }
 
 @layer base {
-  html {
+  html, body {
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
     scroll-behavior: auto !important;
   }
   
   body {
     @apply bg-background text-foreground antialiased;
-    overflow-x: hidden;
-    position: relative;
   }
 
   * {
@@ -85,4 +87,13 @@
   section {
     @apply py-16 md:py-24;
   }
+}
+
+/* Custom Animation Classes */
+.split-layer-top, .split-layer-bottom {
+  will-change: transform, clip-path;
+}
+
+.service-name {
+  will-change: transform, opacity;
 }

@@ -1,11 +1,10 @@
+
 'use client';
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { ChevronDown, ArrowUpRight } from "lucide-react";
+import { highlights } from "@/app/lib/data";
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -16,112 +15,149 @@ if (typeof window !== 'undefined') {
 export function HeroScroll() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-1');
   const containerRef = useRef(null);
-  const contentRef = useRef(null);
-  const videoRef = useRef(null);
+  const introWrapperRef = useRef(null);
+  const splitImageRef = useRef(null);
 
   useEffect(() => {
-    if (!containerRef.current || !contentRef.current || !videoRef.current) return;
+    if (!containerRef.current || !introWrapperRef.current) return;
 
     const ctx = gsap.context(() => {
-      // 1. Entrance Animation
-      const tl = gsap.timeline();
+      // 1. Text Shuffle Animation (Infinite Loop)
+      const topNames = gsap.utils.toArray(".text-container-top .service-name");
+      const bottomNames = gsap.utils.toArray(".text-container-bottom .service-name");
       
-      tl.fromTo(contentRef.current, 
-        { y: 60, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2, ease: "power4.out", delay: 0.3 }
-      );
+      const masterTL = gsap.timeline({ repeat: -1, repeatDelay: 0.5 });
 
-      // 2. Scroll-Linked Parallax Effect (The Scrub)
-      gsap.to(videoRef.current, {
-        y: "20%", // Subtle video parallax
-        ease: "none",
+      topNames.forEach((_, index) => {
+        const tl = gsap.timeline();
+        const targets = [topNames[index], bottomNames[index]];
+
+        tl.set(targets, { opacity: 1 })
+          .fromTo(targets, 
+            { y: 40, opacity: 0 },
+            { y: 0, opacity: 1, duration: 1, ease: "power4.out" }
+          )
+          .to({}, { duration: 1.5 }) // Hold
+          .to(targets, {
+            y: -40,
+            opacity: 0,
+            duration: 1,
+            ease: "power2.in"
+          });
+
+        masterTL.add(tl, index * 3.5);
+      });
+
+      // 2. Scroll Reveal Timeline
+      const revealTL = gsap.timeline({
         scrollTrigger: {
-          trigger: containerRef.current,
+          trigger: introWrapperRef.current,
           start: "top top",
-          end: "bottom top",
-          scrub: true,
+          end: "+=150%",
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1,
         }
       });
 
-      gsap.to(contentRef.current, {
-        y: -100,
-        opacity: 0,
-        scale: 0.95,
-        ease: "none",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "80% top",
-          scrub: true,
-        }
-      });
+      revealTL
+        .to(".split-image", {
+          scale: 1.5,
+          duration: 5,
+          ease: "power2.inOut"
+        })
+        .to(".split-layer-top", {
+          yPercent: -100,
+          duration: 5,
+          ease: "power2.inOut"
+        }, 0)
+        .to(".split-layer-bottom", {
+          yPercent: 100,
+          duration: 5,
+          ease: "power2.inOut"
+        }, 0)
+        .to(".split-inner-content", {
+          opacity: 0,
+          duration: 2
+        }, 0);
+
     }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={containerRef} className="relative h-screen w-full overflow-hidden bg-black">
-      {/* Background Media */}
-      <div className="absolute inset-0 z-0 h-[120%] w-full">
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster={heroImage?.imageUrl}
-          className="absolute inset-0 w-full h-full object-cover opacity-60"
-        >
-          {/* Forest Drone View Video Source */}
-          <source src="https://assets.mixkit.co/videos/preview/kit-drone-view-of-a-dense-forest-in-the-mountains-34531-large.mp4" type="video/mp4" />
-          {/* Fallback to Image if video fails */}
-          {heroImage && (
-            <Image
-              src={heroImage.imageUrl}
-              alt="The Forest Gate Sanctuary"
-              fill
-              priority
-              className="object-cover"
-              data-ai-hint={heroImage.imageHint}
-            />
-          )}
-        </video>
-        {/* Sophisticated Dark Overlay for high-end text contrast */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 z-10" />
+    <section ref={containerRef} className="relative bg-[#0b2c3d]">
+      {/* Intro Wrapper (Pinned Section) */}
+      <div ref={introWrapperRef} className="relative h-screen w-full overflow-hidden z-50">
+        
+        {/* Top Layer */}
+        <div className="split-layer-top absolute inset-0 z-20 bg-background overflow-hidden [clip-path:inset(0_0_50%_0)]">
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+            <div className="split-inner-content w-full max-w-5xl px-4">
+              <h1 className="text-6xl md:text-[10rem] font-bold font-headline uppercase leading-none text-slate-900 mb-8">
+                WE CREATE
+              </h1>
+              <div className="text-container-top relative h-20 md:h-32 w-full">
+                {highlights.map((h, i) => (
+                  <p key={i} className="service-name absolute inset-0 opacity-0 text-3xl md:text-6xl font-black uppercase tracking-widest text-[#fcb101] flex items-center justify-center">
+                    {h.title}
+                  </p>
+                ))}
+              </div>
+              <div className="relative w-[70vw] max-w-[980px] aspect-video mx-auto mt-12 rounded-3xl overflow-hidden shadow-2xl">
+                <Image src={heroImage?.imageUrl} alt="Resort Intro" fill className="split-image object-cover" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Layer (Identical content, different clip) */}
+        <div className="split-layer-bottom absolute inset-0 z-10 bg-background overflow-hidden [clip-path:inset(50%_0_0_0)]">
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+            <div className="split-inner-content w-full max-w-5xl px-4">
+              <h1 className="text-6xl md:text-[10rem] font-bold font-headline uppercase leading-none text-slate-900 mb-8">
+                WE CREATE
+              </h1>
+              <div className="text-container-bottom relative h-20 md:h-32 w-full">
+                {highlights.map((h, i) => (
+                  <p key={i} className="service-name absolute inset-0 opacity-0 text-3xl md:text-6xl font-black uppercase tracking-widest text-[#fcb101] flex items-center justify-center">
+                    {h.title}
+                  </p>
+                ))}
+              </div>
+              <div className="relative w-[70vw] max-w-[980px] aspect-video mx-auto mt-12 rounded-3xl overflow-hidden shadow-2xl">
+                <Image src={heroImage?.imageUrl} alt="Resort Intro" fill className="split-image object-cover" />
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      {/* Centered Content */}
-      <div className="relative z-20 container mx-auto h-full flex flex-col items-center justify-center px-4 text-center text-white">
-        <div
-          ref={contentRef}
-          className="max-w-4xl"
-        >
-          <h1 className="text-5xl md:text-8xl font-bold uppercase tracking-[0.2em] mb-6 drop-shadow-2xl" style={{ fontFamily: "'Sour Gummy', system-ui" }}>
+      {/* Reveal Underlay (This is where the actual Hero Content lives) */}
+      <div className="relative h-screen flex flex-col items-center justify-center text-center px-4">
+        <div className="absolute inset-0 z-0">
+          <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-40">
+            <source src="https://assets.mixkit.co/videos/preview/kit-drone-view-of-a-dense-forest-in-the-mountains-34531-large.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0b2c3d] via-transparent to-[#0b2c3d]" />
+        </div>
+        
+        <div className="relative z-10 max-w-4xl text-white">
+          <h2 className="text-5xl md:text-8xl font-bold uppercase tracking-[0.2em] mb-6 font-headline">
             THE FOREST GATE
-          </h1>
+          </h2>
           <p className="max-w-2xl mx-auto text-lg md:text-xl font-light tracking-wide mb-10 opacity-90 drop-shadow-md">
             Luxury meets nature in the heart of Himachal. Experience tranquility like never before in our sustainable Himalayan sanctuary.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <Button asChild size="lg" className="rounded-full px-12 h-16 text-lg font-bold shadow-2xl hover:scale-105 transition-transform active:scale-95">
-              <Link href="/booking" className="flex items-center gap-2">
-                Book Your Stay <ArrowUpRight className="w-5 h-5" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="text-white border-white border-2 hover:bg-white/10 rounded-full px-12 h-16 text-lg font-bold backdrop-blur-sm transition-all active:scale-95">
-              <Link href="/rooms">Explore Rooms</Link>
-            </Button>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div 
-          className="absolute bottom-10 flex flex-col items-center gap-2 opacity-70"
-        >
-          <span className="text-[10px] uppercase tracking-[0.3em] font-black text-white/80">Scroll to explore</span>
-          <div className="animate-bounce">
-            <ChevronDown className="h-6 w-6 text-secondary" />
+            <button className="h-16 px-12 rounded-full bg-secondary text-black font-bold text-lg hover:scale-105 transition-transform active:scale-95 shadow-2xl">
+              Book Your Stay
+            </button>
+            <button className="h-16 px-12 rounded-full border-2 border-white text-white font-bold text-lg hover:bg-white/10 backdrop-blur-sm transition-all active:scale-95">
+              Explore Rooms
+            </button>
           </div>
         </div>
       </div>
