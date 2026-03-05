@@ -1,4 +1,3 @@
-
 'use client';
 
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -50,7 +49,7 @@ export function HeroScroll() {
           style={{ opacity, y }}
           className="relative z-20 flex h-full w-full flex-col items-center justify-center px-4 text-center text-white bg-primary/20"
         >
-          <h1 className="font-headline text-5xl md:text-8xl font-bold uppercase tracking-[0.2em] mb-6">
+          <h1 className="text-5xl md:text-8xl font-bold uppercase tracking-[0.2em] mb-6" style={{ fontFamily: "'Agbalumo', system-ui" }}>
             THE FOREST GATE
           </h1>
           <p className="max-w-2xl text-lg md:text-xl font-light tracking-wide mb-10 opacity-90">

@@ -75,6 +75,10 @@ export default function Home() {
     lineHeight: 'normal',
   };
 
+  const titleStyle = {
+    fontFamily: "'Agbalumo', system-ui",
+  };
+
 
   return (
     <div className="flex flex-col min-h-dvh">
@@ -124,7 +128,7 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="font-headline text-3xl md:text-4xl font-bold mb-4">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4" style={titleStyle}>
                   Your Sanctuary in the Mountains
                 </h2>
                 <p className="mb-4 text-lg text-foreground/80">
@@ -156,7 +160,7 @@ export default function Home() {
 
         <section id="rooms" className="bg-card">
           <div className="container mx-auto px-4">
-            <h2 className="text-center font-headline text-3xl md:text-4xl font-bold mb-10">
+            <h2 className="text-center text-3xl md:text-4xl font-bold mb-10" style={titleStyle}>
               Our Rooms
             </h2>
              {/* Desktop Grid */}
@@ -430,7 +434,7 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-8 mb-16">
                 <div>
                     <p className="mb-2" style={sectionLabelStyle}>Experiences</p>
-                    <h2 className="font-headline text-3xl md:text-4xl font-bold">
+                    <h2 className="text-3xl md:text-4xl font-bold" style={titleStyle}>
                         Immerse Yourself in the Magic of Himachal
                     </h2>
                 </div>
@@ -456,7 +460,7 @@ export default function Home() {
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
                     <div className="max-w-2xl">
                         <p className="mb-2" style={sectionLabelStyle}>Our Offerings</p>
-                        <h2 className="font-headline text-4xl md:text-5xl font-bold">
+                        <h2 className="text-4xl md:text-5xl font-bold" style={titleStyle}>
                             Signature Amenities
                         </h2>
                     </div>
@@ -479,7 +483,7 @@ export default function Home() {
 
         <section id="faq" className="bg-card">
           <div className="container mx-auto px-4 max-w-3xl">
-            <h2 className="text-center font-headline text-3xl md:text-4xl font-bold mb-10">
+            <h2 className="text-center text-3xl md:text-4xl font-bold mb-10" style={titleStyle}>
               Frequently Asked Questions
             </h2>
             <Accordion type="single" collapsible className="w-full">

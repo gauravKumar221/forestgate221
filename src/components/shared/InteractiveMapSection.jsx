@@ -23,23 +23,24 @@ const destinations = [
 
 export function InteractiveMapSection() {
   return (
-    <section className="relative  overflow-hidden flex flex-col items-center justify-center bg-[#0b2c3d] py-10 px-4">
+    <section className="relative overflow-hidden flex flex-col items-center justify-center bg-[#0b2c3d] py-16 px-4">
       {/* Cinematic Blurred Background */}
       <div className="absolute inset-0 z-0">
-  <video
-    src="/assets/videos/pecockwalking.mp4"
-    autoPlay
-    loop
-    muted
-    playsInline
-    className="w-full h-full object-cover"
-  />
-</div>
+        <video
+          src="/assets/videos/pecockwalking.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover opacity-40"
+        />
+        <div className="absolute inset-0 bg-[#0b2c3d]/60 backdrop-blur-sm" />
+      </div>
 
       <div className="container relative z-10 mx-auto max-w-7xl h-full flex flex-col items-center">
         {/* Centered Creative Header */}
         <div className="text-center mb-24 max-w-4xl mx-auto">
-            <h2 className="font-headline text-5xl md:text-7xl font-bold text-white tracking-tight leading-tight ">
+            <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tight leading-tight" style={{ fontFamily: "'Agbalumo', system-ui" }}>
                 Explore Himalayan Destinations
             </h2>
         </div>
@@ -73,27 +74,23 @@ export function InteractiveMapSection() {
             </div>
           </div>
 
-          {/* Right: Glassmorphism Map Outline */}
+          {/* Right: Map Image */}
           <div className="lg:col-span-6 flex justify-center lg:justify-end">
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               transition={{ duration: 1.5, ease: "easeOut" }}
               viewport={{ once: true }}
-              className="relative w-full max-w-[550px] aspect-square flex items-center justify-center  overflow-hidden"
+              className="relative w-full max-w-[550px] aspect-square flex items-center justify-center overflow-hidden"
             >
-              <div className="relative w-full h-[500px] ">
+              <div className="relative w-full h-[500px]">
                  <Image 
                     src="/assets/images/harnayaimage.png" 
                     alt="Himachal Map Outline" 
                     fill 
-                    className="object-contain h-[550px] "
-                 
+                    className="object-contain"
                  />
-              
               </div>
-              
-            
             </motion.div>
           </div>
         </div>
