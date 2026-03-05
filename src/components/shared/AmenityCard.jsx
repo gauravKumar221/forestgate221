@@ -17,7 +17,6 @@ export function AmenityCard({ amenity }) {
     const amenityImage = PlaceHolderImages.find(
         (img) => img.id === amenity.image
     );
-    const Icon = icons[amenity.iconName] || Sparkles;
     
     return (
         <Card className="group overflow-hidden border-none shadow-none bg-transparent hover:shadow-xl transition-all duration-500 rounded-[2.5rem]">
@@ -40,11 +39,6 @@ export function AmenityCard({ amenity }) {
                     className="absolute inset-0 opacity-80 group-hover:opacity-90 transition-opacity duration-500"
                     style={{ background: 'linear-gradient(to top, #70ac43 0%, rgba(112, 172, 67, 0.6) 40%, transparent 100%)' }}
                 ></div>
-                
-                {/* Icon Badge - Top Right - Turns Secondary on Hover with White Icon */}
-                <div className="absolute top-6 right-6 w-14 h-14 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/30 transition-all duration-500 group-hover:scale-110 group-hover:bg-secondary group-hover:border-secondary group-hover:text-white shadow-lg">
-                    <Icon className="w-7 h-7" />
-                </div>
 
                 {/* Content Overlay - Text always visible at the bottom */}
                 <div className="absolute inset-0 p-8 flex flex-col justify-end text-white">
