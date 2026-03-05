@@ -1,3 +1,4 @@
+
 export const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
@@ -319,4 +320,31 @@ export const faqs = [
     question: "How do I get to the resort?",
     answer: "The resort is accessible by road. The nearest airport is in Kullu, and the nearest major railway station is in Chandigarh. We can arrange for a taxi service from the airport or station upon request. You can find our exact location on the Contact page."
   },
+];
+
+export const wildlifeViewpoints = [
+  {
+    title: "The Majestic Peacock",
+    description: "Our resort is a natural habitat for these stunning birds. You can often see them displaying their vibrant plumage in our expansive lawns during the early mornings.",
+    image: "wildlife-peacock",
+    imageHint: "peacock nature"
+  },
+  {
+    title: "Himalayan Monal",
+    description: "The state bird of Himachal Pradesh, known for its multi-colored feathers. Our guided nature trails often lead to sightings of these shy yet beautiful creatures.",
+    image: "wildlife-monal",
+    imageHint: "monal bird"
+  },
+  {
+    title: "Musk Deer",
+    description: "Hidden deep within the surrounding pine forests, these gentle animals are part of the local ecosystem that we strive to protect and respect.",
+    image: "wildlife-deer",
+    imageHint: "deer forest"
+  },
+  {
+    title: "Exotic Butterflies",
+    description: "During the spring and summer months, our wildflower gardens become a playground for hundreds of species of rare and colorful butterflies.",
+    image: "gallery-nature-2",
+    imageHint: "butterfly flower"
+  }
 ];

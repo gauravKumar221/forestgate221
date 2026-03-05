@@ -31,6 +31,7 @@ import {
 import { HeroScroll } from '@/components/shared/HeroScroll';
 import { InteractiveMapSection } from '@/components/shared/InteractiveMapSection';
 import { ManagedBySection } from '@/components/shared/ManagedBySection';
+import { WildlifeCarousel } from '@/components/shared/WildlifeCarousel';
 
 export default function Home() {
   const deluxeRoom = rooms.find((r) => r.id === 'deluxe-room');
@@ -479,6 +480,7 @@ export default function Home() {
         </section>
 
         <ManagedBySection />
+        <WildlifeCarousel />
         <Testimonials />
 
         <section id="faq" className="bg-card">
