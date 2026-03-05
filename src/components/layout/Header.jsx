@@ -55,7 +55,7 @@ export function Header() {
               </Link>
           </div>
 
-          {/* Desktop Nav: Shown only on large screens (1024px+) to avoid overcrowding on tablets */}
+          {/* Desktop Nav: Shown only on large screens (1024px+) */}
           <nav className="hidden lg:flex items-center gap-8">
             {headerNavLinks.map((link) => (
               <Link key={link.href} href={link.href} className={linkClasses(link.href)}>
@@ -91,7 +91,7 @@ export function Header() {
             </DropdownMenu>
           </div>
 
-          {/* Tablet/Mobile Menu Trigger: Shown below lg (1024px) */}
+          {/* Tablet/Mobile Menu Trigger: Shown below 1024px */}
           <div className="lg:hidden flex-1 flex justify-end">
             <Sheet>
               <SheetTrigger asChild>
