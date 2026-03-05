@@ -14,17 +14,17 @@ export function ManagedBySection() {
             <div className="container mx-auto px-4 relative z-10">
                 <div className="max-w-3xl space-y-6">
                     <div className="space-y-2">
-                        <p className="text-[#1a1a1a] font-bold text-xl md:text-2xl font-body">
+                        <p className="text-[#1a1a1a] font-bold text-xl md:text-2xl font-body uppercase tracking-wider">
                             Managed By
                         </p>
-                        <h2 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight font-body">
-                            The State Forest Development Agency (SFDA), Kerala
+                        <h2 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight font-headline">
+                            The Himalayan Forest Development Authority
                         </h2>
                     </div>
                     
                     <div className="space-y-6 pt-4">
                         <p className="text-[#1a1a1a] text-base md:text-lg font-medium font-body opacity-80">
-                            Visit SFDA Webpage
+                            Authorized Eco-Tourism Partner
                         </p>
                         <Button asChild className="bg-white text-black hover:bg-white/90 rounded-2xl px-10 h-14 shadow-none font-bold text-base transition-all active:scale-[0.98]">
                             <Link href="/contact">Contact Us</Link>
