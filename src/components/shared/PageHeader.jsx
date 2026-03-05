@@ -1,7 +1,9 @@
+
 'use client';
 
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 /**
  * PageHeader - A premium, reusable banner component used across the site.
@@ -28,12 +30,22 @@ export function PageHeader({ title, subtitle, imageUrl, breadcrumbLabel }) {
 
       {/* Main Content Area */}
       <div className="relative z-20 px-4 max-w-5xl mx-auto">
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight uppercase leading-tight mb-6 drop-shadow-lg font-headline">
+        <motion.h1 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight uppercase leading-tight mb-6 drop-shadow-lg font-headline"
+        >
           {title}
-        </h1>
+        </motion.h1>
 
         {/* Dynamic Breadcrumbs */}
-        <div className="mt-4 text-sm md:text-base font-medium flex items-center justify-center gap-3">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          className="mt-4 text-sm md:text-base font-medium flex items-center justify-center gap-3"
+        >
           <Link href="/" className="text-[#fcb101] hover:text-white transition-colors uppercase tracking-[0.2em] text-[10px] md:text-xs font-black">
             Home
           </Link>
@@ -41,13 +53,18 @@ export function PageHeader({ title, subtitle, imageUrl, breadcrumbLabel }) {
           <span className="text-white/90 uppercase tracking-[0.2em] text-[10px] md:text-xs font-black">
             {breadcrumbLabel || title}
           </span>
-        </div>
+        </motion.div>
         
         {subtitle && (
-            <p className="max-w-2xl mx-auto text-lg md:text-xl mt-10 opacity-80 font-light leading-relaxed"
-               style={{ color: '#ffae3e', fontFamily: '"Kaushan Script", cursive', fontSize: '32px', fontStyle: 'normal', fontWeight: 400 }}>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+              className="max-w-2xl mx-auto text-lg md:text-xl mt-10 opacity-80 font-light leading-relaxed"
+              style={{ color: '#ffae3e', fontFamily: '"Kaushan Script", cursive', fontSize: '32px', fontStyle: 'normal', fontWeight: 400 }}
+            >
                 {subtitle}
-            </p>
+            </motion.p>
         )}
       </div>
 

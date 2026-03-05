@@ -1,3 +1,7 @@
+
+'use client';
+
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Leaf, Users, Heart, Briefcase, Sparkles } from 'lucide-react';
 import { PageHeader } from '@/components/shared/PageHeader';
@@ -29,12 +33,19 @@ export default function AboutPage() {
         },
     ];
 
+    const fadeInUp = {
+        initial: { opacity: 0, y: 40 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true, margin: "-100px" },
+        transition: { duration: 0.8, ease: "easeOut" }
+    };
+
   return (
-    <div className="bg-[#fcfcfc]">
+    <div className="bg-[#fcfcfc] overflow-x-hidden">
         {headerImage && <PageHeader title="About The Forest Gate" subtitle="A Story of Passion and Nature" imageUrl={headerImage.imageUrl} imageHint={headerImage.imageHint} />}
 
         {/* Our Story Section */}
-        <section className="overflow-hidden">
+        <motion.section {...fadeInUp} className="overflow-hidden">
             <div className="container mx-auto px-4">
                 <div className="grid md:grid-cols-2 gap-16 items-center">
                     <div className="order-2 md:order-1">
@@ -69,10 +80,10 @@ export default function AboutPage() {
                     </div>
                 </div>
             </div>
-        </section>
+        </motion.section>
 
         {/* NEW SECTION: IT'S ALL ABOUT TRAVEL */}
-        <section className="bg-white py-24 md:py-32 overflow-hidden border-y border-slate-100">
+        <motion.section {...fadeInUp} className="bg-white py-24 md:py-32 overflow-hidden border-y border-slate-100">
             <div className="container mx-auto px-4">
                 <div className="flex flex-col items-center justify-center space-y-12 md:space-y-16">
                     
@@ -120,9 +131,9 @@ export default function AboutPage() {
 
                 </div>
             </div>
-        </section>
+        </motion.section>
 
-        <section className="bg-muted/20 py-24 md:py-32">
+        <motion.section {...fadeInUp} className="bg-muted/20 py-24 md:py-32">
             <div className="container mx-auto px-4">
                 <div className="text-center max-w-3xl mx-auto mb-20">
                      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-widest mb-6">
@@ -154,7 +165,7 @@ export default function AboutPage() {
                     ))}
                 </div>
             </div>
-        </section>
+        </motion.section>
     </div>
   );
 }

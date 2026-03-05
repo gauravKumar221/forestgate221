@@ -1,3 +1,7 @@
+
+'use client';
+
+import { motion } from 'framer-motion';
 import {
   faqs,
   galleryImages,
@@ -20,13 +24,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Flame, Heart, Star, ArrowRight } from 'lucide-react';
 import { AmenityCard } from '@/components/shared/AmenityCard';
 import { ExperiencesCarousel } from '@/components/shared/ExperiencesCarousel';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel';
 import { HeroScroll } from '@/components/shared/HeroScroll';
 import { InteractiveMapSection } from '@/components/shared/InteractiveMapSection';
 import { ManagedBySection } from '@/components/shared/ManagedBySection';
@@ -81,13 +78,21 @@ export default function Home() {
     lineHeight: 'normal',
   };
 
+  const fadeInUp = {
+    initial: { opacity: 0, y: 40 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-100px" },
+    transition: { duration: 0.8, ease: "easeOut" }
+  };
+
   return (
-    <div className="flex flex-col min-h-dvh">
+    <div className="flex flex-col min-h-dvh overflow-x-hidden">
       <WelcomePopup />
       <main className="flex-1">
         <HeroScroll />
 
-        <section 
+        <motion.section 
+          {...fadeInUp}
           id="highlights" 
           className="py-[10px] px-4 md:px-[81px]" 
           style={{ background: 'linear-gradient(to bottom, #70ac43, #ffffff)' }}
@@ -95,9 +100,9 @@ export default function Home() {
           <div className="container mx-auto px-0">
             <HighlightsCarouselWrapper highlightsWithImages={highlightsWithImages} />
           </div>
-        </section>
+        </motion.section>
 
-        <section id="about-preview">
+        <motion.section {...fadeInUp} id="about-preview">
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
@@ -116,13 +121,13 @@ export default function Home() {
                   <Link href="/about">Learn More About Us</Link>
                 </Button>
               </div>
-              <div>
+              <div className="relative overflow-hidden rounded-2xl group">
                 <Image
                   src="https://picsum.photos/seed/resort-about/600/400"
                   alt="Peaceful view of the resort"
                   width={600}
                   height={400}
-                  className="rounded-lg shadow-lg"
+                  className="rounded-lg shadow-lg transition-transform duration-700 group-hover:scale-105"
                   data-ai-hint="resort exterior"
                   placeholder="blur"
                   blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/+F9PQAI8wNPvd7POQAAAABJRU5ErkJggg=="
@@ -130,9 +135,9 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </motion.section>
 
-        <section id="rooms" className="bg-card">
+        <motion.section {...fadeInUp} id="rooms" className="bg-card">
           <div className="container mx-auto px-4">
             <p className="mb-2 text-left" style={sectionLabelStyle}>Accommodations</p>
             <h2 className="text-left text-3xl md:text-4xl font-bold mb-10 font-headline">
@@ -303,11 +308,11 @@ export default function Home() {
               </Button>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         <InteractiveMapSection />
 
-        <section id="experiences" className="bg-card">
+        <motion.section {...fadeInUp} id="experiences" className="bg-card">
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 gap-8 mb-16">
                 <div>
@@ -331,9 +336,9 @@ export default function Home() {
               </Button>
             </div>
           </div>
-        </section>
+        </motion.section>
         
-        <section id="amenities-preview">
+        <motion.section {...fadeInUp} id="amenities-preview">
             <div className="container mx-auto px-4">
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
                     <div className="max-w-2xl">
@@ -355,13 +360,21 @@ export default function Home() {
                     ))}
                 </div>
             </div>
-        </section>
+        </motion.section>
 
-        <ManagedBySection />
-        <WildlifeCarousel />
-        <Testimonials />
+        <motion.div {...fadeInUp}>
+          <ManagedBySection />
+        </motion.div>
+        
+        <motion.div {...fadeInUp}>
+          <WildlifeCarousel />
+        </motion.div>
+        
+        <motion.div {...fadeInUp}>
+          <Testimonials />
+        </motion.div>
 
-        <section id="faq" className="bg-card">
+        <motion.section {...fadeInUp} id="faq" className="bg-card">
           <div className="container mx-auto px-4 max-w-3xl">
             <p className="mb-2 text-left" style={sectionLabelStyle}>Support</p>
             <h2 className="text-left text-3xl md:text-4xl font-bold mb-10 font-headline">
@@ -374,15 +387,17 @@ export default function Home() {
                     {faqItem.question}
                   </AccordionTrigger>
                   <AccordionContent className="text-base text-foreground/80">
-                    {faqItem.answer}
+                    <div dangerouslySetInnerHTML={{ __html: faqItem.answer }} />
                   </AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>
           </div>
-        </section>
+        </motion.section>
 
-        <InfluencersCarousel />
+        <motion.div {...fadeInUp}>
+          <InfluencersCarousel />
+        </motion.div>
       </main>
     </div>
   );
