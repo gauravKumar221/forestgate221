@@ -98,11 +98,11 @@ export function HeroScroll() {
 
   return (
     <section ref={containerRef} className="relative bg-[#0b2c3d]">
-      {/* Intro Wrapper (Pinned Section) */}
-      <div ref={introWrapperRef} className="relative h-screen w-full overflow-hidden z-50">
+      {/* Intro Wrapper (Pinned Section) - Set to z-30 to stay below fixed header (z-50) */}
+      <div ref={introWrapperRef} className="relative h-screen w-full overflow-hidden z-30">
         
         {/* REVEAL UNDERLAY (The target hero content) */}
-        <div className="absolute inset-0 z-0 flex flex-col items-center justify-center text-center px-4">
+        <div className="absolute inset-0 z-0 flex flex-col items-center justify-center text-center px-4 pt-16">
           <div className="absolute inset-0">
             <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-40">
               <source src="https://assets.mixkit.co/videos/preview/kit-drone-view-of-a-dense-forest-in-the-mountains-34531-large.mp4" type="video/mp4" />
@@ -130,7 +130,7 @@ export function HeroScroll() {
 
         {/* Top Layer */}
         <div className="split-layer-top absolute inset-0 z-20 bg-background overflow-hidden [clip-path:inset(0_0_50%_0)] pointer-events-none">
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center pt-16">
             <div className="split-inner-content w-full max-w-5xl px-4">
               <h1 className="text-6xl md:text-[10rem] font-bold font-headline uppercase leading-none text-slate-900 mb-8">
                 WE CREATE
@@ -159,7 +159,7 @@ export function HeroScroll() {
 
         {/* Bottom Layer (Identical content, different clip) */}
         <div className="split-layer-bottom absolute inset-0 z-10 bg-background overflow-hidden [clip-path:inset(50%_0_0_0)] pointer-events-none">
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center pt-16">
             <div className="split-inner-content w-full max-w-5xl px-4">
               <h1 className="text-6xl md:text-[10rem] font-bold font-headline uppercase leading-none text-slate-900 mb-8">
                 WE CREATE
