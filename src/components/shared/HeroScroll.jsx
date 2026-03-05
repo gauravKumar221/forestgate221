@@ -98,12 +98,12 @@ export function HeroScroll() {
   const SplitContent = ({ side }) => (
     <div className={`absolute inset-0 flex flex-col items-center justify-center text-center pt-16`}>
       <div className="split-inner-content w-full max-w-5xl px-4">
-        <h1 className="text-6xl md:text-[10rem] font-bold font-headline uppercase leading-none text-slate-900 mb-8">
+        <h1 className="text-6xl md:text-[10rem] font-bold font-headline uppercase leading-none text-slate-900 mb-8 drop-shadow-sm">
           WE CREATE
         </h1>
         <div className={`${side === 'top' ? 'text-container-top' : 'text-container-bottom'} relative h-20 md:h-32 w-full`}>
           {highlights.map((h, i) => (
-            <p key={i} className="service-name absolute inset-0 opacity-0 text-3xl md:text-6xl font-black uppercase tracking-widest text-[#fcb101] flex items-center justify-center">
+            <p key={i} className="service-name absolute inset-0 opacity-0 text-3xl md:text-6xl font-black uppercase tracking-widest text-[#fcb101] flex items-center justify-center drop-shadow-md">
               {h.title}
             </p>
           ))}
@@ -122,7 +122,7 @@ export function HeroScroll() {
   );
 
   return (
-    <section ref={containerRef} className="relative bg-[#0b2c3d]">
+    <section ref={containerRef} className="relative bg-[#0b2c3d] py-10">
       {/* Intro Wrapper (Pinned Section) */}
       <div ref={introWrapperRef} className="relative h-screen w-full overflow-hidden z-30">
         
@@ -155,11 +155,29 @@ export function HeroScroll() {
 
         {/* Top Split Layer */}
         <div className="split-layer-top absolute inset-0 z-20 bg-[#fffef8] overflow-hidden [clip-path:inset(0_0_50%_0)] pointer-events-none">
+          <div className="absolute inset-0 opacity-20">
+            <Image 
+              src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=2000"
+              alt="Mountain Intro Background"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
           <SplitContent side="top" />
         </div>
 
         {/* Bottom Split Layer */}
         <div className="split-layer-bottom absolute inset-0 z-10 bg-[#fffef8] overflow-hidden [clip-path:inset(50%_0_0_0)] pointer-events-none">
+          <div className="absolute inset-0 opacity-20">
+            <Image 
+              src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=2000"
+              alt="Mountain Intro Background"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
           <SplitContent side="bottom" />
         </div>
 
