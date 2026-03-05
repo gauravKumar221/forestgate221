@@ -42,6 +42,18 @@ export default function BlogDetailPage({ params }) {
             {/* Main Content */}
             <div className="lg:col-span-8">
               <div className="bg-card rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-xl border border-border/50">
+                {postImage && (
+                  <div className="relative aspect-[16/9] mb-10 overflow-hidden rounded-[2rem] shadow-lg">
+                    <Image
+                      src={postImage.imageUrl}
+                      alt={post.title}
+                      fill
+                      className="object-cover"
+                      data-ai-hint={postImage.imageHint}
+                    />
+                  </div>
+                )}
+
                 <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground font-bold uppercase tracking-widest mb-10 pb-8 border-b border-dashed">
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-primary" />
