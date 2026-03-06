@@ -59,6 +59,11 @@ export function HeroScroll() {
       });
 
       revealTL
+        .to(".split-image-container", {
+          scale: 1.2,
+          duration: 5,
+          ease: "power2.inOut"
+        })
         .to(".split-layer-top", {
           yPercent: -100,
           duration: 5,
@@ -91,26 +96,33 @@ export function HeroScroll() {
   }, []);
 
   const SplitContent = ({ side }) => (
-    <div className={`absolute inset-0 flex flex-col items-center justify-center text-center`}>
-      <div className="split-inner-content w-full max-w-5xl px-4 flex flex-col items-center">
-        <h1 className="text-6xl md:text-[11rem] font-bold font-headline uppercase leading-none text-[#0b2c3d] tracking-tight">
+    <div className={`absolute inset-0 flex flex-col items-center justify-center text-center pt-16`}>
+      <div className="split-inner-content w-full max-w-5xl px-4">
+        <h1 className="text-6xl md:text-[10rem] font-bold font-headline uppercase leading-none text-slate-900 mb-8 drop-shadow-sm">
           WE CREATE
         </h1>
-        <div className={`${side === 'top' ? 'text-container-top' : 'text-container-bottom'} relative h-16 md:h-24 w-full mt-4 md:mt-8`}>
+        <div className={`${side === 'top' ? 'text-container-top' : 'text-container-bottom'} relative h-20 md:h-32 w-full`}>
           {highlights.map((h, i) => (
-            <p key={i} className="service-name absolute inset-0 opacity-0 text-3xl md:text-7xl font-black uppercase tracking-[0.1em] text-[#0b2c3d] flex items-center justify-center">
+            <p key={i} className="service-name absolute inset-0 opacity-0 text-3xl md:text-6xl font-black uppercase tracking-widest text-[#fcb101] flex items-center justify-center drop-shadow-md">
               {h.title}
             </p>
           ))}
         </div>
-        {/* The White Line from reference */}
-        <div className="w-64 md:w-[600px] h-2.5 bg-white mt-12 md:mt-20 rounded-full shadow-sm" />
+        <div className="split-image-container relative w-[70vw] max-w-[980px] aspect-video mx-auto mt-12 rounded-3xl overflow-hidden shadow-2xl">
+          <Image 
+            src="https://images.unsplash.com/photo-1470115636492-6d2b56f9146d?auto=format&fit=crop&q=80&w=1200"
+            alt="Sanctuary Landscape"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
       </div>
     </div>
   );
 
   return (
-    <section ref={containerRef} className="relative bg-[#0b2c3d]">
+    <section ref={containerRef} className="relative bg-[#0b2c3d] py-10">
       {/* Intro Wrapper (Pinned Section) */}
       <div ref={introWrapperRef} className="relative h-screen w-full overflow-hidden z-30">
         
@@ -125,10 +137,10 @@ export function HeroScroll() {
           
           <div className="hero-reveal-content relative z-10 max-w-4xl text-white opacity-0">
             <h2 className="text-5xl md:text-8xl font-bold uppercase tracking-[0.2em] mb-6 font-headline">
-              HIMACHAL HAVEN
+              THE FOREST GATE
             </h2>
             <p className="max-w-2xl mx-auto text-lg md:text-xl font-light tracking-wide mb-10 opacity-90 drop-shadow-md">
-              Welcome to Himachal Haven. Luxury meets nature in the heart of Himachal. Experience tranquility like never before in our sustainable Himalayan sanctuary.
+              Luxury meets nature in the heart of Himachal. Experience tranquility like never before in our sustainable Himalayan sanctuary.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <Link href="/booking" className="inline-flex items-center justify-center h-16 px-12 rounded-full bg-secondary text-black font-bold text-lg hover:scale-105 transition-transform active:scale-95 shadow-2xl">
