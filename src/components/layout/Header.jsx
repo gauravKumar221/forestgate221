@@ -54,9 +54,7 @@ export function Header() {
 
   const handleLogout = async () => {
     await logout();
-    if(!loading){
-      router.push("/login");
-    }
+    router.push("/login");
   };
 
   return (
@@ -180,7 +178,7 @@ export function Header() {
                           </Link>
                       </SheetClose>
                   </div>
-                  <nav className="flex flex-col gap-6 p-10 flex-1 text-foreground overflow-y-auto items-start justify-start text-left [&::-webkit-scrollbar]:hidden [scrollbar-width:none] [-ms-overflow-style:none]">
+                  <nav className="flex flex-col gap-6 p-6 sm:p-10 flex-1 text-foreground overflow-y-auto items-start justify-start text-left [&::-webkit-scrollbar]:hidden [scrollbar-width:none] [-ms-overflow-style:none]">
                     {headerNavLinks.map((link) => (
                       <SheetClose key={link.href} asChild>
                         <Link
@@ -196,40 +194,38 @@ export function Header() {
                     ))}
 
                     {/* Instagram Follow Card */}
-                    <div className="mt-10 w-full max-w-sm bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
-                        <div className="flex items-start justify-between">
-                            <div className="flex gap-4">
-                                <div className="w-14 h-14 rounded-full bg-[#0b2c3d] flex items-center justify-center shrink-0 shadow-lg">
-                                    <Instagram className="w-7 h-7 text-white" />
-                                </div>
-                                <div className="flex flex-col pt-1">
-                                    <div className="flex items-center gap-2 mb-1">
-                                        <h4 className="font-bold text-base text-slate-900">theforestgate</h4>
-                                        <div className="bg-orange-100 p-1 rounded-lg">
-                                            <Star className="w-3 h-3 text-orange-600 fill-current" />
-                                        </div>
+                    <div className="mt-10 w-full max-w-[340px] bg-white border border-slate-100 rounded-[2.5rem] p-6 shadow-sm relative group/insta">
+                        <div className="flex items-start gap-4">
+                            <div className="w-14 h-14 rounded-full bg-[#0b2c3d] flex items-center justify-center shrink-0 shadow-lg">
+                                <Instagram className="w-7 h-7 text-white" />
+                            </div>
+                            <div className="flex flex-col pt-1 flex-1 min-w-0">
+                                <div className="flex items-center gap-2 mb-1">
+                                    <h4 className="font-bold text-base text-slate-900 truncate">theforestgate</h4>
+                                    <div className="bg-orange-100 p-0.5 rounded-full shrink-0">
+                                        <Star className="w-3 h-3 text-orange-600 fill-current" />
                                     </div>
-                                    <div className="flex items-center gap-4 text-slate-400 text-[10px] font-bold">
-                                        <div className="flex items-center gap-1.5">
-                                            <Heart className="w-3.5 h-3.5" />
-                                            <span>120k</span>
-                                        </div>
-                                        <div className="flex items-center gap-1.5">
-                                            <Eye className="w-3.5 h-3.5 text-[#085d6b]" />
-                                            <span>12.5M</span>
-                                        </div>
-                                        <div className="flex items-center gap-1.5">
-                                            <MessageCircle className="w-3.5 h-3.5" />
-                                            <span>5.2K</span>
-                                        </div>
+                                </div>
+                                <div className="flex items-center gap-3 text-slate-400 text-[10px] font-bold overflow-hidden">
+                                    <div className="flex items-center gap-1 shrink-0">
+                                        <Heart className="w-3 h-3" />
+                                        <span>120k</span>
+                                    </div>
+                                    <div className="flex items-center gap-1 shrink-0">
+                                        <Eye className="w-3 h-3 text-[#085d6b]" />
+                                        <span>12.5M</span>
+                                    </div>
+                                    <div className="flex items-center gap-1 shrink-0">
+                                        <MessageCircle className="w-3 h-3" />
+                                        <span>5.2K</span>
                                     </div>
                                 </div>
                             </div>
-                            <button className="w-12 h-12 rounded-2xl border-2 border-slate-100 flex items-center justify-center text-blue-500 hover:bg-slate-50 transition-all">
-                                <Check className="w-6 h-6" />
+                            <button className="absolute -right-3 top-8 w-10 h-10 rounded-full border border-slate-100 bg-white flex items-center justify-center text-blue-500 hover:bg-slate-50 transition-all shadow-md shrink-0 z-10">
+                                <Check className="w-5 h-5 stroke-[3px]" />
                             </button>
                         </div>
-                        <p className="mt-5 text-[11px] text-slate-400 font-medium leading-relaxed">
+                        <p className="mt-5 text-[11px] text-slate-400 font-medium leading-relaxed pr-4">
                             Experience the magic of Himachal through our lens. <br/>
                             Daily updates, guest stories, and exclusive offers.
                         </p>
