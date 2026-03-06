@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -175,28 +175,6 @@ export default function EventsPage() {
                         <CarouselNext className="static translate-y-0 h-14 w-14 rounded-full bg-white/10 backdrop-blur-xl border-none text-white hover:bg-secondary hover:text-black shadow-2xl transition-all" />
                     </div>
                 </Carousel>
-            </section>
-
-            {/* VENUES CTA SECTION */}
-            <section className="bg-primary py-24 md:py-32 text-white">
-                <div className="container mx-auto px-4">
-                    <div className="text-center max-w-3xl mx-auto mb-20">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white text-[10px] font-black uppercase tracking-widest mb-6">
-                            <Sparkles className="w-3 h-3 text-secondary" />
-                            Elite Spaces
-                        </div>
-                        <h2 className="font-headline text-4xl md:text-6xl font-bold mb-6">Our Iconic Venues</h2>
-                        <p className="text-white/60 text-lg font-light leading-relaxed">
-                            Meticulously designed environments that serve as the perfect canvas for your most important moments. From mountain lawns to starlight terraces.
-                        </p>
-                    </div>
-
-                    <div className="mt-12 text-center">
-                        <Button asChild size="lg" className="h-16 px-12 rounded-full text-lg font-bold bg-secondary text-black hover:bg-[#e0a000] border-none shadow-none">
-                            <Link href="/contact">Plan Your Event With Us</Link>
-                        </Button>
-                    </div>
-                </div>
             </section>
         </div>
     );
