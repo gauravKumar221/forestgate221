@@ -153,7 +153,7 @@ export function Header() {
           <div className="lg:hidden flex-1 flex justify-end gap-2">
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="relative h-10 w-10 flex items-center justify-center">
+                <Button variant="ghost" size="icon" className="relative h-10 w-10 flex items-center justify-center z-[60]">
                   <div className="w-6 h-5 flex flex-col justify-between items-center relative transition-all duration-300">
                     <span className={cn(
                       "block w-6 h-0.5 bg-foreground rounded-full transition-all duration-300 ease-in-out origin-center",
@@ -170,9 +170,9 @@ export function Header() {
                   </div>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-card p-0 flex flex-col">
+              <SheetContent side="top" className="w-full h-screen bg-card p-0 flex flex-col border-none">
                   <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
-                  <div className="p-6 border-b">
+                  <div className="p-6 border-b flex items-center h-16">
                      <SheetClose asChild>
                       <Link href="/" className="flex items-center gap-2 font-bold text-xl font-headline text-primary">
                           <MountainSnow className="h-6 w-6" />
@@ -180,14 +180,14 @@ export function Header() {
                           </Link>
                       </SheetClose>
                   </div>
-                  <nav className="flex flex-col gap-6 p-6 flex-1 text-foreground">
+                  <nav className="flex flex-col gap-6 p-10 flex-1 text-foreground overflow-y-auto items-center justify-center text-center">
                     {headerNavLinks.map((link) => (
                       <SheetClose key={link.href} asChild>
                         <Link
                           href={link.href}
                           className={cn(
-                            'text-lg font-medium transition-colors',
-                             pathname === link.href ? 'text-primary font-bold' : 'text-foreground hover:text-primary'
+                            'text-3xl font-headline font-bold transition-all hover:scale-110',
+                             pathname === link.href ? 'text-primary' : 'text-foreground hover:text-primary'
                           )}
                         >
                           {link.label}
@@ -195,40 +195,42 @@ export function Header() {
                       </SheetClose>
                     ))}
                   </nav>
-                  <div className="p-6 mt-auto border-t">
+                  <div className="p-8 mt-auto border-t bg-muted/10 flex flex-col items-center">
                       {user ? (
-                        <div className="space-y-4">
-                          <div className="flex items-center gap-3 mb-4">
-                            <Avatar className="h-10 w-10 border">
+                        <div className="space-y-4 w-full max-w-xs">
+                          <div className="flex items-center gap-3 mb-4 justify-center">
+                            <Avatar className="h-12 w-12 border shadow-sm">
                               <AvatarImage src={`https://i.pravatar.cc/150?u=${user.email}`} />
                               <AvatarFallback>{user.name?.charAt(0).toUpperCase() || 'U'}</AvatarFallback>
                             </Avatar>
-                            <div>
+                            <div className="text-left">
                               <p className="text-sm font-bold">{user.name}</p>
                               <p className="text-xs text-muted-foreground">{user.email}</p>
                             </div>
                           </div>
                           <SheetClose asChild>
-                            <Button variant="outline" className="w-full justify-start" asChild>
+                            <Button variant="outline" className="w-full h-12 rounded-full justify-center" asChild>
                               <Link href="/profile"><User className="mr-2 h-4 w-4" /> Profile</Link>
                             </Button>
                           </SheetClose>
-                          <Button variant="destructive" className="w-full mt-4" onClick={handleLogout}>
+                          <Button variant="destructive" className="w-full h-12 rounded-full" onClick={handleLogout}>
                             Sign Out
                           </Button>
                         </div>
                       ) : (
-                        <SheetClose asChild>
-                            <Button asChild variant="outline" className="w-full">
-                                <Link href="/login">Login / Sign Up</Link>
-                            </Button>
-                        </SheetClose>
+                        <div className="w-full max-w-xs space-y-4">
+                            <SheetClose asChild>
+                                <Button asChild variant="outline" className="w-full h-12 rounded-full border-2">
+                                    <Link href="/login">Login / Sign Up</Link>
+                                </Button>
+                            </SheetClose>
+                            <SheetClose asChild>
+                                <Button asChild className="w-full h-12 rounded-full font-black uppercase tracking-widest text-xs">
+                                    <Link href="/booking">Book Your Stay</Link>
+                                </Button>
+                            </SheetClose>
+                        </div>
                       )}
-                      <SheetClose asChild>
-                          <Button asChild className="w-full mt-4">
-                              <Link href="/booking">Book Now</Link>
-                          </Button>
-                      </SheetClose>
                   </div>
               </SheetContent>
             </Sheet>
