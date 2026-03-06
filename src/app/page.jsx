@@ -32,6 +32,7 @@ import { HighlightsCarouselWrapper } from '@/components/shared/HighlightsCarouse
 import { MobileRoomsCarouselWrapper } from '@/components/shared/MobileRoomsCarouselWrapper';
 import { WelcomePopup } from '@/components/shared/WelcomePopup';
 import { BoutiqueTypography } from '@/components/shared/BoutiqueTypography';
+import { AtmosphereCarousel } from '@/components/shared/AtmosphereCarousel';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -351,6 +352,7 @@ export default function Home() {
       <InteractiveMapSection />
 
       <BoutiqueTypography />
+      <AtmosphereCarousel />
 
       <motion.section {...fadeInUp} id="experiences" className="bg-card">
         <div className="container mx-auto px-4">

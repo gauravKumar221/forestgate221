@@ -3,38 +3,12 @@
 import * as React from 'react';
 import Image from "next/image";
 import { motion } from 'framer-motion';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import Autoplay from 'embla-carousel-autoplay';
 import { ArrowRight } from 'lucide-react';
 import { BoutiqueTypography } from '@/components/shared/BoutiqueTypography';
-
-const highlights = [
-    { name: "Balloons", img: "balloons", hint: "party balloons" },
-    { name: "Dessert Table", img: "dessert", hint: "dessert table" },
-    { name: "Confetti", img: "confetti", hint: "heart confetti" },
-    { name: "Table Setting", img: "table", hint: "wedding table" },
-    { name: "Neon Signs", img: "neon", hint: "neon sign" },
-    { name: "Floral Decor", img: "flowers", hint: "event flowers" },
-    { name: "Gourmet Catering", img: "catering", hint: "gourmet food" }
-];
+import { AtmosphereCarousel } from '@/components/shared/AtmosphereCarousel';
 
 export default function EventsPage() {
     const bannerImage = "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&q=80&w=2000";
-
-    const autoplay = React.useMemo(
-        () => (typeof Autoplay === 'function' ? Autoplay({ 
-          delay: 3000, 
-          stopOnInteraction: false,
-          stopOnMouseEnter: true
-        }) : null),
-        []
-    );
 
     return (
         <div className="bg-[#fcfcfc] overflow-x-hidden">
@@ -82,41 +56,7 @@ export default function EventsPage() {
             <BoutiqueTypography />
 
             {/* SEAMLESS ATMOSPHERE CAROUSEL */}
-            <section className="bg-[#0b2c3d] py-0 overflow-hidden relative group">
-                <Carousel 
-                    opts={{ align: "start", loop: true }}
-                    plugins={autoplay ? [autoplay] : []}
-                    className="w-full"
-                >
-                    <CarouselContent className="-ml-0">
-                        {highlights.map((item, idx) => (
-                            <CarouselItem key={idx} className="pl-0 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/5">
-                                <div className="relative h-[600px] overflow-hidden border-r border-white/5">
-                                    <Image 
-                                        src={`https://picsum.photos/seed/${item.img}/600/1000`} 
-                                        alt={item.name} 
-                                        fill 
-                                        className="object-cover transition-transform duration-1000 group-hover:scale-110" 
-                                        data-ai-hint={item.hint}
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
-                                    <div className="absolute bottom-10 left-0 right-0 text-center px-4">
-                                        <h3 className="text-white text-2xl font-bold tracking-tight drop-shadow-md">
-                                            {item.name}
-                                        </h3>
-                                    </div>
-                                </div>
-                            </CarouselItem>
-                        ))}
-                    </CarouselContent>
-                    <div className="absolute top-1/2 left-6 z-20 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                        <CarouselPrevious className="static translate-y-0 h-14 w-14 rounded-full bg-white/10 backdrop-blur-xl border-none text-white hover:bg-secondary hover:text-black shadow-2xl transition-all" />
-                    </div>
-                    <div className="absolute top-1/2 right-6 z-20 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                        <CarouselNext className="static translate-y-0 h-14 w-14 rounded-full bg-white/10 backdrop-blur-xl border-none text-white hover:bg-secondary hover:text-black shadow-2xl transition-all" />
-                    </div>
-                </Carousel>
-            </section>
+            <AtmosphereCarousel />
 
             {/* CUSTOM PROMO SUBSCRIPTION SECTION */}
             <section className="relative bg-[#003d82] py-24 md:py-40 overflow-hidden">
