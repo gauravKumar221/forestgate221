@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, SendHorizontal } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -175,6 +175,66 @@ export default function EventsPage() {
                         <CarouselNext className="static translate-y-0 h-14 w-14 rounded-full bg-white/10 backdrop-blur-xl border-none text-white hover:bg-secondary hover:text-black shadow-2xl transition-all" />
                     </div>
                 </Carousel>
+            </section>
+
+            {/* CUSTOM PROMO SUBSCRIPTION SECTION */}
+            <section className="relative bg-[#003d82] py-24 md:py-40 overflow-hidden">
+                {/* Decorative Elements */}
+                <motion.div 
+                    animate={{ y: [0, -20, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute left-10 md:left-20 top-1/2 -translate-y-1/2 flex flex-col gap-0"
+                >
+                    <div className="w-8 h-8 md:w-12 md:h-12 bg-[#eb5e28] rounded-full" />
+                    <div className="w-8 h-8 md:w-12 md:h-12 bg-white rounded-full -mt-2" />
+                </motion.div>
+
+                <motion.div 
+                    animate={{ scale: [1, 1.1, 1] }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute right-10 md:right-32 top-20 w-6 h-6 md:w-10 md:h-10 bg-[#ffeb3b] rounded-full shadow-[0_0_20px_rgba(255,235,59,0.5)]" 
+                />
+
+                <div className="absolute right-20 md:right-40 bottom-20">
+                    <div className="relative">
+                        <div className="w-10 h-10 md:w-16 md:h-16 bg-gradient-to-br from-[#ff80ab] to-white rounded-full blur-[2px]" />
+                        <div className="absolute inset-0 bg-white/40 rounded-full blur-xl scale-150 animate-pulse" />
+                    </div>
+                </div>
+
+                <div className="container mx-auto px-4 relative z-10">
+                    <div className="max-w-4xl mx-auto text-center space-y-8 md:space-y-12">
+                        <div className="space-y-4">
+                            <p className="text-[10px] md:text-xs font-black uppercase tracking-[0.3em] text-white/80">
+                                10% OFF CONGRATS PROMO <br className="md:hidden" /> CODES FOR NOVEMBER 2025
+                            </p>
+                            <h2 className="text-4xl md:text-7xl lg:text-8xl font-playfair font-bold text-white leading-tight tracking-tight">
+                                15% Off Your Next <br className="hidden md:block" /> Purchase By Subscribing
+                            </h2>
+                        </div>
+
+                        <div className="max-w-2xl mx-auto">
+                            <form className="relative group flex items-center border border-white/30 h-16 md:h-20 bg-white/5 backdrop-blur-sm transition-all focus-within:border-white/60">
+                                <input 
+                                    type="email" 
+                                    placeholder="Your email" 
+                                    className="flex-1 bg-transparent border-none outline-none px-6 md:px-10 text-white placeholder:text-white/40 text-sm md:text-lg font-medium"
+                                    required
+                                />
+                                <div className="h-10 w-px bg-white/20 mx-2" />
+                                <button 
+                                    type="submit" 
+                                    className="w-20 md:w-28 h-full flex items-center justify-center text-white hover:bg-white/10 transition-colors"
+                                >
+                                    <div className="relative">
+                                        <ArrowRight className="w-6 h-6 md:w-8 md:h-8" />
+                                        <div className="absolute -top-1 -right-1 w-2 h-2 bg-green-400 rounded-full" />
+                                    </div>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </section>
         </div>
     );
