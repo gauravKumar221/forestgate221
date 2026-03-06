@@ -132,10 +132,10 @@ export function HeroScroll() {
           
           <div className="hero-reveal-content relative z-10 max-w-4xl text-white opacity-0">
             <h2 className="text-5xl md:text-8xl font-bold uppercase tracking-[0.2em] mb-6 font-headline">
-              THE FOREST GATE
+              HIMACHAL HAVEN
             </h2>
             <p className="max-w-2xl mx-auto text-lg md:text-xl font-light tracking-wide mb-10 opacity-90 drop-shadow-md">
-              Luxury meets nature in the heart of Himachal. Experience tranquility like never before in our sustainable Himalayan sanctuary.
+              Welcome to Himachal Haven. Luxury meets nature in the heart of Himachal. Experience tranquility like never before in our sustainable Himalayan sanctuary.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <Link href="/booking" className="inline-flex items-center justify-center h-16 px-12 rounded-full bg-secondary text-black font-bold text-lg hover:scale-105 transition-transform active:scale-95 shadow-2xl">
