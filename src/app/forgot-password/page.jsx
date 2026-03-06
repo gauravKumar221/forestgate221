@@ -45,7 +45,6 @@ const ResetPasswordSchema = z.object({
 });
 
 export default function ForgotPasswordPage() {
-  const { forgotPassword, verifyOtp, resetPassword, resendForgotOtp } = useAuthContext();
   const { toast } = useToast();
   const router = useRouter();
   const heroImage = PlaceHolderImages.find(img => img.id === 'exp-stargazing');
@@ -69,71 +68,38 @@ export default function ForgotPasswordPage() {
   });
 
   const onRequestOtp = async (values) => {
-    try {
-      await forgotPassword(values.email);
-      setUserEmail(values.email);
-      setStep("VERIFY_OTP");
-      toast({
-        title: "Code Sent",
-        description: "A verification code has been sent to your email.",
-      });
-    } catch (err) {
-      toast({
-        variant: "destructive",
-        title: "Request failed",
-        description: err.message,
-      });
-    }
+    // Dummy flow: Bypass API and show OTP step
+    setUserEmail(values.email);
+    setStep("VERIFY_OTP");
+    toast({
+      title: "Code Sent (Demo Mode)",
+      description: "A dummy verification code has been 'sent' to your email.",
+    });
   };
 
   const onVerifyOtp = async (values) => {
-    try {
-      await verifyOtp({ email: userEmail, otp: values.otp });
-      setStep("RESET_PASSWORD");
-      toast({
-        title: "Identity Verified",
-        description: "You can now reset your password.",
-      });
-    } catch (err) {
-      toast({
-        variant: "destructive",
-        title: "Verification failed",
-        description: err.message,
-      });
-    }
+    // Dummy flow: Bypass API and show Reset Password step
+    setStep("RESET_PASSWORD");
+    toast({
+      title: "Identity Verified",
+      description: "You can now reset your password (demo flow).",
+    });
   };
 
   const onResetPassword = async (values) => {
-    try {
-      await resetPassword({ email: userEmail, password: values.password });
-      toast({
-        title: "Password Updated",
-        description: "Your password has been reset successfully. Please login.",
-      });
-      router.push("/login");
-    } catch (err) {
-      toast({
-        variant: "destructive",
-        title: "Reset failed",
-        description: err.message,
-      });
-    }
+    // Dummy flow: Bypass API and redirect to login
+    toast({
+      title: "Password Updated",
+      description: "Your password has been 'reset' successfully. Please login.",
+    });
+    router.push("/login");
   };
 
-  const handleResendOtp = async () => {
-    try {
-      await resendForgotOtp(userEmail);
-      toast({
-        title: "Code Resent",
-        description: "A new verification code has been sent to your email.",
-      });
-    } catch (err) {
-      toast({
-        variant: "destructive",
-        title: "Resend failed",
-        description: err.message,
-      });
-    }
+  const handleResendOtp = () => {
+    toast({
+      title: "Code Resent",
+      description: "A new verification code has been 'sent' to your email.",
+    });
   };
 
   return (
