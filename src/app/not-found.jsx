@@ -2,12 +2,13 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { MountainSnow, ArrowLeft, Compass } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import Image from 'next/image';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 /**
  * Custom 404 Not Found Page
- * Designed to feel like an extension of the resort's serene mountain theme.
+ * Enhanced with Lottie animation for a premium feel.
  */
 export default function NotFound() {
   return (
@@ -18,13 +19,14 @@ export default function NotFound() {
       </div>
 
       <div className="relative z-10 max-w-2xl mx-auto space-y-10">
-        {/* Animated Icon Badge */}
+        {/* Lottie Animation Display */}
         <div className="flex justify-center">
-            <div className="relative">
-                <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl animate-pulse" />
-                <div className="relative flex items-center justify-center w-24 h-24 bg-card border border-border/50 rounded-[2rem] shadow-xl rotate-12 transition-transform hover:rotate-0 duration-500">
-                    <Compass className="w-12 h-12 text-primary animate-spin-[spin_10s_linear_infinite]" />
-                </div>
+            <div className="relative w-64 h-64 md:w-80 md:h-80">
+                <DotLottieReact
+                    src="/404.lottie"
+                    loop
+                    autoplay
+                />
             </div>
         </div>
         
