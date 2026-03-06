@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, MapPin, Star, ChevronDown } from 'lucide-react';
+import { X, MapPin, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
@@ -99,13 +99,6 @@ export function WelcomePopup() {
                 <div className="flex flex-wrap items-center gap-4 pt-4">
                   <Button asChild size="lg" className="rounded-full px-10">
                     <Link href="/booking">Book Dates</Link>
-                  </Button>
-
-                  <Button variant="outline" asChild size="lg" className="rounded-full border-slate-200 text-secondary hover:bg-slate-50 hover:text-secondary/80 px-10 flex gap-2 border-2 shadow-none ring-offset-background transition-all">
-                    <Link href="/rooms" className="flex items-center gap-3 h-full">
-                      <span className="font-bold">Explore Rooms</span>
-                      <ChevronDown className="w-4 h-4 text-secondary" />
-                    </Link>
                   </Button>
                 </div>
 
