@@ -1,32 +1,59 @@
+// import { NextResponse } from 'next/server';
+
+// export function middleware(request) {
+//   // Check if the user is trying to access the admin dashboard
+//   if (request.nextUrl.pathname.startsWith('/admin-dashboard')) {
+//     // Check for an authentication cookie
+//     const authCookie = request.cookies.get('admin-auth');
+    
+//     // If the cookie doesn't exist or is not valid, redirect to the admin login page
+//     if (!authCookie || authCookie.value !== 'true') {
+//       const loginUrl = new URL('/admin-login', request.url);
+//       return NextResponse.redirect(loginUrl);
+//     }
+//   }
+
+//   // If the path is /admin-login and the user is already authenticated, redirect to dashboard
+//   if (request.nextUrl.pathname === '/admin-login') {
+//     const authCookie = request.cookies.get('admin-auth');
+//     if (authCookie && authCookie.value === 'true') {
+//         const dashboardUrl = new URL('/admin-dashboard', request.url);
+//         return NextResponse.redirect(dashboardUrl);
+//     }
+//   }
+
+//   // Allow the request to proceed
+//   return NextResponse.next();
+// }
+
+// // See "Matching Paths" below to learn more
+// export const config = {
+//   matcher: ['/admin-dashboard/:path*', '/admin-login'],
+// };
+
+
+
+
 import { NextResponse } from 'next/server';
 
 export function middleware(request) {
-  // Check if the user is trying to access the admin dashboard
+  const authCookie = request.cookies.get('admin-auth');
+
   if (request.nextUrl.pathname.startsWith('/admin-dashboard')) {
-    // Check for an authentication cookie
-    const authCookie = request.cookies.get('admin-auth');
-    
-    // If the cookie doesn't exist or is not valid, redirect to the admin login page
-    if (!authCookie || authCookie.value !== 'true') {
-      const loginUrl = new URL('/admin-login', request.url);
-      return NextResponse.redirect(loginUrl);
+    if (!authCookie) {
+      return NextResponse.redirect(new URL('/admin-login', request.url));
     }
   }
 
-  // If the path is /admin-login and the user is already authenticated, redirect to dashboard
   if (request.nextUrl.pathname === '/admin-login') {
-    const authCookie = request.cookies.get('admin-auth');
-    if (authCookie && authCookie.value === 'true') {
-        const dashboardUrl = new URL('/admin-dashboard', request.url);
-        return NextResponse.redirect(dashboardUrl);
+    if (authCookie) {
+      return NextResponse.redirect(new URL('/admin-dashboard', request.url));
     }
   }
 
-  // Allow the request to proceed
   return NextResponse.next();
 }
 
-// See "Matching Paths" below to learn more
 export const config = {
   matcher: ['/admin-dashboard/:path*', '/admin-login'],
-};
+}; 

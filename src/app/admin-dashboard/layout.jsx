@@ -14,6 +14,7 @@ import {
   SidebarMenuButton,
   SidebarTrigger,
 } from '@/components/ui/sidebar';
+import { useAuthContext } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
 import {
   LayoutDashboard,
@@ -52,14 +53,14 @@ import {
 export default function AdminDashboardLayout({
   children,
 }) {
+const { logout ,adminEmail  } = useAuthContext();
   const pathname = usePathname();
   const router = useRouter();
   const { toast } = useToast();
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
 
-  const handleLogout = () => {
-    // Clear admin auth cookie
-    document.cookie = "admin-auth=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+  const handleLogout = async () => {
+   await logout(  )
     
     toast({
       title: 'Logged Out',
@@ -210,7 +211,7 @@ export default function AdminDashboardLayout({
                             <div className="flex flex-col space-y-1">
                                 <p className="text-sm font-medium leading-none">Admin User</p>
                                 <p className="text-xs leading-none text-muted-foreground">
-                                    admin@theforestgate.com
+                                  {adminEmail || "admin@theforestgate.com"} 
                                 </p>
                             </div>
                         </DropdownMenuLabel>

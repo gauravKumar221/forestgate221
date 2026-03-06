@@ -14,6 +14,10 @@ export const API = {
     verifyOtp: `${API_BASE_URL}/Auth/api/verify-otp`,
     resendForgotOtp: `${API_BASE_URL}/Auth/api/resend-forgot-otp`,
 
+    adminApi:`${API_BASE_URL}/api/admin/admin-login`,
+
+
+
 
 
 
