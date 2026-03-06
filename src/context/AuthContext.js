@@ -81,6 +81,74 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
+  // ✅ FORGOT PASSWORD (OTP Request)
+  const forgotPassword = async (email) => {
+    try {
+      setLoading(true);
+      const res = await fetch(API.forgotPassword, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Failed to send reset code");
+      return data;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // ✅ VERIFY OTP
+  const verifyOtp = async (payload) => {
+    try {
+      setLoading(true);
+      const res = await fetch(API.verifyOtp, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Invalid OTP");
+      return data;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // ✅ RESET PASSWORD
+  const resetPassword = async (payload) => {
+    try {
+      setLoading(true);
+      const res = await fetch(API.resetPassword, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Failed to reset password");
+      return data;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // ✅ RESEND FORGOT OTP
+  const resendForgotOtp = async (email) => {
+    try {
+      setLoading(true);
+      const res = await fetch(API.resendForgotOtp, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Failed to resend code");
+      return data;
+    } finally {
+      setLoading(false);
+    }
+  };
+
 // ✅ LOGOUT
 const logout = async () => {
   try {
@@ -114,6 +182,10 @@ const logout = async () => {
         login,
         register,
         logout,
+        forgotPassword,
+        verifyOtp,
+        resetPassword,
+        resendForgotOtp,
       }}
     >
       {children}
