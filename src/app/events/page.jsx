@@ -1,4 +1,3 @@
-
 'use client';
 
 import Image from "next/image";
@@ -11,29 +10,12 @@ import { Heart, Briefcase, PartyPopper, ArrowRight, Sparkles, Star } from "lucid
 export default function EventsPage() {
     const bannerImage = "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&q=80&w=2000";
 
-    const events = [
-        {
-            title: "Destination Weddings",
-            description: "Exchange vows with a breathtaking mountain backdrop. Our team specializes in creating magical, bespoke weddings that reflect your love story. From intimate ceremonies to grand receptions, we handle every detail with precision and grace.",
-            image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200",
-            imageHint: "mountain wedding",
-            icon: Heart
-        },
-        {
-            title: "Corporate Retreats",
-            description: "Inspire innovation and foster team spirit in a serene and stimulating environment. Our resort offers modern meeting facilities, customized team-building activities, and comfortable accommodations for a productive getaway.",
-            image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1200",
-            imageHint: "corporate event",
-            icon: Briefcase
-        },
-        {
-            title: "Private Celebrations",
-            description: "Celebrate your special moments with us. Whether it's a milestone birthday, an anniversary, or a private gathering, we provide the perfect setting, exquisite catering, and personalized service to make it unforgettable.",
-            image: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&q=80&w=1200",
-            imageHint: "party celebration",
-            icon: PartyPopper
-        },
-    ];
+    const fadeInUp = {
+        initial: { opacity: 0, y: 40 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true, margin: "-100px" },
+        transition: { duration: 0.8, ease: "easeOut" }
+    };
 
     return (
         <div className="bg-[#fcfcfc] overflow-x-hidden">
@@ -61,7 +43,7 @@ export default function EventsPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                     >
-                        <h1 className="text-6xl md:text-[10rem] font-black text-white leading-none tracking-tighter uppercase drop-shadow-2xl">
+                        <h1 className="text-6xl md:text-[10rem] font-black text-white leading-none tracking-tighter uppercase drop-shadow-2xl font-headline">
                             Celebrations
                         </h1>
                         
@@ -74,6 +56,57 @@ export default function EventsPage() {
                                 <path d="M0 10C25 10 25 2 50 2C75 2 75 18 100 18C125 18 125 2 150 2C175 2 175 18 200 18C225 18 225 2 250 2C275 2 275 10 300 10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
                             </svg>
                         </div>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* NEW BOUTIQUE TYPOGRAPHY SECTION */}
+            <section className="bg-white py-24 md:py-40 overflow-hidden border-y border-slate-100">
+                <div className="container mx-auto px-4 flex flex-col items-center text-[#eb5e28]">
+                    {/* Line 1 */}
+                    <motion.div 
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="w-full flex justify-center lg:justify-start lg:pl-20"
+                    >
+                        <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-playfair leading-none tracking-tighter">
+                            Balloon Styling
+                        </h2>
+                    </motion.div>
+
+                    {/* Line 2 */}
+                    <motion.div 
+                        initial={{ opacity: 0, x: 50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="w-full flex flex-col md:flex-row items-center justify-center gap-4 md:gap-12 mt-8 lg:mt-0"
+                    >
+                        <p className="font-kaushan text-2xl md:text-5xl text-[#eb5e28]/70 italic lowercase">
+                            We've got everything cov_
+                        </p>
+                        <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-playfair leading-none tracking-tighter">
+                            Classic Arch
+                        </h2>
+                    </motion.div>
+
+                    {/* Line 3 */}
+                    <motion.div 
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        className="w-full flex flex-col md:flex-row items-center justify-center lg:justify-end lg:pr-20 gap-4 md:gap-12 mt-8 lg:mt-4"
+                    >
+                        <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-playfair leading-none tracking-tighter">
+                            Party banner
+                        </h2>
+                        <Link href="/gallery" className="group font-kaushan text-2xl md:text-5xl text-[#eb5e28]/70 italic flex items-center gap-3 hover:text-[#eb5e28] transition-colors">
+                            Look for more 
+                            <ArrowRight className="w-8 h-8 group-hover:translate-x-2 transition-transform" />
+                        </Link>
                     </motion.div>
                 </div>
             </section>

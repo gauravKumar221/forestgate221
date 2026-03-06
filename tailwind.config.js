@@ -18,6 +18,7 @@ module.exports = {
         body: ['Poppins', 'sans-serif'],
         headline: ['Sour Gummy', 'system-ui'],
         kaushan: ['Kaushan Script', 'cursive'],
+        playfair: ['Playfair Display', 'serif'],
         code: ['monospace'],
       },
       colors: {
