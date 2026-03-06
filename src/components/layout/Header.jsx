@@ -29,6 +29,7 @@ export function Header() {
   const { user, logout, loading } = useAuthContext();
   const pathname = usePathname();
   const router = useRouter();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
   // Hide header on admin pages, login, or register pages
   if (
@@ -150,10 +151,23 @@ export function Header() {
 
           {/* Tablet/Mobile Menu Trigger */}
           <div className="lg:hidden flex-1 flex justify-end gap-2">
-            <Sheet>
+            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <Menu className="h-6 w-6" />
+                <Button variant="ghost" size="icon" className="relative h-10 w-10 flex items-center justify-center">
+                  <div className="w-6 h-5 flex flex-col justify-between items-center relative transition-all duration-300">
+                    <span className={cn(
+                      "block w-6 h-0.5 bg-foreground rounded-full transition-all duration-300 ease-in-out origin-center",
+                      isMobileMenuOpen ? "rotate-45 translate-y-[9px]" : ""
+                    )} />
+                    <span className={cn(
+                      "block w-6 h-0.5 bg-foreground rounded-full transition-all duration-300 ease-in-out",
+                      isMobileMenuOpen ? "opacity-0 scale-x-0" : "opacity-100"
+                    )} />
+                    <span className={cn(
+                      "block w-6 h-0.5 bg-foreground rounded-full transition-all duration-300 ease-in-out origin-center",
+                      isMobileMenuOpen ? "-rotate-45 -translate-y-[9px]" : ""
+                    )} />
+                  </div>
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-card p-0 flex flex-col">
