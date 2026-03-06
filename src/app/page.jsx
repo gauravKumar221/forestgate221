@@ -124,7 +124,6 @@ export default function Home() {
         {...fadeInUp}
         id="highlights" 
         className="py-[10px] px-4 md:px-[81px]" 
-        style={{ background: 'linear-gradient(to bottom, #70ac43, #ffffff)' }}
       >
         <div className="container mx-auto px-0">
           <HighlightsCarouselWrapper highlightsWithImages={highlightsWithImages} />
